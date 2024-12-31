@@ -1,0 +1,222 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeaderHero from '../components/HeaderHero.astro';
+import Topic from '../components/Topic.astro';
+import {Image} from 'astro:assets';
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Call for Papers",
+    "description": "Information about the call for papers for the web development conference.",
+    "mainEntity": {
+        "@type": "Event",
+        "name": "Web Development Conference",
+        "description": "The premier event for web developers, bringing together industry experts...",
+        "location": {
+            "@type": "Place",
+            "name": "Cityville Conference Center",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "123 Conference Center Drive",
+                "addressLocality": "Cityville",
+                "addressRegion": "State",
+                "postalCode": "12345",
+                "addressCountry": "Country"
+            }
+        },
+        "startDate": "2024-09-01",
+        "endDate": "2024-09-30",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/PreOrder",
+            "url": "https://example.com/call-for-papers",
+            "price": "0"
+        },
+        "image": "https://example.com/conference-image.jpg",
+        "performer": {
+            "@type": "Organization",
+            "name": "Web Development Conference",
+            "url": "https://example.com"
+        }
+    }
+}
+
+---
+
+
+<Layout title='Call For Papers' schema={schema}>
+    <main>
+        <HeaderHero>
+            <span slot="title">Call For Papers</span>
+            <span slot="description">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</span>
+            <span slot="actions">
+                <button class="btn btn-primary">Submit your talks</button>
+            </span>
+        </HeaderHero>
+
+        <section class="max-w-screen-lg m-auto flex flex-col items-center px-8">
+            <div class="stats shadow mt-8 mb-4  grid-flow-row md:grid-flow-col">
+                <div class="stat">
+                    <div class="stat-title">Tracks</div>
+                    <div class="stat-value">3</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Conferences</div>
+                    <div class="stat-value">18</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Lightining talks</div>
+                    <div class="stat-value">12</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Workshops</div>
+                    <div class="stat-value">4</div>
+                </div>
+            </div>
+
+            <h2 class="text-4xl font-bold mt-20 mb-12">Submission timeline</h2>
+
+            <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+                <li>
+                    <div class="timeline-middle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#646EE4" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                    </div>
+                    <div class="timeline-start md:text-end mb-10">
+                        <time class="font-mono italic">3rd January 2025</time>
+                        <div class="text-lg font-black">CFP open</div>
+                        <div>Submit your talks for the conference</div>
+                        <button class="btn btn-primary my-4">Submit your talks</button>
+                    </div>
+                    <hr/>
+                </li>
+                <li>
+                    <hr />
+                    <div class="timeline-middle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                    </div>
+                    <div class="timeline-end mb-10">
+                        <time class="font-mono italic">February 10th 2025</time>
+                        <div class="text-lg font-black">Submission Deadline</div>
+                        Last day to submit your talks
+                    </div>
+                    <hr />
+                </li>
+                <li>
+                    <hr />
+                    <div class="timeline-middle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                    </div>
+                    <div class="timeline-start md:text-end mb-10">
+                        <time class="font-mono italic">February 2025</time>
+                        <div class="text-lg font-black">Talks review</div>
+                        Our team will review your talks
+                    </div>
+                    <hr />
+                </li>
+                <li>
+                    <hr />
+                    <div class="timeline-middle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                    </div>
+                    <div class="timeline-end mb-10">
+                        <time class="font-mono italic">Late February</time>
+                        <div class="text-lg font-black">Review feedback</div>
+                        <div>We'll send you feedback about your talks:</div>
+                    </div>
+                    <hr />
+                </li>
+                <li>
+                    <hr />
+                    <div class="timeline-middle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                    </div>
+                    <div class="timeline-start md:text-end mb-10">
+                        <time class="font-mono italic">2015</time>
+                        <div class="text-lg font-black">Final schedule</div>
+                        <div>Once we'll get validation from all accepted talks, we'll publish the event agenda</div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <h2 class="text-4xl font-bold mt-8 mb-12">Topics</h2>
+
+            <ul class="flex flex-wrap justify-center gap-4">
+                <li><Topic title='Web' /></li>
+                <li><Topic title='UI/UX' /></li>
+                <li><Topic title='Testing' /></li>
+                <li><Topic title="Cloud" /></li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <h2 class="text-4xl font-bold mt-8 mb-12">Levels</h2>
+
+            <ul>
+                <li>Beginner</li>
+                <li>Intermediate</li>
+                <li>Expert</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <h2 class="text-4xl font-bold mt-8 mb-12">Formats</h2>
+
+            <article class="flex flex-wrap gap-8">
+                <Image class="rounded-xl" height={200} width={400} format="webp" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                <div>
+                    <h3 class="text-3xl font-bold">Conference (10 slots)</h3>
+                    <h4 class="text-xl italic">40 minutes</h4>
+                    <p class="mt-4">
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                    </p>
+                </div>
+            </article>
+
+            <article class="flex flex-wrap flex-row-reverse gap-8 mt-12">
+                <Image class="rounded-xl" height={200} width={400} format="webp" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                <div>
+                    <h3 class="text-3xl font-bold">Lightining Talk (8 slots)</h3>
+                    <h4 class="text-xl italic">15 minutes</h4>
+                    <p class="mt-4">
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                    </p>
+                </div>
+            </article>
+
+            <article class="flex flex-wrap gap-8 mt-12">
+                <Image class="rounded-xl" height={200} width={400} format="webp" src="https://images.unsplash.com/photo-1659301254614-8d6a9d46f26a?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                <div>
+                    <h3 class="text-3xl font-bold">Workshop (4 slots)</h3>
+                    <h4 class="text-xl italic">4 hours</h4>
+                    <p class="mt-4">
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                    </p>
+                </div>
+            </article>
+
+            <div class="divider"></div>
+
+            <h2 class="text-4xl font-bold mt-8 mb-12">Review process</h2>
+
+            <div role="alert" class="alert shadow-lg mt-12">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div>
+                    <h3 class="font-bold">Brand assets</h3>
+                    <div class="text-xs">Grab our Google Slides template</div>
+                </div>
+                <button class="btn btn-sm btn-primary">Download</button>
+            </div>
+        </section>
+    </main>
+</Layout>

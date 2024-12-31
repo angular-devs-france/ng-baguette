@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {SITE_TITLE} from "../consts";
+---
+
+<Layout title={SITE_TITLE}>
+	<main>
+		<div class="hero min-h-screen">
+			<div class="hero-content text-center">
+				<div class="max-w-ld flex flex-col items-center">
+					<h1 class="text-5xl font-bold">EventEdge</h1>
+					<h2 class="text-3xl font-bold">The largest XX Conference in the XX</h2>
+					<p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+					<button class="btn btn-primary text-2xl font-medium">Register</button>
+
+					<div class="stats shadow mt-8 grid-flow-row md:grid-flow-col">
+
+						<div class="stat">
+							<div class="stat-title">Tracks</div>
+							<div class="stat-value">3</div>
+						</div>
+						<div class="stat">
+							<div class="stat-title">Speakers</div>
+							<div class="stat-value">40</div>
+						</div>
+						<div class="stat">
+							<div class="stat-title">Attendees</div>
+							<div class="stat-value">700</div>
+						</div>
+						<div class="stat">
+							<div class="stat-title">Sponsors</div>
+							<div class="stat-value">20</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</Layout>
