@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import HeaderHero from "../../components/HeaderHero.astro";
+import { SITE_DOMAIN, SITE_TITLE } from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const tracks = await getCollection("track");
+  return tracks.map((track) => ({
+    params: { slug: decodeURI(track.slug) },
+  }));
+}
+
+const slug = Astro.params.slug;
+const track = (await getCollection("track", (track) => track.id === slug)).map(
+  (track) => track.data
+)[0];
+console.log(track);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "List of tracks",
+  description:
+    "A list of tracks participating in the web development conference.",
+  itemListElement: {
+    "@type": "Person",
+    name: track.name,
+    description: track.description,
+    url: `${SITE_DOMAIN}/tracks/${track.name}`,
+  },
+};
+---
+
+<Layout title={SITE_TITLE} schema={schema}>
+  <main>
+    <HeaderHero>
+      <span slot="title">{track.name}</span>
+      <span slot="description">{track.description}</span>
+    </HeaderHero>
+    <section class="max-w-screen-lg m-auto px-8"></section>
+  </main>
+</Layout>

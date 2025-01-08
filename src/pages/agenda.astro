@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import HeaderHero from "../components/HeaderHero.astro";
 import { getCollection } from "astro:content";
 
-const tracks = (await getCollection("track")).map((track) => track.data);
+const tracks = await getCollection("track");
 
 const schema = {
   "@context": "https://schema.org",
@@ -91,22 +91,32 @@ const schema = {
         {
           tracks.map((track) => (
             <div
-              class={"session session-1 track-1"}
+              class={
+                "session session-1 " +
+                track.data.rooms.map((room) => "track-" + room).join(" ")
+              }
               style={
                 "grid-column: " +
-                track.room +
+                `track-${track.data.rooms[0]}-start` +
+                ` / track-${track.data.rooms[track.data.rooms.length - 1]}-end` +
                 "; grid-row: time-" +
-                track.startDate +
+                track.data.startDate +
                 " / time-" +
-                track.endDate
+                track.data.endDate
               }
             >
               <h3 class="session-title">
-                <a href="#">{track.name}</a>
+                <a href={`track/${track.slug}`}>{track.data.name}</a>
               </h3>
               <span class="session-time">8:00 - 9:00</span>
-              <span class="session-track">{track.roomName}</span>
-              <span class="session-presenter">{track.presenter}</span>
+              <span class="session-track">
+                Track : {track.data.rooms.join(" & ")}
+              </span>
+              <span class="session-presenter">
+                <a href={`speaker/${track.data.presenterSlug}`}>
+                  {track.data.presenter}
+                </a>
+              </span>
             </div>
           ))
         }

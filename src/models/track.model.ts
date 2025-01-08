@@ -3,7 +3,7 @@ export type ITrack = {
   description: string;
   startDate: string;
   endDate: string;
-  room: string;
-  roomName: string;
+  rooms: string[];
   presenter: string;
+  presenterSlug: string;
 };
