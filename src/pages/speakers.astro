@@ -1,56 +1,60 @@
 ---
-import Speaker from '../components/Speaker.astro'
-import {SITE_TITLE, SITE_DOMAIN} from "../consts";
+import Speaker from "../components/Speaker.astro";
+import { getCollection } from "astro:content";
+import { SITE_TITLE, SITE_DOMAIN } from "../consts";
 import Layout from "../layouts/Layout.astro";
-import HeaderHero from '../components/HeaderHero.astro';
-import {type ISpeaker} from "../models/speaker.model";
+import HeaderHero from "../components/HeaderHero.astro";
 
-const speakers: Array<ISpeaker> = [
-    {name: 'Jane Doe', description: 'Senior Software Engineer at XX • GitHub Star'},
-    {name: 'Jane Doe', description: 'Senior Software Engineer at XX • GitHub Star'},
-    {name: 'Jane Doe', description: 'Senior Software Engineer at XX • GitHub Star'},
-    {name: 'Jane Doe', description: 'Senior Software Engineer at XX • GitHub Star'},
-    {name: 'Jane Doe', description: 'Senior Software Engineer at XX • GitHub Star'},
-    {name: 'Jane Doe', description: 'Senior Software Engineer at XX • GitHub Star'},
-];
+const speakers = (await getCollection("speaker")).map(
+  (speaker) => speaker.data
+);
 
 const schema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "List of Speakers",
-    "description": "A list of speakers participating in the web development conference.",
-    "itemListElement": speakers.map(speaker => ({
-        "@type": "Person",
-        "name": speaker.name,
-        "jobTitle": speaker.jobTitle,
-        "description": speaker.description,
-        "url": `${SITE_DOMAIN}/speakers/${speaker.name}`,
-        "image": speaker.image,
-        "sameAs": [
-            speaker.twitter ? `https://twitter.com/${speaker.twitter}` : null,
-            speaker.linkedin ? `https://www.linkedin.com/in/${speaker.linkedin}` : null
-        ]
-    }))
-}
-
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "List of Speakers",
+  description:
+    "A list of speakers participating in the web development conference.",
+  itemListElement: speakers.map((speaker) => ({
+    "@type": "Person",
+    name: speaker.name,
+    jobTitle: speaker.jobTitle,
+    description: speaker.description,
+    url: `${SITE_DOMAIN}/speakers/${speaker.name}`,
+    image: speaker.image,
+    sameAs: [
+      speaker.twitter ? `https://twitter.com/${speaker.twitter}` : null,
+      speaker.linkedin
+        ? `https://www.linkedin.com/in/${speaker.linkedin}`
+        : null,
+    ],
+  })),
+};
 ---
 
-
 <Layout title={SITE_TITLE} schema={schema}>
-    <main>
-        <HeaderHero>
-            <span slot="title">Speakers</span>
-            <span slot="description">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</span>
-        </HeaderHero>
+  <main>
+    <HeaderHero>
+      <span slot="title">Speakers</span>
+      <span slot="description"
+        >Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+        excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
+        id nisi.</span
+      >
+    </HeaderHero>
 
-        <ul class="flex flex-wrap justify-center gap-x-20 gap-y-8 mt-12 max-w-screen-lg m-auto">
-            {speakers.map(speaker =>
-                    <li>
-                        <a href={speaker.name}>
-                            <Speaker speaker={speaker}/>
-                        </a>
-                    </li>)}
-        </ul>
-    </main>
+    <ul
+      class="flex flex-wrap justify-center gap-x-20 gap-y-8 mt-12 max-w-screen-lg m-auto"
+    >
+      {
+        speakers.map((speaker) => (
+          <li>
+            <a href={speaker.name}>
+              <Speaker speaker={speaker} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
 </Layout>
-

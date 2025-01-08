@@ -1,6 +1,6 @@
-export interface ICrew {
-    name: string;
-    title: string
-    bio: string;
-    heroImage: string;
-}
+export type ICrew = {
+  name: string;
+  title: string;
+  bio: string;
+  heroImage: string;
+};
