@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import HeaderHero from "../../components/HeaderHero.astro";
+import { SITE_DOMAIN, SITE_TITLE } from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const speakers = await getCollection("speaker");
+  return speakers.map((speaker) => ({
+    params: { slug: decodeURI(speaker.slug) },
+  }));
+}
+
+const slug = Astro.params.slug;
+const speaker = (
+  await getCollection("speaker", (speaker) => speaker.id === slug)
+).map((speaker) => speaker.data)[0];
+console.log(speaker);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "List of Speakers",
+  description:
+    "A list of speakers participating in the web development conference.",
+  itemListElement: {
+    "@type": "Person",
+    name: speaker.name,
+    jobTitle: speaker.jobTitle,
+    description: speaker.description,
+    url: `${SITE_DOMAIN}/speakers/${speaker.name}`,
+    image: speaker.image,
+    sameAs: [
+      speaker.twitter ? `https://twitter.com/${speaker.twitter}` : null,
+      speaker.linkedin
+        ? `https://www.linkedin.com/in/${speaker.linkedin}`
+        : null,
+    ],
+  },
+};
+---
+
+<Layout title={SITE_TITLE} schema={schema}>
+  <main>
+    <HeaderHero>
+      <span slot="title">{speaker.name}</span>
+      <span slot="description">{speaker.description}</span>
+    </HeaderHero>
+    <section class="max-w-screen-lg m-auto px-8"></section>
+  </main>
+</Layout>

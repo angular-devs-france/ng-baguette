@@ -5,9 +5,7 @@ import { SITE_TITLE, SITE_DOMAIN } from "../consts";
 import Layout from "../layouts/Layout.astro";
 import HeaderHero from "../components/HeaderHero.astro";
 
-const speakers = (await getCollection("speaker")).map(
-  (speaker) => speaker.data
-);
+const speakers = await getCollection("speaker");
 
 const schema = {
   "@context": "https://schema.org",
@@ -49,8 +47,8 @@ const schema = {
       {
         speakers.map((speaker) => (
           <li>
-            <a href={speaker.name}>
-              <Speaker speaker={speaker} />
+            <a href={"speaker/" + speaker.slug}>
+              <Speaker speaker={speaker.data} />
             </a>
           </li>
         ))
