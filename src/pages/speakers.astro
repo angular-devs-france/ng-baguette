@@ -13,7 +13,7 @@ const schema = {
   name: "List of Speakers",
   description:
     "A list of speakers participating in the web development conference.",
-  itemListElement: speakers.map((speaker) => ({
+  itemListElement: speakers.map(speakerConf => speakerConf.data).map((speaker) => ({
     "@type": "Person",
     name: speaker.name,
     jobTitle: speaker.jobTitle,
