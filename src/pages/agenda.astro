@@ -82,102 +82,42 @@ const schema = {
         development expertise to the next level.
       </span>
     </HeaderHero>
-    <section class="max-w-screen-lg m-auto px-8">
-      <div class="schedule" aria-labelledby="schedule-heading">
-        <span
-          class="track-slot"
-          aria-hidden="true"
-          style="grid-column: track-1; grid-row: tracks;">Track 1</span
-        >
 
-        {
-          tracks.map((track, index) => (
-            <div
-              class={
-                "session session-" +
-                index +
-                track.data.rooms.map((room) => " track-" + room).join(" ")
-              }
-              style={
-                "grid-column: " +
-                `track-${track.data.rooms[0]}-start` +
-                ` / track-${track.data.rooms[track.data.rooms.length - 1]}-end` +
-                "; grid-row: time-" +
-                track.data.startDate +
-                " / time-" +
-                track.data.endDate
-              }
-            >
-              <h3 class="session-title">
-                <a href={`track/${track.slug}`}>{track.data.name}</a>
-              </h3>
-              <span class="session-time">
-                {displayAsHour(track.data.startDate)} -{" "}
-                {displayAsHour(track.data.endDate)}
-              </span>
-              <span class="session-track">
-                Track : {track.data.rooms.join(" & ")}
-              </span>
-              <span class="session-presenter">
-                <a
-                  href={
-                    track.data.presenterSlug &&
-                    `speaker/${track.data.presenterSlug}`
-                  }
-                >
-                  {track.data.presenter}
-                </a>
-              </span>
+    <ul
+      class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
+    >
+      {
+        tracks.map((track, index) => (
+          <li>
+            <div class="timeline-middle">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="h-5 w-5"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
             </div>
-          ))
-        }
-
-        <div
-          class="session break"
-          style="grid-column: track-1-start / track-1-end; grid-row: time-1000 / time-1100;"
-        >
-          <h3 class="session-title">Welcome</h3>
-        </div>
-        <div
-          class="session break"
-          style="grid-column: track-1-start / track-1-end; grid-row: time-1215 / time-1320;"
-        >
-          <h3 class="session-title">Lunch break!</h3>
-        </div>
-        <div
-          class="session break"
-          style="grid-column: track-1-start / track-1-end; grid-row: time-1425 / time-1500;"
-        >
-          <h3 class="session-title">Take a break!</h3>
-        </div>
-        <div
-          class="session break"
-          style="grid-column: track-1-start / track-1-end; grid-row: time-1605 / time-1640;"
-        >
-          <h3 class="session-title">Take a break!</h3>
-        </div>
-
-        <h2 class="time-slot" style="grid-row: time-1000;">10:00am</h2>
-        <h2 class="time-slot" style="grid-row: time-1030;">10:30am</h2>
-        <h2 class="time-slot" style="grid-row: time-1100;">11:00am</h2>
-        <h2 class="time-slot" style="grid-row: time-1130;">11:30am</h2>
-        <h2 class="time-slot" style="grid-row: time-1200;">12:00pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1230;">12:30pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1300;">1:00pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1330;">1:30pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1400;">2:00pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1430;">2:30pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1500;">3:00pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1530;">3:30pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1600;">4:00pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1630;">4:30pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1700;">5:00pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1730;">5:30pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1800;">6:00pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1830;">6:30pm</h2>
-        <h2 class="time-slot" style="grid-row: time-1900;">7:00pm</h2>
-      </div>
-    </section>
+            <div
+              class={index % 2 === 0 ? "timeline-start mb-10 md:text-end" : "timeline-end md:mb-10"}}
+            >
+              <time class="font-mono italic">
+                {displayAsHour(track.data.startDate)} -
+                {displayAsHour(track.data.endDate)}
+              </time>
+              <div class="text-lg font-black">{track.data.name}</div>
+              {track.data.description}
+            </div>
+            <hr />
+          </li>
+        ))
+      }
+    </ul>
   </main>
 </Layout>
 
@@ -185,255 +125,4 @@ const schema = {
   /*************************
  * GRID SCHEDULE LAYOUT
  *************************/
-  .schedule {
-    display: grid;
-    grid-gap: 1em;
-    grid-template-rows:
-      [tracks] auto
-      [time-1000] 1fr
-      [time-1005] 1fr
-      [time-1010] 1fr
-      [time-1015] 1fr
-      [time-1020] 1fr
-      [time-1025] 1fr
-      [time-1030] 1fr
-      [time-1035] 1fr
-      [time-1040] 1fr
-      [time-1045] 1fr
-      [time-1050] 1fr
-      [time-1055] 1fr
-      [time-1100] 1fr
-      [time-1105] 1fr
-      [time-1110] 1fr
-      [time-1115] 1fr
-      [time-1120] 1fr
-      [time-1125] 1fr
-      [time-1130] 1fr
-      [time-1135] 1fr
-      [time-1140] 1fr
-      [time-1145] 1fr
-      [time-1150] 1fr
-      [time-1155] 1fr
-      [time-1200] 1fr
-      [time-1205] 1fr
-      [time-1210] 1fr
-      [time-1215] 1fr
-      [time-1220] 1fr
-      [time-1225] 1fr
-      [time-1230] 1fr
-      [time-1235] 1fr
-      [time-1240] 1fr
-      [time-1245] 1fr
-      [time-1250] 1fr
-      [time-1255] 1fr
-      [time-1300] 1fr
-      [time-1305] 1fr
-      [time-1310] 1fr
-      [time-1315] 1fr
-      [time-1320] 1fr
-      [time-1325] 1fr
-      [time-1330] 1fr
-      [time-1335] 1fr
-      [time-1340] 1fr
-      [time-1345] 1fr
-      [time-1350] 1fr
-      [time-1355] 1fr
-      [time-1400] 1fr
-      [time-1405] 1fr
-      [time-1410] 1fr
-      [time-1415] 1fr
-      [time-1420] 1fr
-      [time-1425] 1fr
-      [time-1430] 1fr
-      [time-1435] 1fr
-      [time-1440] 1fr
-      [time-1445] 1fr
-      [time-1450] 1fr
-      [time-1455] 1fr
-      [time-1500] 1fr
-      [time-1505] 1fr
-      [time-1510] 1fr
-      [time-1515] 1fr
-      [time-1520] 1fr
-      [time-1525] 1fr
-      [time-1530] 1fr
-      [time-1535] 1fr
-      [time-1540] 1fr
-      [time-1545] 1fr
-      [time-1550] 1fr
-      [time-1555] 1fr
-      [time-1600] 1fr
-      [time-1605] 1fr
-      [time-1610] 1fr
-      [time-1615] 1fr
-      [time-1620] 1fr
-      [time-1625] 1fr
-      [time-1630] 1fr
-      [time-1635] 1fr
-      [time-1640] 1fr
-      [time-1645] 1fr
-      [time-1650] 1fr
-      [time-1655] 1fr
-      [time-1700] 1fr
-      [time-1705] 1fr
-      [time-1710] 1fr
-      [time-1715] 1fr
-      [time-1720] 1fr
-      [time-1725] 1fr
-      [time-1730] 1fr
-      [time-1735] 1fr
-      [time-1740] 1fr
-      [time-1745] 1fr
-      [time-1750] 1fr
-      [time-1755] 1fr
-      [time-1800] 1fr
-      [time-1805] 1fr
-      [time-1810] 1fr
-      [time-1815] 1fr
-      [time-1820] 1fr
-      [time-1825] 1fr
-      [time-1830] 1fr
-      [time-1835] 1fr
-      [time-1840] 1fr
-      [time-1845] 1fr
-      [time-1850] 1fr
-      [time-1855] 1fr
-      [time-1900] 1fr;
-
-    /* Note 1:
-            Use 24hr time for gridline names for simplicity
-
-            Note 2: Use "auto" instead of "1fr" for a more compact schedule where height of a slot is not proportional to the session length. Implementing a "compact" shortcode attribute might make sense for this!
-            Try 0.5fr for more compact equal rows. I don't quite understand how that works :)
-            */
-
-    grid-template-columns:
-      [times] 4em
-      [track-1-start] 1fr
-      [track-1-end];
-  }
-
-  .time-slot {
-    grid-column: times;
-  }
-
-  .track-slot {
-    display: none; /* hidden on small screens and browsers without grid support */
-  }
-
-  @supports (display: grid) {
-    @media screen and (min-width: 700px) {
-      .track-slot {
-        display: block;
-        padding: 10px 5px 5px;
-        position: sticky;
-        top: 0px;
-        z-index: 1;
-        color: white;
-      }
-    }
-  }
-
-  /* Small-screen & fallback styles */
-  .session {
-    margin-bottom: 1em;
-  }
-
-  @supports (display: grid) {
-    @media screen and (min-width: 700px) {
-      .session {
-        margin: 0;
-      }
-    }
-  }
-
-  /*************************
-     * VISUAL STYLES
-     * Design-y stuff ot particularly important to the demo
-     *************************/
-
-  .session {
-    padding: 0.5em;
-    border-radius: 8px;
-  }
-
-  .session-title,
-  .session-time,
-  .session-track,
-  .session-presenter {
-    display: block;
-  }
-
-  .session-title,
-  .time-slot {
-    margin: 0;
-    font-size: 1em;
-  }
-
-  .session-title a {
-    color: #fff;
-    text-decoration-style: dotted;
-
-    &:hover {
-      font-style: italic;
-    }
-
-    &:focus {
-      outline: 2px dotted rgba(255, 255, 255, 0.8);
-    }
-  }
-
-  .track-slot,
-  .time-slot {
-    font-weight: bold;
-    font-size: 0.75em;
-  }
-
-  .track-1 {
-    background-color: #1259b2;
-    color: #fff;
-  }
-
-  .track-2 {
-    background-color: #687f00;
-    color: #fff;
-  }
-
-  .track-3 {
-    background-color: #544d69;
-    color: #fff;
-  }
-
-  .track-4 {
-    background-color: #c35500;
-    color: #fff;
-  }
-
-  .break {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #ccc;
-    color: #000;
-    box-shadow: none;
-  }
-
-  .text {
-    max-width: 750px;
-    font-size: 18px;
-    margin: 0 auto 50px;
-  }
-
-  .meta {
-    color: #555;
-    font-style: italic;
-  }
-
-  .meta a {
-    color: #555;
-  }
-
-  hr {
-    margin: 40px 0;
-  }
 </style>
