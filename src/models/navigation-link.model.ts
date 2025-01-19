@@ -1,4 +1,4 @@
-export interface INavigationLink {
-    href: string;
-    title: string;
-}
+export type INavigationLink = {
+  href: string;
+  title: string;
+};
