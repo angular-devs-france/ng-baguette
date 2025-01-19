@@ -1,8 +1,8 @@
 ---
-name: "Track 3"
-description: "Track 3"
-startDate: "1030"
-endDate: "1100"
-rooms: ["1", "2"]
+name: "Talk 3"
+description: "Talk 3"
+startDate: "1320"
+endDate: "1350"
+rooms: ["1"]
 presenter: "Other presenter"
 ---

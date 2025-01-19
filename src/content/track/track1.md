@@ -1,8 +1,8 @@
 ---
-name: "My wonderfull track"
-description: "Full description of track"
-startDate: "0800"
-endDate: "0900"
+name: "Talk 1"
+description: "Description of talk"
+startDate: "1100"
+endDate: "1140"
 rooms: ["1"]
 presenter: "John doe"
 presenterSlug: "john-doe"
