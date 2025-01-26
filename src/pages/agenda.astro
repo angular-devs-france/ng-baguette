@@ -4,7 +4,34 @@ import Layout from "../layouts/Layout.astro";
 import HeaderHero from "../components/HeaderHero.astro";
 import { getCollection } from "astro:content";
 
-const tracks = (await getCollection("track")).sort(
+const breaks  = [
+  {
+    data: {
+      name: 'Launch Break',
+      startDate: '1215',
+      endDate: '1315',
+    },
+    slug: undefined
+  },
+  {
+    data: {
+      name: 'Break',
+      startDate: '1425',
+      endDate: '1455',
+    },
+    slug: undefined
+  },
+  {
+    data: {
+      name: 'Break',
+      startDate: '1605',
+      endDate: '1635',
+    },
+    slug: undefined
+  }
+];
+
+const tracks = [...breaks, ...(await getCollection("track"))].sort(
   (a, b) =>
     new Date(a.data.startDate).getTime() - new Date(b.data.startDate).getTime()
 );
@@ -109,8 +136,12 @@ const schema = {
               <time class="block text-sm text-gray-500">
               {displayAsHour(track.data.startDate)} - {displayAsHour(track.data.endDate)}
               </time>
-              <a href={'track/' + track.slug} class="text-2xl font-bold text-primary">{track.data.name}</a>
-              <p class="mt-2 text-gray-300">{track.data.description}</p>
+              {track.slug ? (
+                <a href={'track/' + track.slug} class="text-2xl font-bold text-primary">{track.data.name}</a>
+                <p class="mt-2 text-gray-300">{track.data.description}</p>
+              ) : (
+                <span class="text-2xl font-bold text-secondary">{track.data.name}</span>
+              )}
             </div>
             <hr />
           </li>
