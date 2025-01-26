@@ -106,12 +106,11 @@ const schema = {
             <div
               class={index % 2 === 0 ? "timeline-start mb-10 md:text-end" : "timeline-end md:mb-10"}}
             >
-              <time class="font-mono italic">
-                {displayAsHour(track.data.startDate)} -
-                {displayAsHour(track.data.endDate)}
+              <time class="block text-sm text-gray-500">
+              {displayAsHour(track.data.startDate)} - {displayAsHour(track.data.endDate)}
               </time>
-              <div class="text-lg font-black">{track.data.name}</div>
-              {track.data.description}
+              <a href={'track/' + track.slug} class="text-2xl font-bold text-primary">{track.data.name}</a>
+              <p class="mt-2 text-gray-300">{track.data.description}</p>
             </div>
             <hr />
           </li>
