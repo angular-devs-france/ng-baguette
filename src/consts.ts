@@ -2,7 +2,7 @@ import type { INavigationLink } from "./models/navigation-link.model.ts";
 
 export const SITE_DOMAIN = "https://eventedge.com";
 
-export const SITE_TITLE = "NG BAGUETTE";
+export const SITE_TITLE = "NG BAGUETTE CONF 2025";
 
 export const NAVIGATION_LINKS: Array<INavigationLink> = [
   { title: "Agenda", href: "/agenda" },
