@@ -1,6 +1,8 @@
 export type ICrew = {
   name: string;
   title: string;
-  bio: string;
   heroImage: string;
+  linkedin?: string;
+  twitter?: string;
+  bluesky?: string;
 };

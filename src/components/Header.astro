@@ -11,17 +11,23 @@ import { NAVIGATION_LINKS, SITE_TITLE, CFP_LINK } from "../consts";
           fill="none"
           viewBox="0 0 24 24"
           class="inline-block w-5 h-5 stroke-current"
-          ><path
+        >
+          <path
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path></svg
-        >
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
       </label>
     </div>
+
     <div class="flex-1 items-center">
-      <a class="btn btn-ghost text-2xl" href="/">{SITE_TITLE}</a>
+      <a class="btn btn-ghost text-2xl" href="/">
+        NG BAGUETTE CONF
+      </a>
     </div>
+
     <div class="flex-none">
       <nav aria-label="main navigation">
         <ul class="menu menu-horizontal px-1 hidden lg:flex items-baseline">
@@ -32,8 +38,11 @@ import { NAVIGATION_LINKS, SITE_TITLE, CFP_LINK } from "../consts";
               </li>
             ))
           }
-          <a class="btn btn-primary" href={CFP_LINK} target="_blank">Register</a
-          >
+          <!--
+          <a class="btn btn-primary" href={CFP_LINK} target="_blank">
+            Register
+          </a>
+          -->
         </ul>
       </nav>
     </div>

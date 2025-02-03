@@ -1,15 +1,5 @@
 import { defineCollection, z } from "astro:content";
 
-const crew = defineCollection({
-  // Type-check frontmatter using a schema
-  schema: z.object({
-    name: z.string(),
-    title: z.string(),
-    bio: z.string(),
-    heroImage: z.string(),
-  }),
-});
-
 const speaker = defineCollection({
   // Type-check frontmatter using a schema
   schema: z.object({
@@ -35,4 +25,4 @@ const track = defineCollection({
   }),
 });
 
-export const collections = { crew, speaker, track };
+export const collections = { speaker, track };

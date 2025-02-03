@@ -15,11 +15,9 @@ export const NAVIGATION_LINKS: Array<INavigationLink> = [
 ];
 
 export const SOCIAL_LINKS = {
-  twitter: "https://twitter.com/eventedge",
-  facebook: "https://facebook.com/eventedge",
-  // TODO : add logo for linkedin: 'https://linkedin.com/company/eventedge',
-  // TODO : add logo for linkedin: instagram: 'https://instagram.com/eventedge',
-  youtube: "https://youtube.com/eventedge",
+  twitter: "https://x.com/AngularDevsFr",
+  bluesky: "https://bsky.app/profile/angulardevs.fr",
+  linkedin: "https://www.linkedin.com/company/angular-devs-france",
 };
 
 export const CFP_LINK = "https://google.com";
