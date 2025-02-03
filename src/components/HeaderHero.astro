@@ -2,7 +2,7 @@
     <div class="hero-overlay bg-opacity-60 bg-primary"></div>
     <div class="hero-content text-center text-neutral-content pt-12 pb-6">
         <div class="max-w-screen-lg">
-            <h1 class="text-5xl font-bold mb-6">
+            <h1 class="text-5xl text-white uppercase font-bold mb-6 title-font">
                 <slot name="title" />
             </h1>
             <p>
@@ -12,3 +12,9 @@
         </div>
     </div>
 </div>
+
+<style>
+    .title-font {
+        font-family: "Lilita", sans-serif;
+    }
+</style>

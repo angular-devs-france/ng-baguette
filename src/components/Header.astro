@@ -23,7 +23,7 @@ import { NAVIGATION_LINKS, SITE_TITLE, CFP_LINK } from "../consts";
     </div>
 
     <div class="flex-1 items-center">
-      <a class="btn btn-ghost text-2xl" href="/">
+      <a class="btn btn-ghost text-2xl text-white title-font" href="/">
         NG BAGUETTE CONF
       </a>
     </div>
@@ -34,7 +34,7 @@ import { NAVIGATION_LINKS, SITE_TITLE, CFP_LINK } from "../consts";
           {
             NAVIGATION_LINKS.map((link) => (
               <li>
-                <a href={link.href}>{link.title}</a>
+                <a class="text-xl" href={link.href}>{link.title}</a>
               </li>
             ))
           }
@@ -48,3 +48,8 @@ import { NAVIGATION_LINKS, SITE_TITLE, CFP_LINK } from "../consts";
     </div>
   </div>
 </header>
+<style>
+  .title-font {
+    font-family: "Lilita", sans-serif;
+  }
+</style>
