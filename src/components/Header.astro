@@ -48,9 +48,9 @@ const locale = Astro.currentLocale;
           -->
         </ul>
       </nav>
-      <div class="flex gap-2 ml-20">
-        <a href="/en" class={`btn btn-sm ${locale === 'en' ? 'btn-primary' : 'btn-ghost'}`}>EN</a>
-        <a href="/fr" class={`btn btn-sm ${locale === 'fr' ? 'btn-primary' : 'btn-ghost'}`}>FR</a>
+      <div class="flex gap-2 ml-20 text-sm md:text-base">
+        <a href="/en" class={`btn btn-xs md:btn-sm ${locale === 'en' ? 'btn-primary' : 'btn-ghost'}`}>EN</a>
+        <a href="/fr" class={`btn btn-xs md:btn-sm ${locale === 'fr' ? 'btn-primary' : 'btn-ghost'}`}>FR</a>
       </div>
     </div>
   </div>
