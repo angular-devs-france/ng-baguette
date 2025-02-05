@@ -14,14 +14,7 @@ const schema = {
   name: "Liste des orateurs",
   description: "Liste des orateurs participant à la conférence de développement web.",
   itemListElement: speakers.map((speakerConf: CollectionEntry<"speaker">) => speakerConf.data)
-    .map((speaker: { 
-      name: string; 
-      jobTitle: string; 
-      description: string; 
-      image: string;
-      twitter?: string;
-      linkedin?: string;
-    }) => ({
+    .map((speaker) => ({
       "@type": "Person",
       name: speaker.name,
       jobTitle: speaker.jobTitle,
