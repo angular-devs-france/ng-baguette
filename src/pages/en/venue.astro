@@ -1,7 +1,7 @@
 ---
-import {SITE_TITLE} from "../consts";
-import Layout from "../layouts/Layout.astro";
-import HeaderHero from '../components/HeaderHero.astro';
+import {SITE_TITLE} from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+import HeaderHero from '../../components/HeaderHero.astro';
 
 const schema = {
     "@context": "https://schema.org",
@@ -29,7 +29,7 @@ const schema = {
 ---
 
 
-<Layout title={SITE_TITLE} schema={schema}>
+<Layout title="Venue" schema={schema}>
     <main>
         <HeaderHero>
             <span slot="title">Venue</span>

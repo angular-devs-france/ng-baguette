@@ -1,0 +1,38 @@
+---
+import {SITE_TITLE} from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+import HeaderHero from '../../components/HeaderHero.astro';
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "EventVenue",
+    "name": "Lieu de la conférence",
+    "description": "Informations sur le lieu qui accueille la conférence de développement web.",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Conference Center Drive",
+        "addressLocality": "Cityville",
+        "addressRegion": "State",
+        "postalCode": "12345",
+        "addressCountry": "Country"
+    },
+    "url": "https://example.com/venue",
+    "image": "https://example.com/venue-image.jpg",
+    "telephone": "+1234567890",
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "37.7749",
+        "longitude": "-122.4194"
+    }
+}
+---
+
+<Layout title="Lieu" schema={schema}>
+    <main>
+        <HeaderHero>
+            <span slot="title">Lieu</span>
+            <span slot="description">Rejoignez-nous à Nantes, une ville dynamique connue pour son riche patrimoine et sa communauté tech. Notre lieu de conférence offre un cadre idéal pour l'apprentissage et le networking au cœur de l'Ouest de la France.</span>
+        </HeaderHero>
+        <p class="text-center text-2xl font-bold">Détails à venir prochainement...</p>
+    </main>
+</Layout> 

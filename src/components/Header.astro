@@ -1,5 +1,8 @@
 ---
-import { NAVIGATION_LINKS, SITE_TITLE, CFP_LINK } from "../consts";
+import { NAVIGATION_LINKS  } from "../consts";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const locale = Astro.currentLocale;
 ---
 
 <header class="sticky top-0 z-10">
@@ -23,7 +26,7 @@ import { NAVIGATION_LINKS, SITE_TITLE, CFP_LINK } from "../consts";
     </div>
 
     <div class="flex-1 items-center">
-      <a class="btn btn-ghost text-2xl text-white title-font" href="/">
+      <a class="btn btn-ghost text-2xl text-white title-font" href={getRelativeLocaleUrl(Astro.currentLocale!, '/')}>
         NG BAGUETTE CONF
       </a>
     </div>
@@ -32,9 +35,9 @@ import { NAVIGATION_LINKS, SITE_TITLE, CFP_LINK } from "../consts";
       <nav aria-label="main navigation">
         <ul class="menu menu-horizontal px-1 hidden lg:flex items-baseline">
           {
-            NAVIGATION_LINKS.map((link) => (
+            NAVIGATION_LINKS[Astro.currentLocale!].map((link) => (
               <li>
-                <a class="text-xl" href={link.href}>{link.title}</a>
+                <a class="text-xl" href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)}>{link.title}</a>
               </li>
             ))
           }
@@ -45,6 +48,10 @@ import { NAVIGATION_LINKS, SITE_TITLE, CFP_LINK } from "../consts";
           -->
         </ul>
       </nav>
+      <div class="flex gap-2 ml-20">
+        <a href="/en" class={`btn btn-sm ${locale === 'en' ? 'btn-primary' : 'btn-ghost'}`}>EN</a>
+        <a href="/fr" class={`btn btn-sm ${locale === 'fr' ? 'btn-primary' : 'btn-ghost'}`}>FR</a>
+      </div>
     </div>
   </div>
 </header>

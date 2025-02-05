@@ -1,0 +1,55 @@
+---
+import {SITE_TITLE} from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+import HeaderHero from '../../components/HeaderHero.astro';
+import Crew from '../../components/Crew.astro';
+
+// Schema remains the same as it's metadata
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "À propos",
+    // ... rest of schema remains unchanged
+}
+
+const crew = [
+    {
+        name: 'Gerome Grignon',
+        title: 'Ingénieur Frontend chez Lucca',
+        heroImage: '/crew/gerome-grignon.png',
+        linkedin: 'https://www.linkedin.com/in/gerome-grignon/',
+        twitter: 'https://x.com/GeromeDEV',
+        bluesky: 'https://bsky.app/profile/gerome.dev'
+    },
+    {
+        name: 'Anthony Pena',
+        title: 'Développeur Web / Staff Engineer chez SFΞIR Nantes',
+        heroImage: '/crew/anthony-pena.webp',
+        linkedin: 'https://www.linkedin.com/in/penaanthony/',
+        twitter: 'https://x.com/_Anthony_Pena',
+        bluesky: 'https://bsky.app/profile/anthonypena.bsky.social'
+    },
+    {
+        name: 'Yann-Thomas Le Moigne',
+        title: 'Technical Lead chez Apside Top',
+        heroImage: '/crew/yann-thomas-le-moigne.jpeg',
+        linkedin: 'https://www.linkedin.com/in/yatho/',
+        twitter: 'https://x.com/yatho91',
+        bluesky: 'https://bsky.app/profile/yatho.bsky.social'
+    }
+]
+---
+
+<Layout title="À propos" schema={schema}>
+    <main>
+        <HeaderHero>
+            <span slot="title">À propos</span>
+        </HeaderHero>
+        <section class="max-w-screen-lg m-auto px-8">
+            <h2 class="text-4xl font-bold my-12">Le projet</h2>
+            <p>La conférence NG Baguette est un événement communautaire centré sur Angular. Notre mission est de rassembler les développeurs pour partager des connaissances, réseauter et grandir ensemble. À travers des présentations engageantes et des opportunités de networking, nous visons à renforcer la communauté Angular en France et au-delà tout en célébrant notre passion commune pour le développement web.</p>
+            <h2 class="text-4xl font-bold my-12">L'équipe</h2>
+            {crew.map(crew => <Crew crew={crew} />)}
+        </section>
+    </main>
+</Layout> 

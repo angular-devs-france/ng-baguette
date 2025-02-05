@@ -1,0 +1,81 @@
+---
+import {SITE_TITLE, SITE_DOMAIN} from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+import HeaderHero from '../../components/HeaderHero.astro';
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Code de conduite",
+    "description": "Le code de conduite pour la conférence de développement web.",
+    "mainEntity": {
+        "@type": "CreativeWork",
+        "name": "Code de conduite",
+        "description": "Le code de conduite définit le comportement attendu de tous les participants à la conférence...",
+        "url": "/fr/coc",
+        "author": {
+            "@type": "Organization",
+            "name": "Event org"
+        }
+    }
+}
+---
+
+<Layout title="Code de conduite" schema={schema}>
+    <main>
+        <HeaderHero>
+            <span slot="title">Code de conduite</span>
+            <span slot="description">Tous les participants, orateurs, sponsors et bénévoles de notre conférence doivent accepter le code de conduite suivant.</span>
+        </HeaderHero>
+
+        <section class="max-w-screen-lg m-auto mt-12 px-8">
+            <div role="alert" class="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>Les organisateurs appliqueront ce code tout au long de l'événement. Nous attendons la coopération de tous les participants pour assurer un environnement sûr pour tous.</span>
+            </div>
+
+            <h2 class="text-3xl my-8">La Version Courte</h2>
+
+            <p>
+                Notre conférence se veut une expérience sans harcèlement pour tous, indépendamment du genre, de l'identité et de l'expression de genre, de l'âge, de l'orientation sexuelle, du handicap, de l'apparence physique, de la taille, de la race, de l'ethnicité, de la religion (ou de l'absence de religion) ou des choix technologiques. Nous ne tolérons aucune forme de harcèlement des participants à la conférence. Les propos et images à caractère sexuel ne sont appropriés dans aucun lieu de la conférence, y compris les présentations, les ateliers, les soirées, Twitter et autres médias en ligne. Les participants à la conférence qui violent ces règles peuvent être sanctionnés ou expulsés de la conférence <em>sans remboursement</em> à la discrétion des organisateurs.
+            </p>
+
+            <h2 class="text-3xl my-8">La Version Longue</h2>
+
+            <p class="mb-4">
+                Le harcèlement inclut les commentaires verbaux offensants liés au genre, à l'identité et l'expression de genre, à l'âge, à l'orientation sexuelle, au handicap, à l'apparence physique, à la taille, à la race, à l'ethnicité, à la religion, aux choix technologiques, les images à caractère sexuel dans les espaces publics, l'intimidation délibérée, le harcèlement photographique ou vidéo, l'interruption répétée des présentations ou autres événements, les contacts physiques inappropriés et l'attention sexuelle non désirée.
+            </p>
+
+            <p class="mb-4">
+                Les participants à qui l'on demande de cesser tout comportement de harcèlement doivent s'exécuter immédiatement.
+            </p>
+
+            <p class="mb-4">
+                Les sponsors sont également soumis à la politique anti-harcèlement. En particulier, les sponsors ne doivent pas utiliser d'images, d'activités ou autre matériel à caractère sexuel. Le personnel des stands (y compris les bénévoles) ne doit pas utiliser de vêtements/uniformes/costumes sexualisés, ni créer un environnement sexualisé.
+            </p>
+
+            <p class="mb-4">
+                Si un participant adopte un comportement de harcèlement, les organisateurs de la conférence peuvent prendre toute mesure qu'ils jugent appropriée, y compris avertir le contrevenant ou l'expulser de la conférence sans remboursement.
+            </p>
+
+            <p class="mb-4">
+                Si vous êtes harcelé·e, si vous remarquez que quelqu'un d'autre est harcelé·e, ou si vous avez d'autres préoccupations, veuillez contacter immédiatement un membre du personnel de la conférence. Le personnel de la conférence peut être identifié grâce à leurs t-shirts de marque.
+            </p>
+
+            <p class="mb-4">
+                Le personnel de la conférence se fera un plaisir d'aider les participants à contacter la sécurité de l'hôtel/du lieu ou les forces de l'ordre locales, à fournir une escorte ou à aider ceux qui subissent le harcèlement à se sentir en sécurité pendant toute la durée de la conférence. Nous apprécions votre présence.
+            </p>
+
+            <p class="mb-20">
+                Nous attendons des participants qu'ils suivent ces règles dans tous les lieux de la conférence et des ateliers, ainsi que lors des événements sociaux liés à la conférence.
+            </p>
+
+            Ce travail, créé par <a class="underline" href="https://confcodeofconduct.com/"> Conference Code of Conduct</a>, est sous licence
+            <a
+                    class="underline"
+                    rel="license"
+                    href="http://creativecommons.org/licenses/by/3.0/deed.fr"
+            >Creative Commons Attribution 3.0 Unported License</a>
+        </section>
+    </main>
+</Layout> 

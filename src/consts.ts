@@ -4,15 +4,26 @@ export const SITE_DOMAIN = "https://eventedge.com";
 
 export const SITE_TITLE = "NG BAGUETTE CONF 2025";
 
-export const NAVIGATION_LINKS: Array<INavigationLink> = [
-  { title: "Agenda", href: "/agenda" },
-  { title: "Speakers", href: "/speakers" },
-  { title: "Sponsors", href: "/sponsors" },
-  { title: "About", href: "/about" },
-  { title: "CoC", href: "/coc" },
-  { title: "CFP", href: "/cfp" },
-  { title: "Venue", href: "/venue" },
-];
+export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
+  en: [
+    { title: "Agenda", href: "/agenda" },
+    { title: "Speakers", href: "/speakers" },
+    { title: "Sponsors", href: "/sponsors" },
+    { title: "About", href: "/about" },
+    { title: "CoC", href: "/coc" },
+    { title: "CFP", href: "/cfp" },
+    { title: "Venue", href: "/venue" },
+  ],
+  fr: [
+    { title: "Agenda", href: "/agenda" },
+    { title: "Speakers", href: "/speakers" },
+    { title: "Sponsors", href: "/sponsors" },
+    { title: "A propos", href: "/about" },
+    { title: "CoC", href: "/coc" },
+    { title: "CFP", href: "/cfp" },
+    { title: "Lieu", href: "/venue" },
+  ],
+};
 
 export const SOCIAL_LINKS = {
   twitter: "https://x.com/AngularDevsFr",

@@ -1,0 +1,46 @@
+---
+import {SITE_TITLE} from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+import HeaderHero from '../../components/HeaderHero.astro';
+import {type ISponsor} from "../../models/sponsor.model";
+
+const sponsors: Array<ISponsor> = [];
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Conference Sponsors",
+    "description": "A list of sponsors supporting the web development conference.",
+    "itemListElement": sponsors.map(sponsor => ({
+        "@type": "Organization",
+        "name": sponsor.name,
+        "url": sponsor.url,
+        "logo": sponsor.logo,
+        "description": sponsor.description,
+        "sameAs": [
+            sponsor.twitter,
+            sponsor.linkedin
+        ]
+    }))
+}
+
+---
+
+
+<Layout title="Sponsors" schema={schema}>
+    <main>
+        <HeaderHero>
+            <span slot="title">Sponsors</span>
+        </HeaderHero>
+
+        <p class="text-center text-2xl font-bold">Details upcoming soon..</p>
+
+        <!--
+        <section class="flex flex-col items-center max-w-screen-lg m-auto px-8">
+            <h2 class="text-3xl text-center uppercase font-bold my-8">Host</h2>
+            <h2 class="text-3xl text-center uppercase font-bold my-8">Sponsors</h2>
+            <h2 class="text-3xl text-center uppercase font-bold my-8">Community Partners</h2>
+        </section>
+    -->
+    </main>
+</Layout>
