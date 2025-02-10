@@ -1,25 +1,35 @@
 ---
-import Header from './Header.astro';
-import {NAVIGATION_LINKS} from "../consts";
+import Header from "./Header.astro";
+import { NAVIGATION_LINKS } from "../consts";
 import Footer from "./Footer.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 ---
 
 <div class="drawer">
-    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex flex-col min-h-screen">
-        <Header />
-        <div class="flex-1">
-            <slot />
-        </div>
-        <Footer />
+  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col min-h-screen">
+    <Header />
+    <div class="flex-1">
+      <slot />
     </div>
-    <div class="drawer-side">
-        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-        <ul class="menu pt-20 w-80 min-h-full bg-base-200 text-base-content">
-            {NAVIGATION_LINKS[Astro.currentLocale!].map(link => <li><a href={Astro.currentLocale! + link.href}>{link.title}</a></li>)}
-            <!--
+    <Footer />
+  </div>
+  <div class="drawer-side">
+    <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
+    ></label>
+    <ul class="menu pt-20 w-80 min-h-full bg-base-200 text-base-content">
+      {
+        NAVIGATION_LINKS[Astro.currentLocale!].map((link) => (
+          <li>
+            <a href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)}>
+              {link.title}
+            </a>
+          </li>
+        ))
+      }
+      <!--
             <a class="btn btn-primary mt-4" href={CFP_LINK} target="_blank">Register</a>
             -->
-        </ul>
-    </div>
+    </ul>
+  </div>
 </div>
