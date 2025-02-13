@@ -1,26 +1,63 @@
 ---
-import {type ICrew} from "../models/crew.model";
-import {Image} from 'astro:assets';
+import { type ICrew } from "../models/crew.model";
+import { Image } from "astro:assets";
 
 export interface Props {
-    crew: ICrew;
+  crew: ICrew;
 }
 
-const {crew} = Astro.props;
+const { crew } = Astro.props;
 ---
-<figure class="flex flex-col sm:flex-row items-center sm:items-start gap-8 mb-12 sm:mb-8">
-    <div class="avatar">
-        <div class="mask mask-squircle">
-            <Image class="max-w-40" height={200} width={200} format="webp" src={crew.heroImage} alt="" />
-        </div>
+
+<figure
+  class="flex flex-col sm:flex-row items-center sm:items-start gap-8 mb-12 sm:mb-8"
+>
+  <div class="avatar">
+    <div class="mask mask-squircle w-40 h-40">
+      <Image
+        height={200}
+        width={200}
+        format="webp"
+        src={crew.heroImage}
+        alt=""
+      />
     </div>
-    <figcaption class="flex flex-col sm:mt-6 items-center sm:items-start">
-        <h2 class="text-2xl sm:text-3xl text-center sm:text-left font-bold">{crew.name}</h2>
-        <h3 class="text-xl sm:text-2xl opacity-80 text-center sm:text-left">{crew.title}</h3>
-        <ul class="flex gap-4 mt-2 sm:mt-0">
-            {crew.linkedin && <li><a href={crew.linkedin} target="_blank"><img src="/icons/linkedin.svg" class="w-6 h-6"></a></li>}
-            {crew.twitter && <li><a href={crew.twitter} target="_blank"><img src="/icons/twitter.svg" class="w-6 h-6"></a></li>}
-            {crew.bluesky && <li><a href={crew.bluesky} target="_blank"><img src="/icons/bluesky.svg" class="w-6 h-6"></a></li>}
-        </ul>
-    </figcaption>
+  </div>
+  <figcaption class="flex flex-col sm:mt-6 items-center sm:items-start">
+    <h2 class="text-2xl sm:text-3xl text-center sm:text-left font-bold">
+      {crew.name}
+    </h2>
+    <h3 class="text-xl sm:text-2xl opacity-80 text-center sm:text-left">
+      {crew.title}
+    </h3>
+    <ul class="flex gap-4 mt-2 sm:mt-0">
+      {
+        crew.linkedin && (
+          <li>
+            <a href={crew.linkedin} target="_blank">
+              <img src="/icons/linkedin.svg" class="w-6 h-6" />
+            </a>
+          </li>
+        )
+      }
+      {
+        crew.twitter && (
+          <li>
+            <a href={crew.twitter} target="_blank">
+              <img src="/icons/twitter.svg" class="w-6 h-6" />
+            </a>
+          </li>
+        )
+      }
+      {
+        crew.bluesky && (
+          <li>
+            <a href={crew.bluesky} target="_blank">
+              <img src="/icons/bluesky.svg" class="w-6 h-6" />
+            </a>
+          </li>
+        )
+      }
+    </ul>
+  </figcaption>
 </figure>
