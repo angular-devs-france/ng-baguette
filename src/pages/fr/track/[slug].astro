@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import HeaderHero from "../../../components/HeaderHero.astro";
 import { SITE_TITLE } from "../../../consts";
 import Layout from "../../../layouts/Layout.astro";
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
+import Track from "../../../components/Track.astro";
 
 export async function getStaticPaths() {
   const tracks = await getCollection("track");
@@ -13,8 +13,9 @@ export async function getStaticPaths() {
 }
 
 const slug = Astro.params.slug;
-const track = (await getCollection("track", (track) => track.id === slug))
-  .map((track: CollectionEntry<"track">) => track.data)[0];
+const track = (await getCollection("track", (track) => track.id === slug)).map(
+  (track: CollectionEntry<"track">) => track.data
+)[0];
 
 const schema = {
   "@context": "https://schema.org",
@@ -32,10 +33,6 @@ const schema = {
 
 <Layout title={SITE_TITLE} schema={schema}>
   <main>
-    <HeaderHero>
-      <span slot="title">{track.name}</span>
-      <span slot="description">{track.description}</span>
-    </HeaderHero>
-    <section class="max-w-screen-lg m-auto px-8"></section>
+    <Track track={track} />
   </main>
-</Layout> 
+</Layout>

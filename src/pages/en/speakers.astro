@@ -1,5 +1,6 @@
 ---
 import Speaker from "../../components/Speaker.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCollection } from "astro:content";
 import { SITE_DOMAIN } from "../../consts";
 import Layout from "../../layouts/Layout.astro";
@@ -60,7 +61,12 @@ const schema = {
         {
           speakers.map((speaker) => (
             <li>
-              <a href={"speaker/" + speaker.slug}>
+              <a
+                href={getRelativeLocaleUrl(
+                  Astro.currentLocale!,
+                  "/speaker/" + speaker.slug
+                )}
+              >
                 <Speaker speaker={speaker.data} />
               </a>
             </li>

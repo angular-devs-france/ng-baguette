@@ -1,20 +1,21 @@
-<div class="hero mb-8" style="background-image: url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg);">
-    <div class="hero-overlay bg-opacity-60 bg-primary"></div>
-    <div class="hero-content text-center text-neutral-content pt-12 pb-6">
-        <div class="max-w-screen-lg">
-            <h1 class="text-5xl text-white uppercase font-bold mb-6 title-font">
-                <slot name="title" />
-            </h1>
-            <p>
-                <slot name="description" />
-            </p>
-            <slot name="actions" />
-        </div>
+<div
+  class="hero mb-8"
+  style="background-image: url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg);"
+>
+  <div class="hero-overlay bg-opacity-60 bg-primary"></div>
+  <div class="hero-content text-center text-neutral-content pt-12 pb-6">
+    <div class="max-w-screen-lg">
+      <h1 class="text-5xl text-white uppercase font-bold mb-6 title-font">
+        <slot name="title" />
+      </h1>
+      <slot name="description" />
+      <slot name="actions" />
     </div>
+  </div>
 </div>
 
 <style>
-    .title-font {
-        font-family: "Lilita", sans-serif;
-    }
+  .title-font {
+    font-family: "Lilita", sans-serif;
+  }
 </style>
