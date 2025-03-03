@@ -1,47 +1,34 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeaderHero from "../../components/HeaderHero.astro";
-import { getCollection } from "astro:content";
+import AgendaComponent from "../../components/Agenda.astro";
 
-const breaks  = [
+const breaks = [
   {
     data: {
-      name: 'Pause déjeuner',
-      startDate: '1215',
-      endDate: '1315',
+      name: "Pause déjeuner",
+      startDate: "1215",
+      endDate: "1315",
     },
-    slug: undefined
+    slug: undefined,
   },
   {
     data: {
-      name: 'Pause',
-      startDate: '1425',
-      endDate: '1455',
+      name: "Pause",
+      startDate: "1425",
+      endDate: "1455",
     },
-    slug: undefined
+    slug: undefined,
   },
   {
     data: {
-      name: 'Pause',
-      startDate: '1605',
-      endDate: '1635',
+      name: "Pause",
+      startDate: "1605",
+      endDate: "1635",
     },
-    slug: undefined
-  }
+    slug: undefined,
+  },
 ];
-
-const tracks = [...breaks, ...(await getCollection("track"))].sort(
-  (a, b) =>
-    new Date(a.data.startDate).getTime() - new Date(b.data.startDate).getTime()
-);
-
-const displayAsHour = (hour: string) => {
-  return (
-    (hour.startsWith("0") ? hour.slice(1, 2) : hour.slice(0, 2)) +
-    ":" +
-    hour.slice(-2)
-  );
-};
 
 const schema = {
   "@context": "https://schema.org",
@@ -63,7 +50,7 @@ const schema = {
     },
   },
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-  eventStatus: "https://schema.org/EventScheduled"
+  eventStatus: "https://schema.org/EventScheduled",
 };
 ---
 
@@ -73,39 +60,22 @@ const schema = {
       <span slot="title">Programme</span>
     </HeaderHero>
     <section class="max-w-screen-lg m-auto flex flex-col items-center px-8">
-
       <section class="flex flex-col items-center gap-4">
-      <p class="text-center text-2xl font-bold">Notre appel à speakers est ouvert jusqu'au 14 mars 2025</p>
-      <a href="https://conference-hall.io/ng-baguette-conf-2025" target="_blank" class="btn btn-primary">Soumettez vos propositions</a>
-    </section>
-
-    <!--
-    <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-      {tracks.map((track, index) => (
-        <li>
-          <div class="timeline-middle">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
-            </svg>
-          </div>
-          <div class={index % 2 === 0 ? "timeline-start mb-10 md:text-end" : "timeline-end md:mb-10"}>
-            <time class="block text-sm text-gray-500">
-              {displayAsHour(track.data.startDate)} - {displayAsHour(track.data.endDate)}
-            </time>
-            {track.slug ? (
-              <>
-                <a href={'track/' + track.slug} class="text-2xl font-bold text-primary">{track.data.name}</a>
-                <p class="mt-2 text-gray-300">{track.data.description}</p>
-              </>
-            ) : (
-              <span class="text-2xl font-bold text-secondary">{track.data.name}</span>
-            )}
-          </div>
-          <hr />
-        </li>
-      ))}
-    </ul>
-    -->
+        <p class="text-center text-2xl font-bold">
+          Notre appel à speakers est ouvert jusqu'au 14 mars 2025
+        </p>
+        <a
+          href="https://conference-hall.io/ng-baguette-conf-2025"
+          target="_blank"
+          class="btn btn-primary">Soumettez vos propositions</a
+        >
+      </section>
+      <!-- <section class="flex flex-col items-center gap-4">
+          <p class="text-center text-2xl font-bold">
+            Notre appel à speakers est fermé. Programme à venir !
+          </p>
+        </section> -->
     </section>
   </main>
-</Layout> 
+  <!-- <AgendaComponent breaks={breaks} /> -->
+</Layout>

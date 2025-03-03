@@ -1,7 +1,7 @@
 ---
 import Speaker from "../../components/Speaker.astro";
 import { getCollection } from "astro:content";
-import { SITE_TITLE, SITE_DOMAIN } from "../../consts";
+import { SITE_DOMAIN } from "../../consts";
 import Layout from "../../layouts/Layout.astro";
 import HeaderHero from "../../components/HeaderHero.astro";
 
@@ -13,20 +13,22 @@ const schema = {
   name: "List of Speakers",
   description:
     "A list of speakers participating in the web development conference.",
-  itemListElement: speakers.map(speakerConf => speakerConf.data).map((speaker) => ({
-    "@type": "Person",
-    name: speaker.name,
-    jobTitle: speaker.jobTitle,
-    description: speaker.description,
-    url: `${SITE_DOMAIN}/speakers/${speaker.name}`,
-    image: speaker.image,
-    sameAs: [
-      speaker.twitter ? `https://twitter.com/${speaker.twitter}` : null,
-      speaker.linkedin
-        ? `https://www.linkedin.com/in/${speaker.linkedin}`
-        : null,
-    ],
-  })),
+  itemListElement: speakers
+    .map((speakerConf) => speakerConf.data)
+    .map((speaker) => ({
+      "@type": "Person",
+      name: speaker.name,
+      jobTitle: speaker.jobTitle,
+      description: speaker.description,
+      url: `${SITE_DOMAIN}/speakers/${speaker.name}`,
+      image: speaker.image,
+      sameAs: [
+        speaker.twitter ? `https://twitter.com/${speaker.twitter}` : null,
+        speaker.linkedin
+          ? `https://www.linkedin.com/in/${speaker.linkedin}`
+          : null,
+      ],
+    })),
 };
 ---
 
@@ -36,27 +38,35 @@ const schema = {
       <span slot="title">Speakers</span>
     </HeaderHero>
     <section class="max-w-screen-lg m-auto flex flex-col items-center px-8">
+      <section class="flex flex-col items-center gap-4">
+        <p class="text-center text-2xl font-bold">
+          Our call for speakers is open until March 14th
+        </p>
+        <a
+          href="https://conference-hall.io/ng-baguette-conf-2025"
+          target="_blank"
+          class="btn btn-primary">Submit your talk proposals</a
+        >
+      </section>
+      <!-- <section class="flex flex-col items-center gap-4">
+        <p class="text-center text-2xl font-bold">
+          Call for speakers is closed. Agenda coming soon!
+        </p>
+      </section> -->
 
-    <section class="flex flex-col items-center gap-4">
-      <p class="text-center text-2xl font-bold">Our call for speakers is open until March 14th</p>
-      <a href="https://conference-hall.io/ng-baguette-conf-2025" target="_blank" class="btn btn-primary">Submit your talk proposals</a>
-    </section>
-
-    <!--
-    <ul
-      class="flex flex-wrap justify-center gap-x-20 gap-y-8 mt-12 max-w-screen-lg m-auto"
-    >
-      {
-        speakers.map((speaker) => (
-          <li>
-            <a href={"speaker/" + speaker.slug}>
-              <Speaker speaker={speaker.data} />
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    -->
+      <!-- <ul
+        class="flex flex-wrap justify-center gap-x-20 gap-y-8 mt-12 max-w-screen-lg m-auto"
+      >
+        {
+          speakers.map((speaker) => (
+            <li>
+              <a href={"speaker/" + speaker.slug}>
+                <Speaker speaker={speaker.data} />
+              </a>
+            </li>
+          ))
+        }
+      </ul> -->
     </section>
   </main>
 </Layout>

@@ -2,7 +2,8 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import HeaderHero from "../../components/HeaderHero.astro";
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
+import Speaker from "../../components/Speaker.astro";
 
 const speakers = await getCollection("speaker");
 
@@ -10,8 +11,10 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Liste des orateurs",
-  description: "Liste des orateurs participant à la conférence de développement web.",
-  itemListElement: speakers.map((speakerConf: CollectionEntry<"speaker">) => speakerConf.data)
+  description:
+    "Liste des orateurs participant à la conférence de développement web.",
+  itemListElement: speakers
+    .map((speakerConf: CollectionEntry<"speaker">) => speakerConf.data)
     .map((speaker) => ({
       "@type": "Person",
       name: speaker.name,
@@ -21,7 +24,9 @@ const schema = {
       image: speaker.image,
       sameAs: [
         speaker.twitter ? `https://twitter.com/${speaker.twitter}` : null,
-        speaker.linkedin ? `https://www.linkedin.com/in/${speaker.linkedin}` : null,
+        speaker.linkedin
+          ? `https://www.linkedin.com/in/${speaker.linkedin}`
+          : null,
       ],
     })),
 };
@@ -33,23 +38,36 @@ const schema = {
       <span slot="title">Orateurs</span>
     </HeaderHero>
     <section class="max-w-screen-lg m-auto flex flex-col items-center px-8">
+      <section class="flex flex-col items-center gap-4">
+        <p class="text-center text-2xl font-bold">
+          Notre appel à speakers est ouvert jusqu'au 14 mars 2025
+        </p>
+        <a
+          href="https://conference-hall.io/ng-baguette-conf-2025"
+          target="_blank"
+          class="btn btn-primary">Soumettez vos propositions</a
+        >
+      </section>
 
-    <section class="flex flex-col items-center gap-4">
-      <p class="text-center text-2xl font-bold">Notre appel à speakers est ouvert jusqu'au 14 mars 2025</p>
-      <a href="https://conference-hall.io/ng-baguette-conf-2025" target="_blank" class="btn btn-primary">Soumettez vos propositions</a>
-    </section>
+      <!-- <section class="flex flex-col items-center gap-4">
+        <p class="text-center text-2xl font-bold">
+          Notre appel à speakers est fermé. Programme à venir !
+        </p>
+      </section> -->
 
-    <!--
-    <ul class="flex flex-wrap justify-center gap-x-20 gap-y-8 mt-12 max-w-screen-lg m-auto">
-      {speakers.map((speaker) => (
-        <li>
-          <a href={"speaker/" + speaker.slug}>
-            <Speaker speaker={speaker.data} />
-          </a>
-        </li>
-      ))}
-    </ul>
-    -->
+      <!-- <ul
+        class="flex flex-wrap justify-center gap-x-20 gap-y-8 mt-12 max-w-screen-lg m-auto"
+      >
+        {
+          speakers.map((speaker) => (
+            <li>
+              <a href={"speaker/" + speaker.slug}>
+                <Speaker speaker={speaker.data} />
+              </a>
+            </li>
+          ))
+        }
+      </ul> -->
     </section>
   </main>
-</Layout> 
+</Layout>
