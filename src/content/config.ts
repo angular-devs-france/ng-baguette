@@ -19,9 +19,9 @@ const track = defineCollection({
     description: z.string(),
     startDate: z.string(),
     endDate: z.string(),
-    rooms: z.array(z.string()),
     presenter: z.string(),
     presenterSlug: z.string().optional(),
+    language: z.string().default('fr'),
   }),
 });
 

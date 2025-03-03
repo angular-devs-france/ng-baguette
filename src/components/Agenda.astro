@@ -46,7 +46,19 @@ const displayAsHour = (hour: string) => {
               {displayAsHour(track.data.startDate)} - {displayAsHour(track.data.endDate)}
               </time>
               {track.slug ? (
-                <a href={'track/' + track.slug} class="text-2xl font-bold text-primary">{track.data.name}</a>
+                <div class="flex">
+                  {track.data.language === 'all' ? (
+                  <img src="/icons/france_square_icon_64.png" style="height: 24px" alt="French">
+                  <img src="/icons/united_kingdom_square_icon_64.png" style="height: 24px" alt="English">
+                  ) : (
+                    track.data.language === 'fr' ? (
+                    <img src="/icons/france_square_icon_64.png" style="height: 24px" alt="French">
+                    ) : (
+                    <img src="/icons/united_kingdom_square_icon_64.png" style="height: 24px" alt="English">
+                    )
+                  )}
+                  <a href={'track/' + track.slug} class="text-2xl font-bold text-primary">{track.data.name}</a>
+                </div>
                 <p class="mt-2 text-gray-300">{track.data.description}</p>
               ) : (
                 <span class="text-2xl font-bold text-secondary">{track.data.name}</span>
