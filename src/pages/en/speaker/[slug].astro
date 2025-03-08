@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const slug = Astro.params.slug;
 const speaker = (
-  await getCollection("speaker", (speaker) => speaker.id === slug)
+  await getCollection("speaker", (speaker) => speaker.slug === slug)
 ).map((speaker) => speaker.data)[0];
 console.log(speaker);
 

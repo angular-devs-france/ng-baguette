@@ -13,9 +13,9 @@ export async function getStaticPaths() {
 }
 
 const slug = Astro.params.slug;
-const track = (await getCollection("track", (track) => track.id === slug)).map(
-  (track: CollectionEntry<"track">) => track.data
-)[0];
+const track = (
+  await getCollection("track", (track) => track.slug === slug)
+).map((track: CollectionEntry<"track">) => track.data)[0];
 
 const schema = {
   "@context": "https://schema.org",

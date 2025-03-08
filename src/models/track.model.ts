@@ -3,7 +3,6 @@ export type ITrack = {
   description: string;
   startDate: string;
   endDate: string;
-  presenter: string;
-  presenterSlug: string;
+  presenterSlug?: Array<string>;
   language: 'fr' | 'en' | 'all';
 };

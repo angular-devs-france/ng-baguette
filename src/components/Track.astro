@@ -4,30 +4,36 @@ import HeaderHero from "./HeaderHero.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 const { track } = Astro.props;
 
-const speaker = (
-  await getCollection(
-    "speaker",
-    (speaker) => speaker.id === track.presenterSlug
+const speakers = (await getCollection("speaker"))
+  .filter((speaker) =>
+    (track.presenterSlug as Array<string>)?.includes(speaker.slug)
   )
-).map((speaker: CollectionEntry<"speaker">) => speaker.data)[0];
+  .map((speaker: CollectionEntry<"speaker">) => {
+    return {
+      ...speaker.data,
+      slug: speaker.slug,
+    };
+  });
+console.log(speakers);
 ---
 
 <HeaderHero>
   <span slot="title">{track.name}</span>
-  {
-    speaker ? (
-      <a
-        slot="description"
-        href={getRelativeLocaleUrl(
-          Astro.currentLocale!,
-          "/speaker/" + track.presenterSlug
-        )}
-        class="text-2xl font-bold text-primary"
-      >
-        {speaker.name}
-      </a>
-    ) : null
-  }
+  <div slot="description">
+    {
+      speakers.map((speaker) => (
+        <a
+          href={getRelativeLocaleUrl(
+            Astro.currentLocale!,
+            "/speaker/" + speaker.slug
+          )}
+          class="text-2xl font-bold text-primary"
+        >
+          {speaker.name}
+        </a>
+      ))
+    }
+  </div>
 </HeaderHero>
 <section class="max-w-screen-lg m-auto px-8">
   <p>{track.description}</p>
