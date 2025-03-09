@@ -25,12 +25,15 @@ const locale = Astro.currentLocale;
       </label>
     </div>
 
-    <div class="flex-1 items-center">
-      <a class="btn btn-ghost text-2xl text-white title-font" href={getRelativeLocaleUrl(Astro.currentLocale!, '/')}>
+    <div class="flex-1 flex items-center">
+      <a class="btn btn-ghost text-2xl text-white title-font text-nowrap" href={getRelativeLocaleUrl(Astro.currentLocale!, '/')}>
         NG BAGUETTE CONF
       </a>
-      <div class="divider divider-horizontal py-2"></div>
-      <div>May 24, 2025</div>
+      <div class="hidden xl:flex divider divider-horizontal py-2"></div>
+      <div class="hidden xl:flex flex-col items-center">
+        <span>May 24, 2025</span>
+        <span>Nantes, France</span>
+      </div>
     </div>
 
     <div class="flex-none">
@@ -50,7 +53,7 @@ const locale = Astro.currentLocale;
           -->
         </ul>
       </nav>
-      <div class="flex gap-2 ml-20 text-sm md:text-base">
+      <div class="flex gap-2 md:ml-12 text-sm md:text-base">
         <a href="/en" class={`btn btn-xs md:btn-sm ${locale === 'en' ? 'btn-primary' : 'btn-ghost'}`}>EN</a>
         <a href="/fr" class={`btn btn-xs md:btn-sm ${locale === 'fr' ? 'btn-primary' : 'btn-ghost'}`}>FR</a>
       </div>

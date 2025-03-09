@@ -1,76 +1,91 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="May 24th 2025">
-	<main>
-		<div class="hero min-h-screen">
-			<div class="hero-content text-center">
-				<div class="max-w-ld flex flex-col-reverse lg:flex-row items-center">
-					
-					<div class="flex flex-col flex-1 items-center">
-						<h1 class="text-5xl text-white font-bold flex flex-col md:flex-row gap-4 uppercase items-center md:items-start title-font">
-							<span>NG Baguette</span>
-							<span>Conf 2025</span>
-						</h1>
-					<h2 class="text-3xl font-bold mt-4">Your new French cooked Angular conference!</h2>
-					<p class="py-6">Join us for a unique Angular conference experience in France! Discover the latest in Angular development, network with experts and fellow developers.</p>
-					<!--
+  <main>
+    <div class="hero min-h-screen">
+      <div class="hero-content text-center">
+        <div class="max-w-ld flex gap-20 flex-col lg:flex-row">
+          <div class="flex flex-col flex-1 items-center">
+            <img
+              class="w-full md:px-20"
+              src="/ng-baguette-logo.svg"
+              alt="EventEdge"
+            />
+            <h2 class="text-2xl md:text-3xl text-primary font-bold mt-4">
+              French cooked Angular conference
+            </h2>
+            <p class="py-6 px-4 md:px-0">
+              Join us for a unique Angular conference experience in France!
+              Discover the latest in Angular development, network with experts
+              and fellow developers.
+            </p>
+            <!--
 					<button class="btn btn-primary btn-outline text-2xl font-medium">Get your ticket</button>
 					-->
 
-					<p class="mt-8 text-2xl font-bold">
-						May 24th, 2025
-					</p>
-					<div class="stats shadow mt-6 bg-base-200 grid-flow-col">
-						<div class="stat">
-							<div class="stat-title">Speakers</div>
-							<div class="stat-value">8</div>
-						</div>
-						<div class="stat">
-							<div class="stat-title">Attendees</div>
-							<div class="stat-value">150</div>
-						</div>
-						<div class="stat">
-							<div class="stat-title">Sponsors</div>
-							<div class="stat-value">?</div>
-						</div>
-
-					</div>
-					<div role="alert" class="alert mt-8">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    class="stroke-info h-6 w-6 shrink-0 hidden md:block">
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-  </svg>
-  <span>Call for papers open until March 14th</span>
-  <div>
-    <a class="btn btn-sm btn-primary" href="https://conference-hall.io/ng-baguette-conf-2025" target="_blank">Submit your talk proposals</a>
-  </div>
-</div>
-					</div>
-					<div class="flex-1 mb-8 md:mb-0">
-						<img class="w-full" src="/ng-baguette-logo.svg" alt="EventEdge">
-					</div>
-					
-					</div>
-					
-					
-				</div>
-			</div>
-		</div>
-	</main>
+            <p class="mt-4 text-2xl text-primary font-bold">May 24th, 2025</p>
+            <p class="mt-2 font-bold">Nantes, France</p>
+          </div>
+          <div class="flex-1 mt-8 mb-8 md:mb-0">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8">
+              Tickets
+            </h2>
+            <ul class="flex gap-4 items-center">
+              <li
+                class="flex-1 card bg-base-200 shadow-xl border-2 border-primary"
+              >
+                <div class="card-body flex flex-col items-center">
+                  <h3 class="card-title text-2xl text-center">Blind Ticket</h3>
+                  <p>Limited availability</p>
+                  <span class="text-3xl font-bold">€25</span>
+                  <p class="text-primary">Unlocked on March 10th</p>
+                </div>
+              </li>
+              <li
+                class="flex-1 card bg-base-200 shadow-xl border-2 border-primary"
+              >
+                <div class="card-body flex flex-col items-center">
+                  <h3 class="card-title text-xl text-center">Regular Ticket</h3>
+                  <p>Standard conference ticket</p>
+                  <span class="text-3xl font-bold">€30</span>
+                  <p class="text-primary">Unlocked late March</p>
+                </div>
+              </li>
+            </ul>
+            <div role="alert" class="alert mt-8">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="stroke-primary h-6 w-6 shrink-0 hidden md:block"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>Call for papers still open until March 14th</span>
+              <div>
+                <a
+                  class="btn btn-sm btn-primary"
+                  href="https://conference-hall.io/ng-baguette-conf-2025"
+                  target="_blank">Submit your talk proposals</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </Layout>
 
 <style>
-	.title-font {
-		font-family: "Lilita", sans-serif;
-	}
+  .title-font {
+    font-family: "Lilita", sans-serif;
+  }
 </style>
-
