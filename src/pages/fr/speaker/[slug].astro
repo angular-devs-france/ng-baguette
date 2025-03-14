@@ -4,6 +4,7 @@ import HeaderHero from "../../../components/HeaderHero.astro";
 import { SITE_TITLE } from "../../../consts";
 import Layout from "../../../layouts/Layout.astro";
 import type { CollectionEntry } from "astro:content";
+import Tracks from "../../../components/Tracks.astro";
 
 export async function getStaticPaths() {
   const speakers = await getCollection("speaker");
@@ -35,21 +36,11 @@ const schema = {
 <Layout title={SITE_TITLE} schema={schema}>
   <main>
     <HeaderHero>
-      {
-        speaker.image ? (
-          <img
-            src={speaker.image}
-            alt={speaker.name}
-            class="rounded-full w-32 h-32"
-          />
-        ) : (
-          ""
-        )
-      }
       <span slot="title">{speaker.name}</span>
+      <span slot="description">{speaker.description}</span>
     </HeaderHero>
     <section class="max-w-screen-lg m-auto px-8">
-      <span slot="description">{speaker.description}</span>
+      <Tracks speakerSlug={slug} />
     </section>
   </main>
 </Layout>

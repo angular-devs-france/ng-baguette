@@ -19,21 +19,50 @@ const speakers = (await getCollection("speaker"))
 <HeaderHero>
   <span slot="title">{track.name}</span>
   <div slot="description">
-    {
-      speakers.map((speaker) => (
-        <a
-          href={getRelativeLocaleUrl(
-            Astro.currentLocale!,
-            "/speaker/" + speaker.slug
-          )}
-          class="text-2xl font-bold text-primary"
-        >
-          {speaker.name}
-        </a>
-      ))
-    }
+    <p>{track.description}</p>
   </div>
 </HeaderHero>
 <section class="max-w-screen-lg m-auto px-8">
-  <p>{track.description}</p>
+  {
+    speakers.length > 0 && (
+      <div class="mt-8">
+        <h3 class="text-2xl font-bold mb-6 text-primary">Speakers</h3>
+        <div class="grid gap-4">
+          {speakers.map((speaker) => (
+            <a
+              href={getRelativeLocaleUrl(
+                Astro.currentLocale!,
+                "/speaker/" + speaker.slug
+              )}
+              class="group block p-6 bg-white/5 rounded-lg border border-gray-700 hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+            >
+              <div class="flex items-center space-x-4">
+                <div class="flex-1">
+                  <h4 class="text-xl font-semibold text-primary group-hover:text-primary/80 transition-colors">
+                    {speaker.name}
+                  </h4>
+                  <p class="mt-2 text-gray-400 line-clamp-2">
+                    {speaker.description}
+                  </p>
+                </div>
+                <svg
+                  class="w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transform group-hover:translate-x-2 transition-all"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )
+  }
 </section>

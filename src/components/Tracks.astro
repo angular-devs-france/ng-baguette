@@ -1,0 +1,69 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import type { ITrack } from "../models/track.model";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const { speakerSlug } = Astro.props;
+
+let tracks: Array<
+  {
+    slug: string;
+  } & ITrack
+> = [];
+
+if (speakerSlug) {
+  (await getCollection("track"))
+    .filter((track) =>
+      (track.data.presenterSlug as Array<string>)?.includes(speakerSlug)
+    )
+    .forEach((track: CollectionEntry<"track">) => {
+      tracks.push({
+        slug: track.slug,
+        ...(track.data as ITrack),
+      });
+    });
+}
+---
+
+{
+  tracks.length > 0 && (
+    <div class="mt-8">
+      <h3 class="text-2xl font-bold mb-6 text-primary">Featured Talks</h3>
+      <div class="grid gap-4">
+        {tracks.map((track) => (
+          <a
+            href={getRelativeLocaleUrl(
+              Astro.currentLocale!,
+              "/track/" + track.slug
+            )}
+            class="group block p-6 bg-white/5 rounded-lg border border-gray-700 hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+          >
+            <div class="flex items-center space-x-4">
+              <div class="flex-1">
+                <h4 class="text-xl font-semibold text-primary group-hover:text-primary/80 transition-colors">
+                  {track.name}
+                </h4>
+                <p class="mt-2 text-gray-400 line-clamp-2">
+                  {track.description || "Join this exciting session!"}
+                </p>
+              </div>
+              <svg
+                class="w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transform group-hover:translate-x-2 transition-all"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}

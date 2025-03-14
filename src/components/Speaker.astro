@@ -1,20 +1,74 @@
 ---
-import {type ISpeaker} from "../models/speaker.model";
-import {Image} from 'astro:assets';
+import { getCollection, type CollectionEntry } from "astro:content";
+import { type ISpeaker } from "../models/speaker.model";
+import { Image } from "astro:assets";
+import type { ITrack } from "../models/track.model";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 export interface Props {
-    speaker: ISpeaker;
+  speaker: ISpeaker;
 }
 
-const {speaker} = Astro.props;
+const { speaker } = Astro.props;
+const { slug } = Astro.params;
+
+let tracks: Array<
+  {
+    slug: string;
+  } & ITrack
+> = [];
+
+if (slug) {
+  (await getCollection("track"))
+    .filter((track) =>
+      (track.data.presenterSlug as Array<string>)?.includes(slug)
+    )
+    .forEach((track: CollectionEntry<"track">) => {
+      tracks.push({
+        slug: track.slug,
+        ...(track.data as ITrack),
+      });
+    });
+}
+
+console.log("tracks", tracks);
 ---
+
 <figure class="avatar flex flex-col items-center gap-2 max-w-64">
-    <div class="mask mask-squircle">
-        <Image height={64} width={64} format="webp"
-               src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" alt=""/>
-    </div>
-    <figcaption class="flex flex-col items-center">
-        <h2 class="text-3xl font-bold">{speaker.name}</h2>
-        <p class="text-center">{speaker.description}</p>
-    </figcaption>
+  <div class="mask mask-squircle">
+    <Image
+      height={64}
+      width={64}
+      format="webp"
+      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+      alt=""
+    />
+  </div>
+  <figcaption class="flex flex-col items-center">
+    <h2 class="text-3xl font-bold">{speaker.name}</h2>
+    <p class="text-center">{speaker.description}</p>
+    TRACKS -> {JSON.stringify(tracks)}
+    {
+      tracks.length > 0 && (
+        <div class="mt-4">
+          <h3 class="font-bold mb-2">Talks:</h3>
+          <ul class="list-disc list-inside">
+            {tracks.map((track) => (
+              <li>
+                <a
+                  href={getRelativeLocaleUrl(
+                    Astro.currentLocale!,
+                    "/track/" + track.slug
+                  )}
+                  class="text-2xl font-bold text-primary"
+                >
+                  {track.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </figcaption>
 </figure>
