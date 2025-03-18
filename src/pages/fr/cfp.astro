@@ -1,147 +1,233 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeaderHero from '../../components/HeaderHero.astro';
-import {Image} from 'astro:assets';
+import HeaderHero from "../../components/HeaderHero.astro";
+import { Image } from "astro:assets";
 
 const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Appel à conférenciers",
-    "description": "Informations sur l'appel à conférenciers pour la conférence de développement web.",
-    "mainEntity": {
-        "@type": "Event",
-        "name": "Conférence de développement web",
-        "description": "L'événement principal pour les développeurs web, réunissant des experts de l'industrie...",
-        "location": {
-            "@type": "Place",
-            "name": "Cityville Conference Center",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "123 Conference Center Drive",
-                "addressLocality": "Cityville",
-                "addressRegion": "State",
-                "postalCode": "12345",
-                "addressCountry": "Country"
-            }
-        },
-        "startDate": "2024-09-01",
-        "endDate": "2024-09-30",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode"
-    }
-}
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Appel à conférenciers",
+  description:
+    "Informations sur l'appel à conférenciers pour la conférence de développement web.",
+  mainEntity: {
+    "@type": "Event",
+    name: "Conférence de développement web",
+    description:
+      "L'événement principal pour les développeurs web, réunissant des experts de l'industrie...",
+    location: {
+      "@type": "Place",
+      name: "Cityville Conference Center",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "123 Conference Center Drive",
+        addressLocality: "Cityville",
+        addressRegion: "State",
+        postalCode: "12345",
+        addressCountry: "Country",
+      },
+    },
+    startDate: "2024-09-01",
+    endDate: "2024-09-30",
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+  },
+};
 ---
 
-<Layout title='Appel à conférenciers' schema={schema}>
-    <main>
-        <HeaderHero>
-            <span slot="title">Appel à conférenciers</span>
-            <span slot="actions">
-                <a href="https://conference-hall.io/ng-baguette-conf-2025" target="_blank" class="btn">Soumettez vos propositions</a>
-            </span>
-        </HeaderHero>
+<Layout title="Appel à conférenciers" schema={schema}>
+  <main>
+    <HeaderHero>
+      <span slot="title">Appel à conférenciers</span>
+      <!-- <span slot="actions">
+        <a
+          href="https://conference-hall.io/ng-baguette-conf-2025"
+          target="_blank"
+          class="btn">Soumettez vos propositions</a
+        >
+      </span> -->
+    </HeaderHero>
 
-        <section class="max-w-screen-lg m-auto flex flex-col items-center px-8">
-            <div class="stats shadow mt-8 mb-4 bg-base-200 grid-flow-row md:grid-flow-col">
-                <div class="stat">
-                    <div class="stat-title">Tracks</div>
-                    <div class="stat-value">1</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-title">Présentations</div>
-                    <div class="stat-value">8</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-title">Durée</div>
-                    <div class="stat-value">30 minutes</div>
-                </div>
-            </div>
+    <section class="max-w-screen-lg m-auto flex flex-col items-center px-8">
+      <div
+        class="stats shadow mt-8 mb-4 bg-base-200 grid-flow-row md:grid-flow-col"
+      >
+        <div class="stat">
+          <div class="stat-title">Tracks</div>
+          <div class="stat-value">1</div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Présentations</div>
+          <div class="stat-value">8</div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Durée</div>
+          <div class="stat-value">30 minutes</div>
+        </div>
+      </div>
 
-            <h2 class="text-4xl font-bold mt-20 mb-12">Calendrier des soumissions</h2>
+      <h2 class="text-4xl font-bold mt-20 mb-12">Calendrier des soumissions</h2>
 
-            <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-                <li>
-                    <div class="timeline-middle">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#646EE4" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-                    </div>
-                    <div class="timeline-start md:text-end mb-10">
-                        <time class="font-mono italic">3 février 2025</time>
-                        <div class="text-lg font-black">Ouverture du CFP</div>
-                        <div>Soumettez vos présentations pour la conférence</div>
-                        <a href="https://conference-hall.io/ng-baguette-conf-2025" target="_blank" class="btn btn-primary my-4">Soumettre vos présentations</a>
-                    </div>
-                    <hr/>
-                </li>
-                <li>
-                    <hr />
-                    <div class="timeline-middle">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-                    </div>
-                    <div class="timeline-end mb-10">
-                        <time class="font-mono italic">14 mars 2025</time>
-                        <div class="text-lg font-black">Date limite de soumission</div>
-                        Dernier jour pour soumettre vos présentations
-                    </div>
-                    <hr />
-                </li>
-                <li>
-                    <hr />
-                    <div class="timeline-middle">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-                    </div>
-                    <div class="timeline-start md:text-end mb-10">
-                        <time class="font-mono italic">Mars 2025</time>
-                        <div class="text-lg font-black">Évaluation des propositions</div>
-                        Notre équipe évaluera vos propositions
-                    </div>
-                    <hr />
-                </li>
-                <li>
-                    <hr />
-                    <div class="timeline-middle">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-                    </div>
-                    <div class="timeline-end mb-10">
-                        <time class="font-mono italic">milieu mars 2025</time>
-                        <div class="text-lg font-black">Retours sur les propositions</div>
-                        <div>Nous vous enverrons les retours sur vos propositions</div>
-                    </div>
-                    <hr />
-                </li>
-                <li>
-                    <hr />
-                    <div class="timeline-middle">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-                    </div>
-                    <div class="timeline-start md:text-end mb-10">
-                        <time class="font-mono italic">fin mars 2025</time>
-                        <div class="text-lg font-black">Programme final</div>
-                        <div>Une fois que nous aurons la confirmation de tous les orateurs sélectionnés, nous publierons le programme de l'événement</div>
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-        <div class="divider"></div>
-
-        <h2 class="text-4xl font-bold mt-8 mb-12">Formats</h2>
-
-        <article class="flex flex-col md:flex-row gap-8">
-            <Image class="rounded-xl" height={200} width={400} format="webp" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+      <ul
+        class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
+      >
+        <li>
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="#646EE4"
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-start md:text-end mb-10">
+            <time class="font-mono italic">3 février 2025</time>
+            <div class="text-lg font-black">Ouverture du CFP</div>
+            <div>Soumettez vos présentations pour la conférence</div>
+            <!-- <a
+              href="https://conference-hall.io/ng-baguette-conf-2025"
+              target="_blank"
+              class="btn btn-primary my-4">Soumettre vos présentations</a
+            > -->
+          </div>
+          <hr />
+        </li>
+        <li>
+          <hr />
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="#646EE4"
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-end mb-10">
+            <time class="font-mono italic">14 mars 2025</time>
+            <div class="text-lg font-black">Date limite de soumission</div>
+            Dernier jour pour soumettre vos présentations
+          </div>
+          <hr />
+        </li>
+        <li>
+          <hr />
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="#646EE4"
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-start md:text-end mb-10">
+            <time class="font-mono italic">Mars 2025</time>
+            <div class="text-lg font-black">Évaluation des propositions</div>
+            Notre équipe évaluera vos propositions
+          </div>
+          <hr />
+        </li>
+        <li>
+          <hr />
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="#646EE4"
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-end mb-10">
+            <time class="font-mono italic">milieu mars 2025</time>
+            <div class="text-lg font-black">Retours sur les propositions</div>
+            <div>Nous vous enverrons les retours sur vos propositions</div>
+          </div>
+          <hr />
+        </li>
+        <li>
+          <hr />
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-start md:text-end mb-10">
+            <time class="font-mono italic">fin mars 2025</time>
+            <div class="text-lg font-black">Programme final</div>
             <div>
-                <h3 class="text-3xl font-bold">Conférence (8 créneaux)</h3>
-                <h4 class="text-xl italic">30 minutes</h4>
-                <p class="mt-4">
-                    Les conférences sont notre format principal, donnant aux orateurs 30 minutes pour approfondir un sujet technique.
-                    C'est parfait pour partager des connaissances approfondies, démontrer des concepts complexes ou présenter des études de cas réels.
-                    Avec 8 créneaux disponibles, ces présentations constituent l'épine dorsale de notre programme technique.
-                </p>
-
-                <div role="alert" class="alert mt-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span>Pour cette première édition, nous nous concentrons exclusivement sur ce format de présentation unique.</span>
-                </div>
+              Une fois que nous aurons la confirmation de tous les orateurs
+              sélectionnés, nous publierons le programme de l'événement
             </div>
-        </article>
-    </main>
-</Layout> 
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <h2 class="text-4xl font-bold mt-8 mb-12">Formats</h2>
+
+    <article class="flex flex-col md:flex-row gap-8">
+      <Image
+        class="rounded-xl"
+        height={200}
+        width={400}
+        format="webp"
+        src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt=""
+      />
+      <div>
+        <h3 class="text-3xl font-bold">Conférence (8 créneaux)</h3>
+        <h4 class="text-xl italic">30 minutes</h4>
+        <p class="mt-4">
+          Les conférences sont notre format principal, donnant aux orateurs 30
+          minutes pour approfondir un sujet technique. C'est parfait pour
+          partager des connaissances approfondies, démontrer des concepts
+          complexes ou présenter des études de cas réels. Avec 8 créneaux
+          disponibles, ces présentations constituent l'épine dorsale de notre
+          programme technique.
+        </p>
+
+        <div role="alert" class="alert mt-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="stroke-info shrink-0 w-6 h-6"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path></svg
+          >
+          <span
+            >Pour cette première édition, nous nous concentrons exclusivement
+            sur ce format de présentation unique.</span
+          >
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>

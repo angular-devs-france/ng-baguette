@@ -21,17 +21,12 @@ import Layout from "../layouts/Layout.astro";
               Discover the latest in Angular development, network with experts
               and fellow developers.
             </p>
-            <!--
-					<button class="btn btn-primary btn-outline text-2xl font-medium">Get your ticket</button>
-					-->
 
             <p class="mt-4 text-2xl text-primary font-bold">May 24th, 2025</p>
             <p class="mt-2 font-bold">Nantes, France</p>
           </div>
           <div class="flex-1 mt-8 mb-8 md:mb-0">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8">
-              Tickets
-            </h2>
+            <h2 class="text-2xl md:text-3xl font-bold mb-8">Tickets</h2>
             <ul class="flex gap-4 items-stretch">
               <li
                 class="flex-1 card bg-base-200 shadow-xl border-2 border-primary"
@@ -40,17 +35,34 @@ import Layout from "../layouts/Layout.astro";
                   <h3 class="card-title text-2xl text-center">Blind Ticket</h3>
                   <p>Limited availability</p>
                   <span class="text-3xl font-bold">€25</span>
-                  <button class="btn btn-primary" onclick="document.getElementById('ticket-modal').showModal()">Get your ticket</button>
+                  <!-- <button
+                    class="btn btn-primary"
+                    onclick="document.getElementById('ticket-modal').showModal()"
+                    >Get your ticket</button
+                  > -->
+                  <p class="text-primary">Sold out</p>
                   <p class="text-sm mt-2">limited to 25 first tickets</p>
                   <dialog id="ticket-modal" class="modal">
                     <div class="modal-box">
                       <h3 class="font-bold text-lg">Important Note</h3>
-                      <p class="py-4">To reduce costs and simplify the first edition, we are using a free French platform dedicated to non profit events.</p>
+                      <p class="py-4">
+                        To reduce costs and simplify the first edition, we are
+                        using a free French platform dedicated to non profit
+                        events.
+                      </p>
                       <p>The ticket registration page is in French.</p>
-                      <p>If your French vocabulary is limited to "Oui Oui Baguette", you may want to use Google Translate there to complete your purchase!</p>
+                      <p>
+                        If your French vocabulary is limited to "Oui Oui
+                        Baguette", you may want to use Google Translate there to
+                        complete your purchase!
+                      </p>
                       <div class="modal-action">
                         <form class="flex gap-4" method="dialog">
-                          <a href="https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2025" target="_blank" class="btn btn-primary">Get your ticket</a>
+                          <a
+                            href="https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2025"
+                            target="_blank"
+                            class="btn btn-primary">Get your ticket</a
+                          >
                           <button class="btn">Close</button>
                         </form>
                       </div>
@@ -69,7 +81,7 @@ import Layout from "../layouts/Layout.astro";
                 </div>
               </li>
             </ul>
-            <div role="alert" class="alert mt-8">
+            <!-- <div role="alert" class="alert mt-8">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -91,7 +103,7 @@ import Layout from "../layouts/Layout.astro";
                   target="_blank">Submit your talk proposals</a
                 >
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
