@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import HeaderHero from "./HeaderHero.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-const { track } = Astro.props;
+const { track, title } = Astro.props;
 
 const speakers = (await getCollection("speaker"))
   .filter((speaker) =>
@@ -26,7 +26,7 @@ const speakers = (await getCollection("speaker"))
   {
     speakers.length > 0 && (
       <div class="mt-8">
-        <h3 class="text-2xl font-bold mb-6 text-primary">Speakers</h3>
+        <h3 class="text-2xl font-bold mb-6 text-primary">{title}</h3>
         <div class="grid gap-4">
           {speakers.map((speaker) => (
             <a
