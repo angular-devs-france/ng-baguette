@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import HeaderHero from "../../../components/HeaderHero.astro";
 import { SITE_TITLE } from "../../../consts";
 import Layout from "../../../layouts/Layout.astro";
@@ -37,9 +38,22 @@ const schema = {
   <main>
     <HeaderHero>
       <span slot="title">{speaker.name}</span>
-      <span slot="description">{speaker.description}</span>
+      {
+        speaker.image && (
+          <div slot="description" class="mask mask-squircle">
+            <Image
+              width={128}
+              height={128}
+              src={speaker.image}
+              alt={speaker.name}
+              class="w-32 h-32 mx-auto"
+            />
+          </div>
+        )
+      }
     </HeaderHero>
     <section class="max-w-screen-lg m-auto px-8">
+      <span>{speaker.description}</span>
       <Tracks title="Présentations" speakerSlug={slug} />
     </section>
   </main>

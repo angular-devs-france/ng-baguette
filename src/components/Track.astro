@@ -18,11 +18,9 @@ const speakers = (await getCollection("speaker"))
 
 <HeaderHero>
   <span slot="title">{track.name}</span>
-  <div slot="description">
-    <p>{track.description}</p>
-  </div>
 </HeaderHero>
 <section class="max-w-screen-lg m-auto px-8">
+  <p>{track.description}</p>
   {
     speakers.length > 0 && (
       <div class="mt-8">
