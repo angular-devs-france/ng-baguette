@@ -1,6 +1,6 @@
 ---
 name: "Arthur Lannelucq"
-image: "https://lh3.googleusercontent.com/a-/AOh14GigmFfF2nBN5hf-Eep-2gupJKk8aLnzy2IdIu0szA=s96-c"
+image: "/speakers/arthur-lannelucq.jpeg"
 description: "Arthur est un développeur front-end senior passionné, spécialisé en Angular et RxJS.
 
 Son parcours l'a conduit à évoluer aussi bien au sein de grands groupes qu'au cœur de startups, reflétant sa soif d'apprentissage et sa volonté de progresser en continu.

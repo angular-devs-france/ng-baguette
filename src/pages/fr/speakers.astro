@@ -48,32 +48,34 @@ const schema = {
           target="_blank"
           class="btn btn-primary">Soumettez vos propositions</a
         >
-      </section> -->
+      </section> 
 
       <section class="flex flex-col items-center gap-4">
         <p class="text-center text-2xl font-bold">
           Notre appel à speakers est fermé. Plus d'information à venir !
         </p>
       </section>
-
-      <!-- <ul
-        class="flex flex-wrap justify-center max-w-screen-lg mt-12 gap-x-60 gap-y-20 px-8"
+      -->
+      <ul
+        class="flex flex-wrap justify-center max-w-screen-lg mt-12 gap-x-32 gap-y-20 px-8"
       >
         {
           speakers.map((speaker) => (
             <li>
+              <!--
               <a
                 href={getRelativeLocaleUrl(
                   Astro.currentLocale!,
                   "/speaker/" + speaker.slug
                 )}
               >
+                -->
                 <Speaker speaker={speaker.data} />
-              </a>
+              <!--</a> -->
             </li>
           ))
         }
-      </ul> -->
+      </ul>
     </section>
   </main>
 </Layout>
