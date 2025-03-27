@@ -1,5 +1,6 @@
 ---
 name: "Arthur Lannelucq"
+slug: "arthur-lannelucq"
 image: "/speakers/arthur-lannelucq.jpeg"
 description: "Arthur est un développeur front-end senior passionné, spécialisé en Angular et RxJS.
 

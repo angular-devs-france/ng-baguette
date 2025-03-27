@@ -7,6 +7,7 @@ export const SITE_TITLE = "NG BAGUETTE CONF 2025";
 export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
   en: [
     { title: "Agenda", href: "/agenda" },
+    { title: "Program", href: "/program" },
     { title: "Speakers", href: "/speakers" },
     { title: "Sponsors", href: "/sponsors" },
     { title: "About", href: "/about" },
@@ -16,6 +17,7 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
   ],
   fr: [
     { title: "Agenda", href: "/agenda" },
+    { title: "Programme", href: "/program" },
     { title: "Speakers", href: "/speakers" },
     { title: "Sponsors", href: "/sponsors" },
     { title: "A propos", href: "/about" },

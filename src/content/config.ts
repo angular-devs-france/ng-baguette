@@ -19,8 +19,8 @@ const track = defineCollection({
     description: z.string(),
     startDate: z.string(),
     endDate: z.string(),
-    presenterSlug: z.array(z.string()).optional(),
-    language: z.string().default('fr'),
+    presenterSlug: z.array(z.string()),
+    language: z.enum(["fr", "en", "all"]).default("fr"),
   }),
 });
 
