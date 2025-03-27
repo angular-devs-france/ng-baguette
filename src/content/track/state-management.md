@@ -4,7 +4,7 @@ description: ""
 startDate: "1100"
 endDate: "1140"
 presenterSlug: ["rainer-hahnekamp"]
-language: "fr"
+language: "en"
 ---
 
 With the introduction of Signals, Angular has made a strong statement toward state management. Using a Signal as a container for state, along with functions like computed, resource, and others, raises the big question of whether there’s still a need for specialized libraries like NgRx.
