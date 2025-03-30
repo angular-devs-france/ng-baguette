@@ -17,6 +17,8 @@
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "daisyui": "^4.12.22"
+    "@types/leaflet": "^1.9.17",
+    "daisyui": "^4.12.22",
+    "leaflet": "^1.9.4"
   }
 }
