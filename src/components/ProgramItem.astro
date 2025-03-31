@@ -1,7 +1,7 @@
 ---
-import { type ITrack } from "../models/track.model";
 import { Image } from "astro:assets";
 import { getCollection, type CollectionEntry, render } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 export interface Props {
   track: CollectionEntry<"track">;
 }
@@ -33,7 +33,11 @@ const { Content } = await render(track);
         <ul class="flex flex-col md:flex-row gap-4 ml-6">
   {
     speakers.map((speaker) => (
-      <li>
+      <a href={getRelativeLocaleUrl(
+                  Astro.currentLocale!,
+                  "/speaker/" + speaker.slug
+                )}>
+        <li>
         <figure class="avatar flex items-center gap-4">
           <div class="mask mask-squircle w-16">
             {
@@ -47,6 +51,7 @@ const { Content } = await render(track);
           </figcaption>
         </figure>
       </li>
+      </a>
     ))
   }
 </ul>

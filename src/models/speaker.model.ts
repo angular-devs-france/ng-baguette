@@ -5,4 +5,7 @@ export type ISpeaker = {
   jobTitle?: string;
   twitter?: string;
   linkedin?: string;
+  youtube?: string;
+  github?: string;
+  bsky?: string;
 };

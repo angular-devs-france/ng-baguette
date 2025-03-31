@@ -62,16 +62,14 @@ const schema = {
         {
           speakers.map((speaker) => (
             <li>
-              <!--
               <a
                 href={getRelativeLocaleUrl(
                   Astro.currentLocale!,
                   "/speaker/" + speaker.slug
                 )}
               >
-                -->
                 <Speaker speaker={speaker.data} />
-              <!--</a> -->
+              </a>
             </li>
           ))
         }

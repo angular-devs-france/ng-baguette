@@ -9,6 +9,9 @@ const speaker = defineCollection({
     jobTitle: z.string().optional(),
     twitter: z.string().optional(),
     linkedin: z.string().optional(),
+    youtube: z.string().optional(),
+    github: z.string().optional(),
+    bsky: z.string().optional(),
   }),
 });
 

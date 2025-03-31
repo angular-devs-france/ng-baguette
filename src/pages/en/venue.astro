@@ -1,117 +1,139 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeaderHero from '../../components/HeaderHero.astro';
+import HeaderHero from "../../components/HeaderHero.astro";
 
 // https://www.google.com/maps/place/Onepoint+Nantes+-+Transformation+num%C3%A9rique/@47.209459,-1.5719052,645m/data=!3m2!1e3!4b1!4m6!3m5!1s0x4805ed4bdea2b649:0x19e19993a57b5a5d!8m2!3d47.209459!4d-1.5719052!16s%2Fg%2F11pds30hsh?entry=ttu&g_ep=EgoyMDI1MDMyNS4xIKXMDSoASAFQAw%3D%3D
 
 const schema = {
-    "@context": "https://schema.org",
-    "@type": "EventVenue",
-    "name": "Onepoint Nantes",
-    "description": "Join us at Onepoint Nantes, a modern tech hub in the heart of Western France.",
-    "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "3 rue Lavoisier",
-        "addressLocality": "Nantes",
-        "addressRegion": "Pays de la Loire",
-        "postalCode": "44300",
-        "addressCountry": "France"
-    },
-    "url": "https://www.onepoint.fr",
-    "telephone": "+33 XXX XXX XXX",
-    "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "47.209459",
-        "longitude": "-1.5719052"
-    }
-}
-
+  "@context": "https://schema.org",
+  "@type": "EventVenue",
+  name: "Onepoint Nantes",
+  description:
+    "Join us at Onepoint Nantes, a modern tech hub in the heart of Western France.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "3 rue Lavoisier",
+    addressLocality: "Nantes",
+    addressRegion: "Pays de la Loire",
+    postalCode: "44300",
+    addressCountry: "France",
+  },
+  url: "https://www.onepoint.fr",
+  telephone: "+33 XXX XXX XXX",
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "47.209459",
+    longitude: "-1.5719052",
+  },
+};
 ---
 
 <Layout title="Conference Venue - Onepoint Nantes" schema={schema}>
-    <main class="max-w-7xl mx-auto px-4 py-8">
-        <HeaderHero>
-            <span slot="title">Conference Venue</span>
-            <span slot="description">Join us in Nantes, France - a vibrant city known for its rich history and tech community. Our conference venue provides an ideal setting for learning and networking in the heart of Western France.</span>
-        </HeaderHero>
+  <main>
+    <HeaderHero>
+      <span slot="title">Conference Venue</span>
+      <span slot="description"
+        >Join us in Nantes, France - a vibrant city known for its rich history
+        and tech community. Our conference venue provides an ideal setting for
+        learning and networking in the heart of Western France.</span
+      >
+    </HeaderHero>
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <div class="mt-12 grid md:grid-cols-2 gap-12">
+        <section class="space-y-6">
+          <div class="bg-gray-700 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Venue Location</h2>
+            <div class="space-y-2 text-lg">
+              <p class="font-semibold">Onepoint Nantes</p>
+              <p>3 rue Lavoisier</p>
+              <p>44300 Nantes</p>
+              <p>France</p>
+            </div>
+          </div>
 
-        <div class="mt-12 grid md:grid-cols-2 gap-12">
-            <section class="space-y-6">
-                <div class="bg-gray-700 p-6 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">Venue Location</h2>
-                    <div class="space-y-2 text-lg">
-                        <p class="font-semibold">Onepoint Nantes</p>
-                        <p>3 rue Lavoisier</p>
-                        <p>44300 Nantes</p>
-                        <p>France</p>
-                    </div>
-                </div>
+          <div class="bg-gray-700 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Getting There</h2>
+            <div class="space-y-4">
+              <div>
+                <h3 class="font-semibold">By Public Transport</h3>
+                <p>The Tramway line 1 closest station is "Chantiers Navals".</p>
+              </div>
+              <div>
+                <h3 class="font-semibold">By Train</h3>
+                <p>
+                  From the train station, take the Tramway line 1 to the station
+                  "Chantiers Navals".
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                <div class="bg-gray-700 p-6 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">Getting There</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="font-semibold">By Public Transport</h3>
-                            <p>The Tramway line 1 closest station is "Chantiers Navals".</p>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold">By Train</h3>
-                            <p>From the train station, take the Tramway line 1 to the station "Chantiers Navals".</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <section class="space-y-6">
+          <div id="map" class="w-full h-[400px] rounded-lg shadow-md"></div>
 
-            <section class="space-y-6">
-                <div id='map' class="w-full h-[400px] rounded-lg shadow-md"></div>
-                
-                <div class="bg-gray-700 p-6 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">About the Area</h2>
-                    <p class="mb-4">Nantes is a vibrant city known for its rich history, technological innovation, and cultural attractions. The venue is located in a dynamic business district with easy access to restaurants, hotels, and city attractions.</p>
-                    <p>Take time to explore the city's famous Machines de l'île, including the Grand Éléphant, or visit the historic Château des Ducs de Bretagne.</p>
-                </div>
-            </section>
-        </div>
-    </main>
+          <div class="bg-gray-700 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">About the Area</h2>
+            <p class="mb-4">
+              Nantes is a vibrant city known for its rich history, technological
+              innovation, and cultural attractions. The venue is located in a
+              dynamic business district with easy access to restaurants, hotels,
+              and city attractions.
+            </p>
+            <p>
+              Take time to explore the city's famous Machines de l'île,
+              including the Grand Éléphant, or visit the historic Château des
+              Ducs de Bretagne.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
 </Layout>
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<script
+  is:inline
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
 
 <script>
-  import L from 'leaflet';
-  import 'leaflet/dist/leaflet.css';
+  import L from "leaflet";
+  import "leaflet/dist/leaflet.css";
 
   // Fix for the missing marker icons in Leaflet when using bundlers
-  import { icon } from 'leaflet';
-  import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-  import markerIcon from 'leaflet/dist/images/marker-icon.png';
-  import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+  import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+  import markerIcon from "leaflet/dist/images/marker-icon.png";
+  import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
   // Fix Leaflet's icon paths
   L.Icon.Default.mergeOptions({
     iconUrl: markerIcon.src,
     iconRetinaUrl: markerIcon2x.src,
-    shadowUrl: markerShadow.src
+    shadowUrl: markerShadow.src,
   });
 
   // Initialize the map once the DOM is loaded
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Create map instance
-    const map = L.map('map').setView([47.209459, -1.5719052], 11);
+    const map = L.map("map").setView([47.209459, -1.5719052], 11);
 
     // Add OpenStreetMap tile layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
-    
+
     // Add a marker
     L.marker([47.209459, -1.5719052])
       .addTo(map)
-      .bindPopup('Onepoint Nantes')
+      .bindPopup("Onepoint Nantes")
       .openPopup();
   });
 </script>
