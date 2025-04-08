@@ -2,7 +2,7 @@
 name: "Next-Level Angular SSR: Exploring Hydration Enhancements"
 description: ""
 startDate: "1100"
-endDate: "1140"
+endDate: "1130"
 presenterSlug: ["soumaya-erradi"]
 language: "en"
 ---

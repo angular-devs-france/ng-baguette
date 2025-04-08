@@ -1,8 +1,8 @@
 ---
 name: "Quo vadis State Management?"
 description: ""
-startDate: "1100"
-endDate: "1140"
+startDate: "1135"
+endDate: "1215"
 presenterSlug: ["rainer-hahnekamp"]
 language: "en"
 ---

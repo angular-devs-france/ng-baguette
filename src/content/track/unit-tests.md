@@ -1,8 +1,8 @@
 ---
 name: "Bulletproof Unit Tests"
 description: ""
-startDate: "1100"
-endDate: "1140"
+startDate: "1650"
+endDate: "1720"
 presenterSlug: ["cedric-exbrayat", "jb-nizet"]
 language: "fr"
 ---

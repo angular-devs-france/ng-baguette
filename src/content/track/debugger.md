@@ -2,8 +2,8 @@
 name: "Sous le capot : Un debuggueur sous steroid pour accélérer la résolution de bug"
 description: "
 "
-startDate: "1100"
-endDate: "1140"
+startDate: "1615"
+endDate: "1645"
 presenterSlug: ["laura-pedenaud"]
 language: "fr"
 ---

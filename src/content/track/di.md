@@ -1,8 +1,8 @@
 ---
 name: "L'injection de dépendances : le trésor caché d'Angular"
 description: ""
-startDate: "1100"
-endDate: "1140"
+startDate: "1315"
+endDate: "1345"
 presenterSlug: ["arthur-lannelucq"]
 language: "fr"
 ---

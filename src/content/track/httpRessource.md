@@ -1,8 +1,8 @@
 ---
 name: "Rethinking Data Access: The New httpResource in Angular"
 description: ""
-startDate: "1100"
-endDate: "1140"
+startDate: "1445"
+endDate: "1515"
 presenterSlug: ["manfred-steyer"]
 language: "en"
 ---

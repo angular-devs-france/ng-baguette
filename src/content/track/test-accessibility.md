@@ -1,8 +1,8 @@
 ---
 name: "Comment tester l'accessibilité d'un site internet sur Angular ?"
 description: ""
-startDate: "1100"
-endDate: "1140"
+startDate: "1350"
+endDate: "1420"
 presenterSlug: ["emmanuelle-aboaf"]
 language: "fr"
 ---

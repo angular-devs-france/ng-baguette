@@ -1,8 +1,8 @@
 ---
 name: "Instant Navigation in Angular Applications"
 description: ""
-startDate: "1100"
-endDate: "1140"
+startDate: "1520"
+endDate: "1550"
 presenterSlug: ["christopher-holder"]
 language: "en"
 ---
