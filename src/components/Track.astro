@@ -6,7 +6,7 @@ const { track, title } = Astro.props;
 
 const speakers = (await getCollection("speaker"))
   .filter((speaker) =>
-    (track.presenterSlug as Array<string>)?.includes(speaker.slug)
+    (track.data.presenterSlug as Array<string>)?.includes(speaker.slug)
   )
   .map((speaker: CollectionEntry<"speaker">) => {
     return {
@@ -17,10 +17,10 @@ const speakers = (await getCollection("speaker"))
 ---
 
 <HeaderHero>
-  <span slot="title">{track.name}</span>
+  <span slot="title">{track.data.name}</span>
 </HeaderHero>
 <section class="max-w-screen-lg m-auto px-8">
-  <p>{track.description}</p>
+  <p>{track.body}</p>
   {
     speakers.length > 0 && (
       <div class="mt-8">

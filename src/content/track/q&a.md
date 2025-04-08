@@ -7,4 +7,4 @@ presenterSlug: []
 language: "all"
 ---
 
-To be announced
+Q&A session with speakers.

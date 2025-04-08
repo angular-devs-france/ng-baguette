@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import { SITE_DOMAIN, SITE_TITLE } from "../../../consts";
+import Layout from "../../../layouts/Layout.astro";
+import Track from "../../../components/Track.astro";
+
+export async function getStaticPaths() {
+  const tracks = await getCollection("track");
+  return tracks.map((track) => ({
+    params: { slug: decodeURI(track.slug) },
+  }));
+}
+
+const slug = Astro.params.slug;
+const track = (
+  await getCollection("track", (track) => track.slug === slug)
+)[0];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "List of tracks",
+  description:
+    "A list of tracks participating in the web development conference.",
+  itemListElement: {
+    "@type": "Person",
+    name: track.data.name,
+    description: track.data.description,
+    url: `${SITE_DOMAIN}/tracks/${track.data.name}`,
+  },
+};
+---
+
+<Layout title={SITE_TITLE} schema={schema}>
+  <main>
+    <Track title="Speakers" track={track} />
+  </main>
+</Layout>
