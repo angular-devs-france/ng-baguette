@@ -3,32 +3,32 @@ import Layout from "../../layouts/Layout.astro";
 import HeaderHero from "../../components/HeaderHero.astro";
 import AgendaComponent from "../../components/Agenda.astro";
 
- const breaks = [
-   {
-     data: {
-       name: "Pause déjeuner",
-       startDate: "1215",
-       endDate: "1315",
-     },
-     slug: undefined,
-   },
-   {
-     data: {
-       name: "Pause",
-       startDate: "1420",
-       endDate: "1445",
-     },
-     slug: undefined,
-   },
-   {
-     data: {
-       name: "Pause",
-       startDate: "1550",
-       endDate: "1615",
-     },
-     slug: undefined,
-   },
- ];
+const breaks = [
+  {
+    data: {
+      name: "Pause déjeuner",
+      startDate: "1215",
+      endDate: "1310",
+    },
+    slug: undefined,
+  },
+  {
+    data: {
+      name: "Pause",
+      startDate: "1420",
+      endDate: "1445",
+    },
+    slug: undefined,
+  },
+  {
+    data: {
+      name: "Pause",
+      startDate: "1550",
+      endDate: "1615",
+    },
+    slug: undefined,
+  },
+];
 
 const schema = {
   "@context": "https://schema.org",
@@ -78,6 +78,5 @@ const schema = {
       -->
       <AgendaComponent breaks={breaks} />
     </section>
-    
   </main>
 </Layout>

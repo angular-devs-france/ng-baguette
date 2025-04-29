@@ -4,14 +4,14 @@ import HeaderHero from "../../components/HeaderHero.astro";
 import AgendaComponent from "../../components/Agenda.astro";
 
 const breaks = [
-   {
-     data: {
-       name: "Launch Break",
-       startDate: "1215",
-       endDate: "1315",
-     },
-     slug: undefined,
-   },
+  {
+    data: {
+      name: "Launch Break",
+      startDate: "1215",
+      endDate: "1310",
+    },
+    slug: undefined,
+  },
   {
     data: {
       name: "Pause",
@@ -102,7 +102,7 @@ const schema = {
         </p>
       </section>
        -->
-       <AgendaComponent breaks={breaks} />
+      <AgendaComponent breaks={breaks} />
     </section>
   </main>
 </Layout>
