@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const tiles = [
+  {
+    title: "Agenda",
+    link_fr: "/fr/agenda",
+    link_en: "/en/agenda",
+  },
+  {
+    title: "Feedback",
+    link_fr: "/fr",
+    link_en: "/en",
+  },
+];
+---
+
+<BaseLayout title="">
+  <main>
+    <section class="max-w-screen-lg m-auto p-8 flex flex-col gap-4">
+      {
+        tiles.map((tile) => (
+          <a class="bg-gray-700 p-6 rounded-lg shadow-md" href={tile.link_en}>
+            <h2 class="text-2xl font-bold mb-4">{tile.title}</h2>
+          </a>
+        ))
+      }
+    </section>
+  </main>
+</BaseLayout>

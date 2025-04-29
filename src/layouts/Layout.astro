@@ -1,6 +1,6 @@
 ---
 import Drawer from "../components/Drawer.astro";
-import { SITE_TITLE } from "../consts";
+import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
   title: string;
@@ -8,66 +8,10 @@ interface Props {
 }
 
 const { title, schema } = Astro.props;
-const metaTitle = `${SITE_TITLE} - ${title}`;
 ---
 
-<!doctype html>
-<html lang={Astro.currentLocale}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="NG Baguette Conf 2025" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{metaTitle}</title>
-    <script
-      is:inline
-      type="application/ld+json"
-      set:html={JSON.stringify(schema)}
-    />
-  </head>
-  <body>
-    <Drawer>
-      <slot />
-    </Drawer>
-  </body>
-</html>
-<style is:global>
-  @font-face {
-    font-family: "Luciole";
-    src: url("../../public/fonts/Luciole-regular.ttf");
-  }
-
-  @font-face {
-    font-family: "Lilita";
-    src: url("../../public/fonts/lilitaone-regular.ttf");
-  }
-
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
-  }
-  html {
-    font-family: "Luciole", sans-serif;
-    background: #13151a;
-    background-size: 224px;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-</style>
+<BaseLayout title={title} schema={schema}>
+  <Drawer>
+    <slot />
+  </Drawer>
+</BaseLayout>
