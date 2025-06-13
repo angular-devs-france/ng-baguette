@@ -12,7 +12,7 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
     { title: "Sponsors", href: "/sponsors" },
     { title: "About", href: "/about" },
     { title: "CoC", href: "/coc" },
-    { title: "CFP", href: "/cfp" },
+    // { title: "CFP", href: "/cfp" },
     { title: "Venue", href: "/venue" },
   ],
   fr: [
@@ -22,7 +22,7 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
     { title: "Sponsors", href: "/sponsors" },
     { title: "A propos", href: "/about" },
     { title: "CoC", href: "/coc" },
-    { title: "CFP", href: "/cfp" },
+    // { title: "CFP", href: "/cfp" },
     { title: "Lieu", href: "/venue" },
   ],
 };
