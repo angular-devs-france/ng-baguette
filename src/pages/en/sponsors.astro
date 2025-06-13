@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import HeaderHero from '../../components/HeaderHero.astro';
 import {type ISponsor} from "../../models/sponsor.model";
+import SponsorList from "../../components/Sponsors.astro";
+import Partners from "../../components/Partners.astro";
 
 const sponsors: Array<ISponsor> = [];
 
@@ -33,28 +35,17 @@ const schema = {
         </HeaderHero>
 
         <section class="max-w-screen-lg m-auto px-8 my-12">
-                <ul class="flex flex-col md:flex-row justify-evenly items-center gap-8 md:gap-0 bg-white rounded-lg p-8 my-8">
-                    <li>
-                        <img src="/sponsors/eezyR.png" alt="EezyR" class="w-24">
-                    </li>
-                    <li>
-                        <img src="/sponsors/house-of-angular.png" alt="House of Angular" class="w-24">
-                    </li>
-                    <li>
-                        <img
-                                src="/sponsors/takima.png"
-                                alt="Takima"
-                                class="w-24"
-                        />
-                    </li>
-                </ul>
+                <SponsorList />
+                <Partners />
 
+             <!--
             <h2 class="text-4xl font-bold mb-6">Become a sponsor</h2>
             <p class="mb-4">We are thrilled to present our sponsorship prospectus for NG Baguette. As a sponsor, you will have the unique opportunity to connect with the French Angular community and promote your brand to a passionate audience of web developers.</p>
             <p class="mb-8">Our prospectus details the different partnership levels and associated benefits.</p>
             <a href="/pdf/sponsorship-prospectus-ngbaguette-2025.pdf" class="btn btn-primary" download>
                 Download the sponsorship prospectus
             </a>
+            -->
         </section>
 
         <!--
