@@ -2,9 +2,10 @@
 import Partners from "../../components/Partners.astro";
 import Sponsors from "../../components/Sponsors.astro";
 import Layout from "../../layouts/Layout.astro";
+import { EVENT_DATE } from "../../consts";
 ---
 
-<Layout title="May 24th 2025">
+<Layout title={EVENT_DATE}>
   <main>
     <div class="hero min-h-screen">
       <div class="hero-content text-center">
@@ -25,7 +26,7 @@ import Layout from "../../layouts/Layout.astro";
             </p>
 
             <p class="mt-4 text-2xl text-primary font-bold">
-              May 24th, 2025 - 9h30
+              {EVENT_DATE} - 9h30
             </p>
             <p class="mt-2 font-bold">Nantes, France</p>
           </div>

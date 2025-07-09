@@ -4,6 +4,7 @@ import HeaderHero from '../../components/HeaderHero.astro';
 import {type ISponsor} from "../../models/sponsor.model";
 import SponsorList from "../../components/Sponsors.astro";
 import Partners from "../../components/Partners.astro";
+import { isResearchingSponsors } from "../../utils";
 
 const sponsors: Array<ISponsor> = [];
 
@@ -35,25 +36,17 @@ const schema = {
         </HeaderHero>
 
         <section class="max-w-screen-lg m-auto px-8 my-12">
-                <SponsorList />
-                <Partners />
-
-             <!--
-            <h2 class="text-4xl font-bold mb-6">Become a sponsor</h2>
-            <p class="mb-4">We are thrilled to present our sponsorship prospectus for NG Baguette. As a sponsor, you will have the unique opportunity to connect with the French Angular community and promote your brand to a passionate audience of web developers.</p>
-            <p class="mb-8">Our prospectus details the different partnership levels and associated benefits.</p>
-            <a href="/pdf/sponsorship-prospectus-ngbaguette-2025.pdf" class="btn btn-primary" download>
-                Download the sponsorship prospectus
-            </a>
-            -->
+            <SponsorList />
+            <Partners />
+            {
+                isResearchingSponsors() &&
+                <h2 class="text-4xl font-bold mb-6">Become a sponsor</h2>
+                <p class="mb-4">We are thrilled to present our sponsorship prospectus for NG Baguette. As a sponsor, you will have the unique opportunity to connect with the French Angular community and promote your brand to a passionate audience of web developers.</p>
+                <p class="mb-8">Our prospectus details the different partnership levels and associated benefits.</p>
+                <a href="/pdf/sponsorship-prospectus-ngbaguette-2025.pdf" class="btn btn-primary" download>
+                    Download the sponsorship prospectus
+                </a>
+            }
         </section>
-
-        <!--
-        <section class="flex flex-col items-center max-w-screen-lg m-auto px-8">
-            <h2 class="text-3xl text-center uppercase font-bold my-8">Host</h2>
-            <h2 class="text-3xl text-center uppercase font-bold my-8">Sponsors</h2>
-            <h2 class="text-3xl text-center uppercase font-bold my-8">Community Partners</h2>
-        </section>
-    -->
     </main>
 </Layout>
