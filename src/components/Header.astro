@@ -1,6 +1,7 @@
 ---
-import { NAVIGATION_LINKS  } from "../consts";
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { EVENT_DATE } from "../consts";
+import { NAVIGATION_LINKS } from "../consts";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 const locale = Astro.currentLocale;
 ---
@@ -19,19 +20,21 @@ const locale = Astro.currentLocale;
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
+            d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </label>
     </div>
 
     <div class="flex-1 flex items-center">
-      <a class="btn btn-ghost text-2xl text-white title-font text-nowrap" href={getRelativeLocaleUrl(Astro.currentLocale!, '/')}>
+      <a
+        class="btn btn-ghost text-2xl text-white title-font text-nowrap"
+        href={getRelativeLocaleUrl(Astro.currentLocale!, "/")}
+      >
         NG BAGUETTE CONF
       </a>
       <div class="hidden xl:flex divider divider-horizontal py-2"></div>
       <div class="hidden xl:flex flex-col items-center">
-        <span>May 24, 2025</span>
+        <span>{EVENT_DATE}</span>
         <span>Nantes, France</span>
       </div>
     </div>
@@ -40,22 +43,37 @@ const locale = Astro.currentLocale;
       <nav aria-label="main navigation">
         <ul class="menu menu-horizontal px-1 hidden lg:flex items-baseline">
           {
-            NAVIGATION_LINKS[Astro.currentLocale!].map((link) => (
-              <li>
-                <a class="text-xl" href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)}>{link.title}</a>
-              </li>
-            ))
+            NAVIGATION_LINKS[Astro.currentLocale!]
+              .filter((link) => {
+                if (link.condition) {
+                  return link.condition();
+                }
+                return true;
+              })
+              .map((link) => (
+                <li>
+                  <a
+                    class="text-xl"
+                    href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)}
+                  >
+                    {link.title}
+                  </a>
+                </li>
+              ))
           }
-          <!--
-          <a class="btn btn-primary" href={CFP_LINK} target="_blank">
-            Register
-          </a>
-          -->
         </ul>
       </nav>
       <div class="flex gap-2 md:ml-12 text-sm md:text-base">
-        <a href="/en" class={`btn btn-xs md:btn-sm ${locale === 'en' ? 'btn-primary' : 'btn-ghost'}`}>EN</a>
-        <a href="/fr" class={`btn btn-xs md:btn-sm ${locale === 'fr' ? 'btn-primary' : 'btn-ghost'}`}>FR</a>
+        <a
+          href="/en"
+          class={`btn btn-xs md:btn-sm ${locale === "en" ? "btn-primary" : "btn-ghost"}`}
+          >EN</a
+        >
+        <a
+          href="/fr"
+          class={`btn btn-xs md:btn-sm ${locale === "fr" ? "btn-primary" : "btn-ghost"}`}
+          >FR</a
+        >
       </div>
     </div>
   </div>
