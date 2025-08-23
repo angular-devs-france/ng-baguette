@@ -2,8 +2,9 @@
 import { EVENT_DATE } from "../consts";
 import { NAVIGATION_LINKS } from "../consts";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { displayDate } from "../utils";
 
-const locale = Astro.currentLocale;
+const locale = Astro.currentLocale!;
 ---
 
 <header class="sticky top-0 z-10">
@@ -28,13 +29,13 @@ const locale = Astro.currentLocale;
     <div class="flex-1 flex items-center">
       <a
         class="btn btn-ghost text-2xl text-white title-font text-nowrap"
-        href={getRelativeLocaleUrl(Astro.currentLocale!, "/")}
+        href={getRelativeLocaleUrl(locale, "/")}
       >
         NG BAGUETTE CONF
       </a>
       <div class="hidden xl:flex divider divider-horizontal py-2"></div>
       <div class="hidden xl:flex flex-col items-center">
-        <span>{EVENT_DATE}</span>
+        <span>{displayDate(EVENT_DATE, locale)}</span>
         <span>Nantes, France</span>
       </div>
     </div>
@@ -43,7 +44,7 @@ const locale = Astro.currentLocale;
       <nav aria-label="main navigation">
         <ul class="menu menu-horizontal px-1 hidden lg:flex items-baseline">
           {
-            NAVIGATION_LINKS[Astro.currentLocale!]
+            NAVIGATION_LINKS[locale]
               .filter((link) => {
                 if (link.condition) {
                   return link.condition();
@@ -54,7 +55,7 @@ const locale = Astro.currentLocale;
                 <li>
                   <a
                     class="text-xl"
-                    href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)}
+                    href={getRelativeLocaleUrl(locale, link.href)}
                   >
                     {link.title}
                   </a>

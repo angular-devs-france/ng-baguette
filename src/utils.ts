@@ -15,3 +15,11 @@ export const isAfterOpenningProgram = () => {
 export const isResearchingSponsors = () => {
   return Date.now() <= new Date(SPONSOR_ENDING_RESEARCH_DATE).getTime();
 }
+
+export const displayDate = (date: string, local: string = 'fr-FR') => {
+  return new Date(date).toLocaleDateString(local, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}

@@ -2,7 +2,17 @@
 import Partners from "../../components/Partners.astro";
 import Sponsors from "../../components/Sponsors.astro";
 import Layout from "../../layouts/Layout.astro";
-import { EVENT_DATE } from "../../consts";
+import {
+  BLIND_TICKET_PRICE,
+  BLIND_TICKET_SOLD_OUT,
+  EVENT_DATE,
+  HELLOASSO_LINK,
+  OPEN_BLIND_TICKET_SALE_DATE,
+  OPEN_TICKET_SALE_DATE,
+  TICKET_PRICE,
+  TICKET_SOLD_OUT,
+} from "../../consts";
+import { displayDate } from "../../utils";
 ---
 
 <Layout title={EVENT_DATE}>
@@ -26,7 +36,7 @@ import { EVENT_DATE } from "../../consts";
             </p>
 
             <p class="mt-4 text-2xl text-primary font-bold">
-              {EVENT_DATE} - 9h30
+              {displayDate(EVENT_DATE, "en-US")} - 9h30
             </p>
             <p class="mt-2 font-bold">Nantes, France</p>
           </div>
@@ -39,13 +49,27 @@ import { EVENT_DATE } from "../../consts";
                 <div class="card-body flex flex-col items-center">
                   <h3 class="card-title text-2xl text-center">Blind Ticket</h3>
                   <p>Limited availability</p>
-                  <span class="text-3xl font-bold">€25</span>
-                  <!-- <button
-                    class="btn btn-primary"
-                    onclick="document.getElementById('ticket-modal').showModal()"
-                    >Get your ticket</button
-                  > -->
-                  <p class="text-primary">Sold out</p>
+                  <span class="text-3xl font-bold">€{BLIND_TICKET_PRICE}</span>
+
+                  {
+                    new Date() >= new Date(OPEN_BLIND_TICKET_SALE_DATE) ? (
+                      BLIND_TICKET_SOLD_OUT ? (
+                        <p class="text-primary">Sold out</p>
+                      ) : (
+                        <button
+                          class="btn btn-primary"
+                          onclick="document.getElementById('ticket-modal').showModal()"
+                        >
+                          Get your ticket
+                        </button>
+                      )
+                    ) : (
+                      <p class="text-primary">
+                        Not yet on sale from
+                        {displayDate(OPEN_BLIND_TICKET_SALE_DATE, "en-US")})
+                      </p>
+                    )
+                  }
                   <dialog id="ticket-modal" class="modal">
                     <div class="modal-box">
                       <h3 class="font-bold text-lg">Important Note</h3>
@@ -63,7 +87,7 @@ import { EVENT_DATE } from "../../consts";
                       <div class="modal-action">
                         <form class="flex gap-4" method="dialog">
                           <a
-                            href="https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2025"
+                            href={HELLOASSO_LINK}
                             target="_blank"
                             class="btn btn-primary">Get your ticket</a
                           >
@@ -80,13 +104,26 @@ import { EVENT_DATE } from "../../consts";
                 <div class="card-body flex flex-col items-center">
                   <h3 class="card-title text-xl text-center">Regular Ticket</h3>
                   <p>Standard conference ticket</p>
-                  <span class="text-3xl font-bold">€30</span>
-                  <!-- <button
-                    class="btn btn-primary"
-                    onclick="document.getElementById('ticket-modal').showModal()"
-                    >Get your ticket</button
-                  > -->
-                  <p class="text-primary">Sale closed</p>
+                  <span class="text-3xl font-bold">€{TICKET_PRICE}</span>
+                  {
+                    new Date() >= new Date(OPEN_TICKET_SALE_DATE) ? (
+                      TICKET_SOLD_OUT ? (
+                        <p class="text-primary">Sold out</p>
+                      ) : (
+                        <button
+                          class="btn btn-primary"
+                          onclick="document.getElementById('ticket-modal').showModal()"
+                        >
+                          Get your ticket
+                        </button>
+                      )
+                    ) : (
+                      <p class="text-primary">
+                        Not yet on sale from
+                        {displayDate(OPEN_TICKET_SALE_DATE, "en-US")})
+                      </p>
+                    )
+                  }
                 </div>
               </li>
             </ul>
