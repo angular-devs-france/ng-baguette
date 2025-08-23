@@ -123,6 +123,16 @@ const schema = {
       }
 
       {isAfterOpenningProgram() && <AgendaComponent breaks={breaks} />}
+
+      {
+        !isAfterCFPOpenning() && (
+          <section class="flex flex-col items-center gap-4">
+            <p class="text-center text-2xl font-bold">
+              The agenda will be available after the call for speakers closes.
+            </p>
+          </section>
+        )
+      }
     </section>
   </main>
 </Layout>

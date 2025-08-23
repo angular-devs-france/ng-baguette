@@ -3,7 +3,17 @@ import Partners from "../../components/Partners.astro";
 import Sponsors from "../../components/Sponsors.astro";
 import Layout from "../../layouts/Layout.astro";
 
-import { EVENT_DATE } from "../../consts";
+import {
+  BLIND_TICKET_PRICE,
+  BLIND_TICKET_SOLD_OUT,
+  EVENT_DATE,
+  HELLOASSO_LINK,
+  OPEN_BLIND_TICKET_SALE_DATE,
+  OPEN_TICKET_SALE_DATE,
+  TICKET_PRICE,
+  TICKET_SOLD_OUT,
+} from "../../consts";
+import { displayDate } from "../../utils";
 ---
 
 <Layout title={EVENT_DATE}>
@@ -27,7 +37,7 @@ import { EVENT_DATE } from "../../consts";
             </p>
 
             <p class="mt-4 text-2xl text-primary font-bold">
-              {EVENT_DATE} - 9h30
+              {displayDate(EVENT_DATE)} - 9h30
             </p>
             <p class="mt-2 font-bold">Nantes, France</p>
           </div>
@@ -40,14 +50,28 @@ import { EVENT_DATE } from "../../consts";
                 <div class="card-body flex flex-col items-center">
                   <h3 class="card-title text-2xl text-center">Billet blind</h3>
                   <p>Quantité limitée</p>
-                  <span class="text-3xl font-bold">25 €</span>
-                  <!-- <a
-                    class="btn btn-primary"
-                    target="_blank"
-                    href="https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2025"
-                    >Obtenir votre billet</a
-                  > -->
-                  <p class="text-primary">Complet</p>
+
+                  <span class="text-3xl font-bold">{BLIND_TICKET_PRICE} €</span>
+                  {
+                    new Date() >= new Date(OPEN_BLIND_TICKET_SALE_DATE) ? (
+                      BLIND_TICKET_SOLD_OUT ? (
+                        <p class="text-primary">Complet</p>
+                      ) : (
+                        <a
+                          class="btn btn-primary"
+                          target="_blank"
+                          href={HELLOASSO_LINK}
+                        >
+                          Obtenir votre billet
+                        </a>
+                      )
+                    ) : (
+                      <p class="text-primary">
+                        Not yet on sale from
+                        {displayDate(OPEN_BLIND_TICKET_SALE_DATE)})
+                      </p>
+                    )
+                  }
                 </div>
               </li>
               <li
@@ -58,14 +82,27 @@ import { EVENT_DATE } from "../../consts";
                     Billet Standard
                   </h3>
                   <p>Billet conférence classique</p>
-                  <span class="text-3xl font-bold">30 €</span>
-                  <!-- <a
-                    class="btn btn-primary"
-                    target="_blank"
-                    href="https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2025"
-                    >Obtenir votre billet</a
-                  > -->
-                  <p class="text-primary">Vente terminée</p>
+                  <span class="text-3xl font-bold">{TICKET_PRICE} €</span>
+                  {
+                    new Date() >= new Date(OPEN_TICKET_SALE_DATE) ? (
+                      TICKET_SOLD_OUT ? (
+                        <p class="text-primary">Complet</p>
+                      ) : (
+                        <a
+                          class="btn btn-primary"
+                          target="_blank"
+                          href={HELLOASSO_LINK}
+                        >
+                          Obtenir votre billet
+                        </a>
+                      )
+                    ) : (
+                      <p class="text-primary">
+                        Not yet on sale from
+                        {displayDate(OPEN_TICKET_SALE_DATE)})
+                      </p>
+                    )
+                  }
                 </div>
               </li>
             </ul>

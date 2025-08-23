@@ -1,37 +1,17 @@
 ---
-
+import { SPONSORS } from "../consts";
 ---
 
 <ul
   class="flex flex-col md:flex-row justify-evenly items-center gap-8 md:gap-4 bg-white rounded-lg p-8 my-8"
 >
-  <li>
-    <a href="https://eezyr.com/" target="_blank">
-      <img src="/sponsors/eezyR.png" alt="eezyR" class="w-24" />
-    </a>
-  </li>
-  <li>
-    <a href="https://houseofangular.io/" target="_blank">
-      <img
-        src="/sponsors/house-of-angular.png"
-        alt="House of Angular"
-        class="w-24"
-      />
-    </a>
-  </li>
-  <li>
-    <a href="https://lucca-carriere.vercel.app/" target="_blank">
-      <img src="/sponsors/lucca_light.svg" alt="Lucca" class="w-24" />
-    </a>
-  </li>
-  <li>
-    <a href="https://sfeir.com/" target="_blank">
-      <img src="/sponsors/sfeir_light.png" alt="SFEIR" class="w-24" />
-    </a>
-  </li>
-  <li>
-    <a href="https://www.takima.fr/" target="_blank">
-      <img src="/sponsors/takima.png" alt="Takima" class="w-24" />
-    </a>
-  </li>
+  {
+    SPONSORS.map((sponsor) => (
+      <li>
+        <a href={sponsor.url} target="_blank">
+          <img src={sponsor.photos} alt={sponsor.name} class="w-24" />
+        </a>
+      </li>
+    ))
+  }
 </ul>

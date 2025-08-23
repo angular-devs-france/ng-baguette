@@ -6,9 +6,10 @@ import {
   CFP_END_DATE,
   CFP_LINK,
   CFP_START_DATE,
-  eventYear,
+  EVENT_YEAR,
 } from "../../consts";
 import {
+  displayDate,
   isAfterCFPClosing,
   isAfterCFPOpenning,
   isAfterOpenningProgram,
@@ -97,7 +98,7 @@ const schema = {
             >
           </div>
           <div class="timeline-start md:text-end mb-10">
-            <time class="font-mono italic">{CFP_START_DATE}</time>
+            <time class="font-mono italic"> {displayDate(CFP_START_DATE)}</time>
             <div class="text-lg font-black">Ouverture du CFP</div>
             <div>Soumettez vos présentations pour la conférence</div>
             {
@@ -125,7 +126,7 @@ const schema = {
             >
           </div>
           <div class="timeline-end mb-10">
-            <time class="font-mono italic">{CFP_END_DATE}</time>
+            <time class="font-mono italic"> {displayDate(CFP_END_DATE)}</time>
             <div class="text-lg font-black">Date limite de soumission</div>
             Dernier jour pour soumettre vos présentations
           </div>
@@ -146,7 +147,7 @@ const schema = {
             >
           </div>
           <div class="timeline-start md:text-end mb-10">
-            <time class="font-mono italic">Mars {eventYear}</time>
+            <time class="font-mono italic">Mars {EVENT_YEAR}</time>
             <div class="text-lg font-black">Évaluation des propositions</div>
             Notre équipe évaluera vos propositions
           </div>
@@ -167,7 +168,7 @@ const schema = {
             >
           </div>
           <div class="timeline-end mb-10">
-            <time class="font-mono italic">milieu mars {eventYear}</time>
+            <time class="font-mono italic">milieu mars {EVENT_YEAR}</time>
             <div class="text-lg font-black">Retours sur les propositions</div>
             <div>Nous vous enverrons les retours sur vos propositions</div>
           </div>
@@ -188,7 +189,7 @@ const schema = {
             >
           </div>
           <div class="timeline-start md:text-end mb-10">
-            <time class="font-mono italic">fin mars {eventYear}</time>
+            <time class="font-mono italic">fin mars {EVENT_YEAR}</time>
             <div class="text-lg font-black">Programme final</div>
             <div>
               Une fois que nous aurons la confirmation de tous les orateurs
