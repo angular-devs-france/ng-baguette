@@ -27,7 +27,6 @@ export const ADDRESS = {
 
 export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
   en: [
-    { title: "Agenda", href: "/agenda", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
     { title: "Program", href: "/program", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
     { title: "Speakers", href: "/speakers", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
     { title: "Sponsors", href: "/sponsors" },
@@ -39,7 +38,7 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
   fr: [
     { title: "Agenda", href: "/agenda", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
     { title: "Programme", href: "/program", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
-    { title: "Speakers", href: "/speakers", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
+    { title: "Orateurs", href: "/speakers", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
     { title: "Sponsors", href: "/sponsors" },
     { title: "CFP", href: "/cfp", condition: () => new Date() <= new Date(CFP_END_DATE) },
     { title: "A propos", href: "/about" },
