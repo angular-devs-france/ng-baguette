@@ -16,6 +16,15 @@ export const TICKET_PRICE = 30; // in euros
 export const OPEN_TICKET_SALE_DATE = "2026-03-02";
 export const TICKET_SOLD_OUT: boolean = false;
 
+
+export const ADDRESS = {
+  streetAddress: "3 rue Lavoisier",
+  addressLocality: "Nantes",
+  addressRegion: "Pays de la Loire",
+  postalCode: "44300",
+  addressCountry: "France",
+};
+
 export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
   en: [
     { title: "Agenda", href: "/agenda", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
@@ -48,7 +57,7 @@ export const SOCIAL_LINKS = {
 export const CFP_LINK = "https://conference-hall.io/ng-baguette-conf-2026";
 export const HELLOASSO_LINK = "https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2026";
 
-export const SPONSORS : Array<{name: string; photos: string; url: string;}> = [
+export const SPONSORS: Array<{ name: string; photos: string; url: string; }> = [
   {
     name: "eezyr",
     photos: "/sponsors/eezyR.png",
@@ -75,7 +84,7 @@ export const SPONSORS : Array<{name: string; photos: string; url: string;}> = [
     url: "https://www.takima.fr/"
   }
 ]
-export const PARTENERS : Array<{name: string; photos: string; url: string}> = [
+export const PARTENERS: Array<{ name: string; photos: string; url: string }> = [
   {
     name: "NantesJS",
     photos: "/sponsors/nantesjs.svg",
