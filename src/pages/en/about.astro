@@ -2,48 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import HeaderHero from '../../components/HeaderHero.astro';
 import Crew from '../../components/Crew.astro';
-
-const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "About Us",
-    "description": "Information about the team and the web development conference.",
-    "mainEntity": {
-        "@type": "Organization",
-        "name": "Web Development Conference",
-        "description": "The premier event for web developers, bringing together industry experts...",
-        "url": "https://example.com",
-        "foundingDate": "2020-01-01",
-        "founders": [
-            {
-                "@type": "Person",
-                "name": "John Doe",
-                "jobTitle": "Founder & CEO"
-            },
-            {
-                "@type": "Person",
-                "name": "Jane Smith",
-                "jobTitle": "Co-founder & CTO"
-            }
-        ],
-        "location": {
-            "@type": "Place",
-            "name": "Cityville Conference Center",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "123 Conference Center Drive",
-                "addressLocality": "Cityville",
-                "addressRegion": "State",
-                "postalCode": "12345",
-                "addressCountry": "Country"
-            }
-        },
-        "sameAs": [
-            "https://twitter.com/example",
-            "https://www.linkedin.com/company/example"
-        ]
-    }
-}
+import { ADDRESS, SITE_DOMAIN, SITE_TITLE, SOCIAL_LINKS } from "../../consts";
 
 const crew = [
     {
@@ -64,7 +23,7 @@ const crew = [
     },
     {
         name: 'Yann-Thomas Le Moigne',
-        title: 'Technical Lead at Apside Top',
+        title: 'Technical Lead at CGI',
         heroImage: '/crew/yann-thomas-le-moigne.jpeg',
         linkedin: 'https://www.linkedin.com/in/yatho/'
     },
@@ -76,6 +35,42 @@ const crew = [
         twitter: 'https://x.com/CamiPillotDev'
     }
 ]
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About Us",
+    "description": "Information about the team and the web development conference.",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Angular Web Development Conference",
+        "description": "The premier event for web developers, bringing together industry experts...",
+    "url": `${SITE_DOMAIN}/about`,
+        "foundingDate": "2020-01-01",
+        "founders": 
+    crew.map(c => {
+        return {
+                "@type": "Person",
+          name: c.name,
+          jobTitle: c.title
+        }
+      })
+        ,
+        "location": {
+            "@type": "Place",
+      "name": SITE_TITLE,
+            "address": {
+        "@type": "PostalAddress",
+        ...ADDRESS
+            }
+        },
+    "sameAs": [
+      SOCIAL_LINKS.bluesky,
+      SOCIAL_LINKS.linkedin,
+      SOCIAL_LINKS.twitter
+        ]
+    }
+}
 
 ---
 
