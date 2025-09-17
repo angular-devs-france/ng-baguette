@@ -19,13 +19,15 @@ import { getRelativeLocaleUrl } from "astro:i18n";
     ></label>
     <ul class="menu pt-20 w-80 min-h-full bg-base-200 text-base-content">
       {
-        NAVIGATION_LINKS[Astro.currentLocale!].map((link) => (
-          <li>
-            <a href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)}>
-              {link.title}
-            </a>
-          </li>
-        ))
+        NAVIGATION_LINKS[Astro.currentLocale!]
+          .filter(link => link.condition ? link.condition() : true)
+          .map(link => (
+            <li>
+              <a href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)}>
+                {link.title}
+              </a>
+            </li>
+          ))
       }
       <!--
             <a class="btn btn-primary mt-4" href={CFP_LINK} target="_blank">Register</a>

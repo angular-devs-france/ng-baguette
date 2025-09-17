@@ -3,6 +3,9 @@ import type { INavigationLink } from "./models/navigation-link.model.ts";
 export const SITE_DOMAIN = "https://ngbaguette.angulardevs.fr";
 
 export const SITE_TITLE = "NG BAGUETTE CONF 2026";
+export const SITE_ACRONYM = "NG Baguette Conf";
+export const SITE_DESCRIPTION = "French cooked Angular conference";
+export const EVENT_START_TIME = "9h30";
 export const EVENT_DATE = "2026-05-22";
 export const CFP_START_DATE = "2026-02-02";
 export const CFP_END_DATE = "2026-03-14";
@@ -27,6 +30,7 @@ export const ADDRESS = {
 
 export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
   en: [
+    { title: "Agenda", href: "/agenda", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
     { title: "Program", href: "/program", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
     { title: "Speakers", href: "/speakers", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
     { title: "Sponsors", href: "/sponsors" },
