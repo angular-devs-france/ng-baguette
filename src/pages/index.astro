@@ -1,127 +1,85 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { SITE_DESCRIPTION, EVENT_DATE, EVENT_START_TIME, ADDRESS, BLIND_TICKET_PRICE, BLIND_TICKET_SOLD_OUT, TICKET_PRICE, TICKET_SOLD_OUT, HELLOASSO_LINK, SPONSORS, PARTENERS } from "../consts";
+import Sponsors from "../components/Sponsors.astro";
+import Partners from "../components/Partners.astro";
 ---
 
-<Layout title="May 24th 2025">
-  <main>
-    <div class="hero min-h-screen">
+<Layout title={EVENT_DATE}>
+  <main class="container mx-auto px-4">
+    <div class="hero min-h-[calc(100vh-100px)]">
       <div class="hero-content text-center">
-        <div class="max-w-ld flex gap-20 flex-col lg:flex-row">
-          <div class="flex flex-col flex-1 items-center">
-            <img
-              class="w-full md:px-20"
-              src="/ng-baguette-logo.svg"
-              alt="EventEdge"
-            />
-            <h2 class="text-2xl md:text-3xl text-primary font-bold mt-4">
-              French cooked Angular conference
-            </h2>
-            <p class="py-6 px-4 md:px-0">
-              Join us for a unique Angular conference experience in France!
-              Discover the latest in Angular development, network with experts
-              and fellow developers.
-            </p>
-
-            <p class="mt-4 text-2xl text-primary font-bold">May 24th, 2025 - 9h30</p>
-            <p class="mt-2 font-bold">Nantes, France</p>
+        <div class="max-w-3xl flex flex-col items-center">
+          <img
+            class="w-full max-w-sm md:max-w-md"
+            src="/ng-baguette-logo.svg"
+            alt="NG Baguette Logo"
+          />
+          <h1 class="text-3xl md:text-4xl text-primary font-bold mt-6 title-font">
+            {SITE_DESCRIPTION}
+          </h1>
+          <p class="py-6 text-lg">
+            Join us for a unique Angular conference experience in France! Discover the latest in Angular development, network with experts and fellow developers.
+          </p>
+          <div class="text-2xl font-bold">
+            <span class="text-primary">{EVENT_DATE}</span> at <span class="text-primary">{EVENT_START_TIME}</span>
           </div>
-          <div class="flex-1 mt-8 mb-8 md:mb-0">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8">Tickets</h2>
-            <ul class="flex flex-col md:flex-row gap-4 items-stretch">
-              <li
-                class="flex-1 card bg-base-200 shadow-xl border-2 border-primary"
-              >
-                <div class="card-body flex flex-col items-center">
-                  <h3 class="card-title text-2xl text-center">Blind Ticket</h3>
-                  <p>Limited availability</p>
-                  <span class="text-3xl font-bold">€25</span>
-                  <!-- <button
-                    class="btn btn-primary"
-                    onclick="document.getElementById('ticket-modal').showModal()"
-                    >Get your ticket</button
-                  > -->
-                  <p class="text-primary">Sold out</p>
-                  <dialog id="ticket-modal" class="modal">
-                    <div class="modal-box">
-                      <h3 class="font-bold text-lg">Important Note</h3>
-                      <p class="py-4">
-                        To reduce costs and simplify the first edition, we are
-                        using a free French platform dedicated to non profit
-                        events.
-                      </p>
-                      <p>The ticket registration page is in French.</p>
-                      <p>
-                        If your French vocabulary is limited to "Oui Oui
-                        Baguette", you may want to use Google Translate there to
-                        complete your purchase!
-                      </p>
-                      <div class="modal-action">
-                        <form class="flex gap-4" method="dialog">
-                          <a
-                            href="https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2025"
-                            target="_blank"
-                            class="btn btn-primary">Get your ticket</a
-                          >
-                          <button class="btn">Close</button>
-                        </form>
-                      </div>
-                    </div>
-                  </dialog>
-                </div>
-              </li>
-              <li
-                class="flex-1 card bg-base-200 shadow-xl border-2 border-primary"
-              >
-                <div class="card-body flex flex-col items-center">
-                  <h3 class="card-title text-xl text-center">Regular Ticket</h3>
-                  <p>Standard conference ticket</p>
-                  <span class="text-3xl font-bold">€30</span>
-                    <button
-                    class="btn btn-primary"
-                    onclick="document.getElementById('ticket-modal').showModal()"
-                    >Get your ticket</button
-                  >
-                </div>
-              </li>
-            </ul>
-
-             <h2 class="text-2xl md:text-3xl font-bold my-8">Sponsors</h2>
-             <ul class="flex flex-col md:flex-row justify-evenly items-center gap-8 md:gap-0 bg-white rounded-lg p-8 my-8">
-                    <li>
-                        <img src="/sponsors/eezyR.png" alt="EezyR" class="w-24">
-                    </li>
-                    <li>
-                        <img src="/sponsors/house-of-angular.png" alt="House of Angular" class="w-24">
-                    </li>
-                </ul>
-            <!-- <div role="alert" class="alert mt-8">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                class="stroke-primary h-6 w-6 shrink-0 hidden md:block"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <span>Call for papers still open until March 14th</span>
-              <div>
-                <a
-                  class="btn btn-sm btn-primary"
-                  href="https://conference-hall.io/ng-baguette-conf-2025"
-                  target="_blank">Submit your talk proposals</a
-                >
-              </div>
-            </div> -->
-          </div>
+          <div class="text-xl font-semibold mt-2">{ADDRESS.addressLocality}, {ADDRESS.addressCountry}</div>
         </div>
       </div>
     </div>
+
+    <section id="tickets" class="my-20">
+      <h2 class="text-4xl font-bold text-center mb-12 title-font">Tickets</h2>
+      <div class="flex flex-wrap justify-center gap-8">
+        <div class="card w-96 bg-base-200 shadow-xl border-2 border-primary transform hover:scale-105 transition-transform">
+          <div class="card-body items-center text-center">
+            <h3 class="card-title text-3xl">Blind Ticket</h3>
+            <p>Limited availability</p>
+            <div class="text-5xl font-bold my-4">€{BLIND_TICKET_PRICE}</div>
+            {BLIND_TICKET_SOLD_OUT ? (
+              <div class="badge badge-primary badge-lg">Sold out</div>
+            ) : (
+              <button class="btn btn-primary btn-lg" onclick="document.getElementById('ticket-modal').showModal()">Get your ticket</button>
+            )}
+          </div>
+        </div>
+
+        <div class="card w-96 bg-base-200 shadow-xl border-2 border-secondary transform hover:scale-105 transition-transform">
+          <div class="card-body items-center text-center">
+            <h3 class="card-title text-3xl">Regular Ticket</h3>
+            <p>Standard conference ticket</p>
+            <div class="text-5xl font-bold my-4">€{TICKET_PRICE}</div>
+            {TICKET_SOLD_OUT ? (
+              <div class="badge badge-secondary badge-lg">Sold out</div>
+            ) : (
+              <button class="btn btn-secondary btn-lg" onclick="document.getElementById('ticket-modal').showModal()">Get your ticket</button>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Sponsors sponsors={SPONSORS} />
+    <Partners partners={PARTENERS} />
+
   </main>
+
+  <dialog id="ticket-modal" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Important Note</h3>
+      <p class="py-4">To reduce costs and simplify the first edition, we are using a free French platform dedicated to non-profit events.</p>
+      <p>The ticket registration page is in French.</p>
+      <p>If your French vocabulary is limited to "Oui Oui Baguette", you may want to use Google Translate there to complete your purchase!</p>
+      <div class="modal-action">
+        <form method="dialog" class="flex gap-4 items-center">
+          <a href={HELLOASSO_LINK} target="_blank" class="btn btn-primary">Continue to ticketing</a>
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
 </Layout>
 
 <style>
