@@ -1,40 +1,45 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeaderHero from "../../components/HeaderHero.astro";
+import { ADDRESS } from "../../consts";
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "EventVenue",
   name: "Onepoint Nantes",
   description:
-    "Rejoignez-nous à Onepoint Nantes, un hub technologique moderne au cœur de l'Ouest de la France.",
+    "Rejoignez-nous à Epitech, une école technologique moderne au cœur de la région parisienne.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "3 rue Lavoisier",
-    addressLocality: "Nantes",
-    addressRegion: "Pays de la Loire",
-    postalCode: "44300",
-    addressCountry: "France",
+    streetAddress: ADDRESS.streetAddress,
+    addressLocality: ADDRESS.addressLocality,
+    addressRegion: ADDRESS.addressRegion,
+    postalCode: ADDRESS.postalCode,
+    addressCountry: ADDRESS.addressCountry,
   },
-  url: "https://www.onepoint.fr",
+  url: "https://www.epitech.eu/ecole-informatique-paris/",
   telephone: "+33 XXX XXX XXX",
   geo: {
     "@type": "GeoCoordinates",
-    latitude: "47.209459",
-    longitude: "-1.5719052",
+    latitude: "48.815304687085025",
+    longitude: "2.3630245124382077",
   },
 };
 ---
 
-<Layout title="Lieu de la conférence - Onepoint Nantes" schema={schema}>
+<Layout title="Lieu de la conférence - Epitech" schema={schema}>
   <main>
     <HeaderHero>
       <span slot="title">Lieu de la conférence</span>
       <span slot="description"
-        >Rejoignez-nous à Nantes, une ville dynamique connue pour son riche
-        patrimoine et sa communauté tech. Notre lieu de conférence offre un
-        cadre idéal pour l'apprentissage et le networking au cœur de l'Ouest de
-        la France.</span
+        >Découvrez Epitech au Kremlin-Bicêtre, le cœur battant de l’innovation
+        technologique aux portes de Paris ! Plongez dans un campus vibrant où se
+        rencontrent passion, créativité et esprit d’équipe. Ici, vous apprendrez
+        à penser comme un innovateur, à coder comme un expert et à collaborer
+        comme un leader. Entre projets concrets, hackathons et événements tech,
+        Epitech vous offre bien plus qu’une formation : une expérience unique au
+        sein d’une communauté visionnaire prête à transformer le monde
+        numérique..</span
       >
     </HeaderHero>
 
@@ -44,10 +49,10 @@ const schema = {
           <div class="bg-gray-700 p-6 rounded-lg shadow-md">
             <h2 class="text-2xl font-bold mb-4">Adresse</h2>
             <div class="space-y-2 text-lg">
-              <p class="font-semibold">Onepoint Nantes</p>
-              <p>3 rue Lavoisier</p>
-              <p>44300 Nantes</p>
-              <p>France</p>
+              <p class="font-semibold">Epitech</p>
+              <p>{ADDRESS.streetAddress}</p>
+              <p>{ADDRESS.postalCode} {ADDRESS.addressRegion}</p>
+              <p>{ADDRESS.addressCountry}</p>
             </div>
           </div>
 
@@ -57,15 +62,8 @@ const schema = {
               <div>
                 <h3 class="font-semibold">En transport en commun</h3>
                 <p>
-                  La station de Tramway ligne 1 la plus proche est "Chantiers
-                  Navals".
-                </p>
-              </div>
-              <div>
-                <h3 class="font-semibold">En train</h3>
-                <p>
-                  Depuis la gare, prenez le Tramway ligne 1 jusqu'à la
-                  station"Chantiers Navals".
+                  Bus: 131, 47, 323, 185, 186, N15, N31, 184. Métro: 7, T3A.
+                  Tram: T3A.
                 </p>
               </div>
             </div>
@@ -78,15 +76,14 @@ const schema = {
           <div class="bg-gray-700 p-6 rounded-lg shadow-md">
             <h2 class="text-2xl font-bold mb-4">À propos du quartier</h2>
             <p class="mb-4">
-              Nantes est une ville dynamique connue pour sa riche histoire, son
-              innovation technologique et ses attractions culturelles. Le lieu
-              est situé dans un quartier d'affaires dynamique avec un accès
-              facile aux restaurants, hôtels et attractions de la ville.
-            </p>
-            <p>
-              Prenez le temps d'explorer les célèbres Machines de l'île, y
-              compris le Grand Éléphant, ou visitez le historique Château des
-              Ducs de Bretagne.
+              Le Kremlin-Bicêtre, situé aux portes de Paris, est une ville
+              dynamique connue pour son énergie étudiante et son atmosphère
+              innovante. À proximité immédiate de la capitale, le campus Epitech
+              bénéficie d’un environnement urbain vivant, entouré de cafés, de
+              restaurants et d’espaces verts. Facilement accessible en métro et
+              en bus, le quartier offre un cadre idéal pour étudier, collaborer
+              et profiter de toute la richesse culturelle et technologique de la
+              région parisienne.
             </p>
           </div>
         </section>
@@ -126,7 +123,7 @@ const schema = {
   // Initialize the map once the DOM is loaded
   document.addEventListener("DOMContentLoaded", () => {
     // Create map instance
-    const map = L.map("map").setView([47.209459, -1.5719052], 11);
+    const map = L.map("map").setView([48.815304, 2.363024], 11);
 
     // Add OpenStreetMap tile layer
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -135,9 +132,6 @@ const schema = {
     }).addTo(map);
 
     // Add a marker
-    L.marker([47.209459, -1.5719052])
-      .addTo(map)
-      .bindPopup("Onepoint Nantes")
-      .openPopup();
+    L.marker([48.815304, 2.363024]).addTo(map).bindPopup("Epitech").openPopup();
   });
 </script>
