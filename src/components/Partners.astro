@@ -2,16 +2,16 @@
 import { PARTENERS } from "../consts";
 ---
 
-<ul
-  class="flex flex-col md:flex-row justify-evenly items-center gap-8 md:gap-4 bg-white rounded-lg p-8 my-8"
->
-  {
-    PARTENERS.map((partener) => (
-      <li>
-        <a href={partener.url} target="_blank">
-          <img src={partener.photos} alt={partener.name} class="w-24" />
-        </a>
-      </li>
-    ))
-  }
-</ul>
+{
+  PARTENERS.length > 0 && (
+    <ul class="flex flex-col md:flex-row justify-evenly items-center gap-8 md:gap-4 bg-white rounded-lg p-8 my-8">
+      {PARTENERS.map((partener) => (
+        <li>
+          <a href={partener.url} target="_blank">
+            <img src={partener.photos} alt={partener.name} class="w-24" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
