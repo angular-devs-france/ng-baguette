@@ -5,6 +5,7 @@ import type { ISponsor } from "../../models/sponsor.model";
 import SponsorList from "../../components/Sponsors.astro";
 import Partners from "../../components/Partners.astro";
 import { isResearchingSponsors } from "../../utils";
+import { SPONSORSHIP_BROCHURE_URL } from "../../consts";
 
 const sponsors: Array<ISponsor> = [];
 
@@ -49,7 +50,7 @@ const schema = {
                 avantages associés.
             </p>
             <a
-                href="/pdf/dossier-sponsoring-ngbaguette-2025.pdf"
+                href={SPONSORSHIP_BROCHURE_URL.fr}
                 class="btn btn-primary"
                 download
             >

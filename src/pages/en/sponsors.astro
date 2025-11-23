@@ -5,6 +5,7 @@ import {type ISponsor} from "../../models/sponsor.model";
 import SponsorList from "../../components/Sponsors.astro";
 import Partners from "../../components/Partners.astro";
 import { isResearchingSponsors } from "../../utils";
+import { SPONSORSHIP_BROCHURE_URL } from "../../consts";
 
 const sponsors: Array<ISponsor> = [];
 
@@ -43,7 +44,7 @@ const schema = {
                 <h2 class="text-4xl font-bold mb-6">Become a sponsor</h2>
                 <p class="mb-4">We are thrilled to present our sponsorship prospectus for NG Baguette. As a sponsor, you will have the unique opportunity to connect with the French Angular community and promote your brand to a passionate audience of web developers.</p>
                 <p class="mb-8">Our prospectus details the different partnership levels and associated benefits.</p>
-                <a href="/pdf/sponsorship-prospectus-ngbaguette-2025.pdf" class="btn btn-primary" download>
+                <a href={SPONSORSHIP_BROCHURE_URL.en} class="btn btn-primary" download>
                     Download the sponsorship prospectus
                 </a>
             }

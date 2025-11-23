@@ -19,6 +19,10 @@ export const TICKET_PRICE = 69; // in euros
 export const OPEN_TICKET_SALE_DATE = "2026-04-01";
 export const TICKET_SOLD_OUT: boolean = false;
 
+export const SPONSORSHIP_BROCHURE_URL = {
+  en: "/pdf/sponsorship-prospectus-ngbaguette-2026.pdf",
+  fr: "/pdf/dossier-sponsoring-ngbaguette-2026.pdf",
+};
 
 export const ADDRESS = {
   streetAddress: "24 Rue Pasteur",
