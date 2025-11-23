@@ -1,29 +1,34 @@
 ---
-import {SOCIAL_LINKS} from "../consts";
+import { SOCIAL_LINKS, NAVIGATION_LINKS, EVENT_YEAR, SITE_TITLE } from "../consts";
+import { getRelativeLocaleUrl } from "astro:i18n";
 ---
 <footer class="footer p-10 bg-base-300 text-base-content mt-20">
-  <!--
+  <aside>
+    <img src="/ng-baguette-light-logo.svg" alt="NG Baguette Logo" class="h-16 w-auto">
+    <p>{SITE_TITLE}<br/>
+  </aside> 
   <nav>
-    <h6 class="footer-title">Services</h6>
-    <a class="link link-hover">Branding</a>
-    <a class="link link-hover">Design</a>
-    <a class="link link-hover">Marketing</a>
-    <a class="link link-hover">Advertisement</a>
-  </nav>
-  <nav>
-    <h6 class="footer-title">Company</h6>
-    <a class="link link-hover">About us</a>
-    <a class="link link-hover">Contact</a>
-    <a class="link link-hover">Jobs</a>
-    <a class="link link-hover">Press kit</a>
-  </nav>
--->
+    <h6 class="footer-title"></h6>
+    <ul class="flex flex-col gap-2">
+      {
+        NAVIGATION_LINKS[Astro.currentLocale!]
+          .filter(link => link.condition ? link.condition() : true)
+          .map(link => (
+            <li>
+              <a href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)} class="link link-hover">
+                {link.title}
+              </a>
+            </li>
+          ))
+      }
+    </ul>
+  </nav> 
   <nav>
     <h6 class="footer-title">Social</h6>
     <div class="grid grid-flow-col gap-4">
-      <a href={SOCIAL_LINKS.twitter}><img src="/icons/twitter.svg" class="w-6 h-6"></a>
-      <a href={SOCIAL_LINKS.bluesky}><img src="/icons/bluesky.svg" class="w-6 h-6"></a>
-      <a href={SOCIAL_LINKS.linkedin}><img src="/icons/linkedin.svg" class="w-6 h-6"></a>
+      <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer"><img src="/icons/twitter.svg" class="w-6 h-6"></a>
+      <a href={SOCIAL_LINKS.bluesky} target="_blank" rel="noopener noreferrer"><img src="/icons/bluesky.svg" class="w-6 h-6"></a>
+      <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer"><img src="/icons/linkedin.svg" class="w-6 h-6"></a>
     </div>
   </nav>
 </footer>

@@ -1,65 +1,55 @@
 ---
-import { NAVIGATION_LINKS  } from "../consts";
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { EVENT_DATE, ADDRESS, SITE_ACRONYM } from "../consts";
+import { NAVIGATION_LINKS } from "../consts";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { displayDate } from "../utils";
 
-const locale = Astro.currentLocale;
+const locale = Astro.currentLocale!;
 ---
 
-<header class="sticky top-0 z-10">
-  <div class="navbar bg-base-100 px-6">
-    <div class="flex-none">
-      <label for="my-drawer" class="btn btn-square btn-ghost lg:hidden">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          class="inline-block w-5 h-5 stroke-current"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </label>
-    </div>
-
-    <div class="flex-1 flex items-center">
-      <a class="btn btn-ghost text-2xl text-white title-font text-nowrap" href={getRelativeLocaleUrl(Astro.currentLocale!, '/')}>
-        NG BAGUETTE CONF
-      </a>
-      <div class="hidden xl:flex divider divider-horizontal py-2"></div>
-      <div class="hidden xl:flex flex-col items-center">
-        <span>May 24, 2025</span>
-        <span>Nantes, France</span>
+<header class="sticky top-0 z-10 backdrop-blur-md bg-base-100/50">
+  <div class="navbar px-4 sm:px-6 lg:px-8">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label for="my-drawer" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </label>
       </div>
+      <a href={getRelativeLocaleUrl(locale, "/")} class="flex items-center gap-2">
+        <img src="/ng-baguette-light-logo.svg" alt="NG Baguette Logo" class="h-10 w-auto">
+        <span class="hidden sm:inline text-xl font-bold title-font">{SITE_ACRONYM}</span>
+      </a>
     </div>
 
-    <div class="flex-none">
-      <nav aria-label="main navigation">
-        <ul class="menu menu-horizontal px-1 hidden lg:flex items-baseline">
-          {
-            NAVIGATION_LINKS[Astro.currentLocale!].map((link) => (
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        {
+          NAVIGATION_LINKS[locale]
+            .filter(link => link.condition ? link.condition() : true)
+            .map(link => (
               <li>
-                <a class="text-xl" href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)}>{link.title}</a>
+                <a href={getRelativeLocaleUrl(locale, link.href)} class="text-base">
+                  {link.title}
+                </a>
               </li>
             ))
-          }
-          <!--
-          <a class="btn btn-primary" href={CFP_LINK} target="_blank">
-            Register
-          </a>
-          -->
-        </ul>
-      </nav>
-      <div class="flex gap-2 md:ml-12 text-sm md:text-base">
-        <a href="/en" class={`btn btn-xs md:btn-sm ${locale === 'en' ? 'btn-primary' : 'btn-ghost'}`}>EN</a>
-        <a href="/fr" class={`btn btn-xs md:btn-sm ${locale === 'fr' ? 'btn-primary' : 'btn-ghost'}`}>FR</a>
+        }
+      </ul>
+    </div>
+
+    <div class="navbar-end">
+      <div class="hidden md:flex flex-col items-end mr-4">
+        <span class="text-sm font-semibold">{displayDate(EVENT_DATE, locale)}</span>
+        <span class="text-xs">{ADDRESS.addressLocality}, {ADDRESS.addressCountry}</span>
+      </div>
+      <div class="flex gap-1">
+        <a href="/en" class={`btn btn-xs ${locale === "en" ? "btn-primary" : "btn-ghost"}`}>EN</a>
+        <a href="/fr" class={`btn btn-xs ${locale === "fr" ? "btn-primary" : "btn-ghost"}`}>FR</a>
       </div>
     </div>
   </div>
 </header>
+
 <style>
   .title-font {
     font-family: "Lilita", sans-serif;

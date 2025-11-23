@@ -2,6 +2,18 @@
 import Layout from "../../layouts/Layout.astro";
 import HeaderHero from "../../components/HeaderHero.astro";
 import { Image } from "astro:assets";
+import {
+  CFP_END_DATE,
+  CFP_LINK,
+  CFP_START_DATE,
+  EVENT_YEAR,
+} from "../../consts";
+import {
+  displayDate,
+  isAfterCFPClosing,
+  isAfterCFPOpenning,
+  isAfterOpenningProgram,
+} from "../../utils";
 
 const schema = {
   "@context": "https://schema.org",
@@ -50,9 +62,15 @@ const schema = {
   <main>
     <HeaderHero>
       <span slot="title">Call For Papers</span>
-      <!-- <span slot="actions">
-                <a href="https://conference-hall.io/ng-baguette-conf-2025" target="_blank" class="btn">Submit your talk proposals</a>
-            </span> -->
+      {
+        !isAfterCFPClosing() && isAfterCFPOpenning() && (
+          <span slot="actions">
+            <a href={CFP_LINK} target="_blank" class="btn">
+              Submit your talk proposals
+            </a>
+          </span>
+        )
+      }
     </HeaderHero>
 
     <section class="max-w-screen-lg m-auto flex flex-col items-center px-8">
@@ -83,7 +101,7 @@ const schema = {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
-              fill="#646EE4"
+              fill={!isAfterCFPOpenning() ? "currentColor" : "#646EE4"}
               class="h-5 w-5"
               ><path
                 fill-rule="evenodd"
@@ -92,14 +110,18 @@ const schema = {
             >
           </div>
           <div class="timeline-start md:text-end mb-10">
-            <time class="font-mono italic">February 3rd 2025</time>
+            <time class="font-mono italic">
+              {displayDate(CFP_START_DATE, "en-US")}
+            </time>
             <div class="text-lg font-black">CFP open</div>
             <div>Submit your talks for the conference</div>
-            <!-- <a
-              href="https://conference-hall.io/ng-baguette-conf-2025"
-              target="_blank"
-              class="btn btn-primary my-4">Submit your talks</a
-            > -->
+            {
+              isAfterCFPOpenning() && !isAfterCFPClosing() && (
+                <a href={CFP_LINK} target="_blank" class="btn btn-primary my-4">
+                  Submit your talks
+                </a>
+              )
+            }
           </div>
           <hr />
         </li>
@@ -109,7 +131,7 @@ const schema = {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
-              fill="#646EE4"
+              fill={!isAfterCFPClosing() ? "currentColor" : "#646EE4"}
               class="h-5 w-5"
               ><path
                 fill-rule="evenodd"
@@ -118,7 +140,9 @@ const schema = {
             >
           </div>
           <div class="timeline-end mb-10">
-            <time class="font-mono italic">March 14th 2025</time>
+            <time class="font-mono italic"
+              >{displayDate(CFP_END_DATE, "en-US")}</time
+            >
             <div class="text-lg font-black">Submission Deadline</div>
             Last day to submit your talks
           </div>
@@ -130,7 +154,7 @@ const schema = {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
-              fill="#646EE4"
+              fill={!isAfterCFPClosing() ? "currentColor" : "#646EE4"}
               class="h-5 w-5"
               ><path
                 fill-rule="evenodd"
@@ -139,7 +163,7 @@ const schema = {
             >
           </div>
           <div class="timeline-start md:text-end mb-10">
-            <time class="font-mono italic">March 2025</time>
+            <time class="font-mono italic">March {EVENT_YEAR}</time>
             <div class="text-lg font-black">Talks review</div>
             Our team will review your talks
           </div>
@@ -151,7 +175,7 @@ const schema = {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
-              fill="#646EE4"
+              fill={isAfterOpenningProgram() ? "#646EE4" : "currentColor"}
               class="h-5 w-5"
               ><path
                 fill-rule="evenodd"
@@ -160,7 +184,7 @@ const schema = {
             >
           </div>
           <div class="timeline-end mb-10">
-            <time class="font-mono italic">Middle March 2025</time>
+            <time class="font-mono italic">Middle March {EVENT_YEAR}</time>
             <div class="text-lg font-black">Review feedback</div>
             <div>We'll send you feedback about your talks</div>
           </div>
@@ -172,7 +196,7 @@ const schema = {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
-              fill="currentColor"
+              fill={isAfterOpenningProgram() ? "#646EE4" : "currentColor"}
               class="h-5 w-5"
               ><path
                 fill-rule="evenodd"
@@ -181,7 +205,7 @@ const schema = {
             >
           </div>
           <div class="timeline-start md:text-end mb-10">
-            <time class="font-mono italic">End of March 2025</time>
+            <time class="font-mono italic">End of March {EVENT_YEAR}</time>
             <div class="text-lg font-black">Final schedule</div>
             <div>
               Once we'll get validation from all accepted talks, we'll publish
@@ -235,18 +259,6 @@ const schema = {
           </div>
         </div>
       </article>
-
-      <!--
-
-            <div role="alert" class="alert shadow-lg mt-12">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <div>
-                    <h3 class="font-bold">Brand assets</h3>
-                    <div class="text-xs">Grab our Google Slides template</div>
-                </div>
-                <button class="btn btn-sm btn-primary">Download</button>
-            </div>
-            -->
     </section>
   </main>
 </Layout>

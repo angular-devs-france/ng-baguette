@@ -1,57 +1,62 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeaderHero from '../../components/HeaderHero.astro';
+import HeaderHero from "../../components/HeaderHero.astro";
 import type { ISponsor } from "../../models/sponsor.model";
 import SponsorList from "../../components/Sponsors.astro";
 import Partners from "../../components/Partners.astro";
+import { isResearchingSponsors } from "../../utils";
+import { SPONSORSHIP_BROCHURE_URL } from "../../consts";
 
 const sponsors: Array<ISponsor> = [];
 
 const schema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Sponsors de la conférence",
-    "description": "Liste des sponsors soutenant la conférence de développement web.",
-    "itemListElement": sponsors.map(sponsor => ({
-        "@type": "Organization",
-        "name": sponsor.name,
-        "url": sponsor.url,
-        "logo": sponsor.logo,
-        "description": sponsor.description,
-        "sameAs": [
-            sponsor.twitter,
-            sponsor.linkedin
-        ]
-    }))
-}
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Sponsors de la conférence",
+  description:
+    "Liste des sponsors soutenant la conférence de développement web.",
+  itemListElement: sponsors.map((sponsor) => ({
+    "@type": "Organization",
+    name: sponsor.name,
+    url: sponsor.url,
+    logo: sponsor.logo,
+    description: sponsor.description,
+    sameAs: [sponsor.twitter, sponsor.linkedin],
+  })),
+};
 ---
 
 <Layout title="Sponsors" schema={schema}>
-    <main>
-        <HeaderHero>
-            <span slot="title">Sponsors</span>
-        </HeaderHero>
+  <main>
+    <HeaderHero>
+      <span slot="title">Sponsors</span>
+    </HeaderHero>
 
-        <section class="max-w-screen-lg m-auto px-8 my-12">
-              <SponsorList />
-                <Partners />
+    <section class="max-w-screen-lg m-auto px-8 my-12">
+        <SponsorList />
+        <Partners />
 
-            <!--
+        {
+            isResearchingSponsors() &&
             <h2 class="text-4xl font-bold mb-6">Devenir sponsor</h2>
-            <p class="mb-4">Nous sommes ravis de vous présenter notre dossier de sponsoring pour NG Baguette. En tant que sponsor, vous aurez l'opportunité unique de vous connecter avec la communauté Angular française et de promouvoir votre marque auprès d'un public passionné de développement web.</p>
-            <p class="mb-8">Notre dossier détaille les différents niveaux de partenariat et les avantages associés.</p>
-            <a href="/pdf/dossier-sponsoring-ngbaguette-2025.pdf" class="btn btn-primary" download>
+            <p class="mb-4">
+                Nous sommes ravis de vous présenter notre dossier de sponsoring pour NG
+                Baguette. En tant que sponsor, vous aurez l'opportunité unique de vous
+                connecter avec la communauté Angular française et de promouvoir votre
+                marque auprès d'un public passionné de développement web.
+            </p>
+            <p class="mb-8">
+                Notre dossier détaille les différents niveaux de partenariat et les
+                avantages associés.
+            </p>
+            <a
+                href={SPONSORSHIP_BROCHURE_URL.fr}
+                class="btn btn-primary"
+                download
+            >
                 Télécharger le dossier de sponsoring
             </a>
-            -->
-        </section>
-
-        <!--
-        <section class="flex flex-col items-center max-w-screen-lg m-auto px-8">
-            <h2 class="text-3xl text-center uppercase font-bold my-8">Hôte</h2>
-            <h2 class="text-3xl text-center uppercase font-bold my-8">Sponsors</h2>
-            <h2 class="text-3xl text-center uppercase font-bold my-8">Partenaires communautaires</h2>
-        </section>
-        -->
-    </main>
-</Layout> 
+        }
+    </section>
+  </main>
+</Layout>

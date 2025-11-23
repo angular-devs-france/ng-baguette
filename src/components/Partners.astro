@@ -1,40 +1,17 @@
 ---
-
+import { PARTENERS } from "../consts";
 ---
 
-<ul
-  class="flex flex-col md:flex-row justify-evenly items-center gap-8 md:gap-4 bg-white rounded-lg p-8 my-8"
->
-  <li>
-    <a href="https://nantesjs.org/" target="_blank">
-      <img src="/sponsors/nantesjs.svg" alt="NantesJS" class="w-24" />
-    </a>
-  </li>
-  <li>
-    <a href="https://stickergreen.com/" target="_blank"
-      ><img
-        src="/sponsors/stickergreen.png"
-        alt="Stickergreen"
-        class="w-32"
-      /></a
-    >
-  </li>
-  <li>
-    <a href="https://angular.love/" target="_blank"
-    ><img
-        src="/sponsors/angular-love.svg"
-        alt="Angular Love"
-        class="w-32"
-    /></a
-    >
-  </li>
-  <li>
-    <a href="https://www.meetup.com/paris-angular/" target="_blank"
-    ><img
-        src="/sponsors/paris-angular.png"
-        alt="Angular Love"
-        class="w-32"
-    /></a
-    >
-  </li>
-</ul>
+{
+  PARTENERS.length > 0 && (
+    <ul class="flex flex-col md:flex-row justify-evenly items-center gap-8 md:gap-4 bg-white rounded-lg p-8 my-8">
+      {PARTENERS.map((partener) => (
+        <li>
+          <a href={partener.url} target="_blank">
+            <img src={partener.photos} alt={partener.name} class="w-24" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

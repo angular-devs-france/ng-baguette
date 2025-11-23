@@ -2,19 +2,12 @@
 import Layout from "../../layouts/Layout.astro";
 import HeaderHero from '../../components/HeaderHero.astro';
 import Crew from '../../components/Crew.astro';
-
-// Schema remains the same as it's metadata
-const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "À propos",
-    // ... rest of schema remains unchanged
-}
+import { ADDRESS, SITE_DOMAIN, SITE_TITLE, SOCIAL_LINKS } from "../../consts";
 
 const crew = [
     {
         name: 'Gerome Grignon',
-        title: 'Ingénieur Frontend chez Lucca',
+        title: 'Frontend Software Engineer at Lucca',
         heroImage: '/crew/gerome-grignon.png',
         linkedin: 'https://www.linkedin.com/in/gerome-grignon/',
         twitter: 'https://x.com/GeromeDEV',
@@ -22,7 +15,7 @@ const crew = [
     },
     {
         name: 'Anthony Pena',
-        title: 'Développeur Web / Staff Engineer chez SFΞIR Nantes',
+        title: 'Développeur Web / Staff Engineer at SFΞIR Nantes',
         heroImage: '/crew/anthony-pena.webp',
         linkedin: 'https://www.linkedin.com/in/penaanthony/',
         twitter: 'https://x.com/_Anthony_Pena',
@@ -30,11 +23,9 @@ const crew = [
     },
     {
         name: 'Yann-Thomas Le Moigne',
-        title: 'Technical Lead chez Apside Top',
+        title: 'Technical Lead at CGI',
         heroImage: '/crew/yann-thomas-le-moigne.jpeg',
-        linkedin: 'https://www.linkedin.com/in/yatho/',
-        twitter: 'https://x.com/yatho91',
-        bluesky: 'https://bsky.app/profile/yatho.bsky.social'
+        linkedin: 'https://www.linkedin.com/in/yatho/'
     },
     {
         name: 'Camille Pillot',
@@ -44,6 +35,43 @@ const crew = [
         twitter: 'https://x.com/CamiPillotDev'
     }
 ]
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About Us",
+    "description": "Information about the team and the web development conference.",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Angular Web Development Conference",
+        "description": "The premier event for web developers, bringing together industry experts...",
+    "url": `${SITE_DOMAIN}/about`,
+        "foundingDate": "2020-01-01",
+        "founders": 
+    crew.map(c => {
+        return {
+                "@type": "Person",
+          name: c.name,
+          jobTitle: c.title
+        }
+      })
+        ,
+        "location": {
+            "@type": "Place",
+      "name": SITE_TITLE,
+            "address": {
+        "@type": "PostalAddress",
+        ...ADDRESS
+            }
+        },
+    "sameAs": [
+      SOCIAL_LINKS.bluesky,
+      SOCIAL_LINKS.linkedin,
+      SOCIAL_LINKS.twitter
+        ]
+    }
+}
+
 ---
 
 <Layout title="À propos" schema={schema}>
@@ -58,4 +86,4 @@ const crew = [
             {crew.map(crew => <Crew crew={crew} />)}
         </section>
     </main>
-</Layout> 
+</Layout

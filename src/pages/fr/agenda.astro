@@ -2,6 +2,12 @@
 import Layout from "../../layouts/Layout.astro";
 import HeaderHero from "../../components/HeaderHero.astro";
 import AgendaComponent from "../../components/Agenda.astro";
+import { CFP_LINK } from "../../consts";
+import {
+  isAfterCFPClosing,
+  isAfterCFPOpenning,
+  isAfterOpenningProgram,
+} from "../../utils";
 
 const breaks = [
   {
@@ -68,23 +74,42 @@ const schema = {
       <span slot="title">Agenda</span>
     </HeaderHero>
     <section class="max-w-screen-lg m-auto flex flex-col items-center px-8">
-      <!-- <section class="flex flex-col items-center gap-4">
-        <p class="text-center text-2xl font-bold">
-          Notre appel à speakers est ouvert jusqu'au 14 mars 2025
-        </p>
-        <a
-          href="https://conference-hall.io/ng-baguette-conf-2025"
-          target="_blank"
-          class="btn btn-primary">Soumettez vos propositions</a
-        >
-      </section> 
       <section class="flex flex-col items-center gap-4">
-        <p class="text-center text-2xl font-bold">
-          Notre appel à speakers est fermé. Programme à venir !
-        </p>
+        {
+          isAfterCFPOpenning() && !isAfterCFPClosing() && (
+            <section class="flex flex-col items-center gap-4">
+              <p class="text-center text-2xl font-bold">
+                Notre appel à speakers est ouvert jusqu'au 14 mars 2025
+              </p>
+              <a href={CFP_LINK} target="_blank" class="btn btn-primary">
+                Soumettez vos propositions
+              </a>
+            </section>
+          )
+        }
+
+        {
+          isAfterCFPClosing() && !isAfterOpenningProgram() && (
+            <section class="flex flex-col items-center gap-4">
+              <p class="text-center text-2xl font-bold">
+                Notre appel à speakers est fermé. Programme à venir !
+              </p>
+            </section>
+          )
+        }
+
+        {isAfterOpenningProgram() && <AgendaComponent breaks={breaks} />}
+
+        {
+          !isAfterCFPOpenning() && (
+            <section class="flex flex-col items-center gap-4">
+              <p class="text-center text-2xl font-bold">
+                L'agenda sera disponible après la clôture de l'appel à speakers.
+              </p>
+            </section>
+          )
+        }
       </section>
-      -->
-      <AgendaComponent breaks={breaks} />
     </section>
   </main>
 </Layout>
