@@ -18,6 +18,9 @@ export const BLIND_TICKET_SOLD_OUT: boolean = false;
 export const TICKET_PRICE = 69; // in euros
 export const OPEN_TICKET_SALE_DATE = "2026-04-01";
 export const TICKET_SOLD_OUT: boolean = false;
+export const WORKSHOP_TICKET_PRICE = 99; // in euros
+export const OPEN_WORKSHOP_TICKET_SALE_DATE = "2026-04-01";
+export const WORKSHOP_TICKET_SOLD_OUT: boolean = false;
 
 export const SPONSORSHIP_BROCHURE_URL = {
   en: "/pdf/sponsorship-prospectus-ngbaguette-2026.pdf",

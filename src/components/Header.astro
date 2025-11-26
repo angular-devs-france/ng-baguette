@@ -5,46 +5,88 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { displayDate } from "../utils";
 
 const locale = Astro.currentLocale!;
+const currentPath = Astro.url.pathname;
+
+// Helper function to check if a link is active
+function isActiveLink(href: string): boolean {
+  const linkPath = getRelativeLocaleUrl(locale, href);
+  // Normalize paths (remove trailing slashes for comparison)
+  const normalizedCurrentPath = currentPath.replace(/\/$/, "") || "/";
+  const normalizedLinkPath = linkPath.replace(/\/$/, "") || "/";
+  
+  // Handle home page - check if we're on root or locale root
+  if (href === "/") {
+    return normalizedCurrentPath === "/" || 
+           normalizedCurrentPath === `/${locale}` ||
+           normalizedCurrentPath === normalizedLinkPath;
+  }
+  
+  // For other pages, check exact match or if current path starts with link path
+  return normalizedCurrentPath === normalizedLinkPath || 
+         normalizedCurrentPath.startsWith(normalizedLinkPath + "/");
+}
 ---
 
-<header class="sticky top-0 z-10 backdrop-blur-md bg-base-100/50">
-  <div class="navbar px-4 sm:px-6 lg:px-8">
+<header class="sticky top-0 z-10 backdrop-blur-lg bg-base-100/90 border-b border-base-300/30 shadow-sm">
+  <div class="navbar px-4 sm:px-6 lg:px-8 py-2">
     <div class="navbar-start">
-      <div class="dropdown">
-        <label for="my-drawer" class="btn btn-ghost lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-        </label>
-      </div>
-      <a href={getRelativeLocaleUrl(locale, "/")} class="flex items-center gap-2">
+      <label for="my-drawer" class="btn btn-ghost btn-square lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+      <a href={getRelativeLocaleUrl(locale, "/")} class="flex items-center gap-3 hover:opacity-90 transition-opacity px-2">
         <img src="/ng-baguette-light-logo.svg" alt="NG Baguette Logo" class="h-10 w-auto">
         <span class="hidden sm:inline text-xl font-bold title-font">{SITE_ACRONYM}</span>
       </a>
     </div>
 
     <div class="navbar-center hidden lg:flex">
-      <ul class="menu menu-horizontal px-1">
+      <ul class="menu menu-horizontal px-2 gap-2">
         {
           NAVIGATION_LINKS[locale]
             .filter(link => link.condition ? link.condition() : true)
-            .map(link => (
-              <li>
-                <a href={getRelativeLocaleUrl(locale, link.href)} class="text-base">
-                  {link.title}
-                </a>
-              </li>
-            ))
+            .map(link => {
+              const isActive = isActiveLink(link.href);
+              return (
+                <li>
+                  <a 
+                    href={getRelativeLocaleUrl(locale, link.href)} 
+                    class={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                      isActive 
+                        ? "text-primary bg-primary/10 font-semibold" 
+                        : "text-base-content/70 hover:text-base-content hover:bg-base-200"
+                    }`}
+                  >
+                    {link.title}
+                  </a>
+                </li>
+              );
+            })
         }
       </ul>
     </div>
 
     <div class="navbar-end">
-      <div class="hidden md:flex flex-col items-end mr-4">
-        <span class="text-sm font-semibold">{displayDate(EVENT_DATE, locale)}</span>
-        <span class="text-xs">{ADDRESS.addressLocality}, {ADDRESS.addressCountry}</span>
+      <div class="hidden lg:flex flex-col items-end mr-6 text-right border-r border-base-300/50 pr-6">
+        <span class="text-sm font-semibold text-base-content">{displayDate(EVENT_DATE, locale)}</span>
+        <span class="text-xs text-base-content/60 mt-0.5">{ADDRESS.addressLocality}</span>
       </div>
-      <div class="flex gap-1">
-        <a href="/en" class={`btn btn-xs ${locale === "en" ? "btn-primary" : "btn-ghost"}`}>EN</a>
-        <a href="/fr" class={`btn btn-xs ${locale === "fr" ? "btn-primary" : "btn-ghost"}`}>FR</a>
+      <div class="flex gap-1.5">
+        <a 
+          href="/en" 
+          class={`btn btn-sm btn-square ${locale === "en" ? "btn-primary" : "btn-ghost"}`}
+          aria-label="Switch to English"
+        >
+          EN
+        </a>
+        <a 
+          href="/fr" 
+          class={`btn btn-sm btn-square ${locale === "fr" ? "btn-primary" : "btn-ghost"}`}
+          aria-label="Switch to French"
+        >
+          FR
+        </a>
       </div>
     </div>
   </div>

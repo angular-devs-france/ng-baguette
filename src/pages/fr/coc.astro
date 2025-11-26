@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeaderHero from '../../components/HeaderHero.astro';
 import { SITE_DOMAIN, SITE_TITLE } from "../../consts";
 
 const schema = {
@@ -23,12 +22,9 @@ const schema = {
 
 <Layout title="Code de conduite" schema={schema}>
     <main>
-        <HeaderHero>
-            <span slot="title">Code de conduite</span>
-            <span slot="description">Tous les participants, orateurs, sponsors et bénévoles de notre conférence doivent accepter le code de conduite suivant.</span>
-        </HeaderHero>
-
-        <section class="max-w-screen-lg m-auto mt-12 px-8">
+        <section class="max-w-screen-lg m-auto px-8 py-12">
+            <h1 class="text-4xl font-bold mb-4">Code de conduite</h1>
+            <p class="text-lg text-base-content/80 mb-8">Tous les participants, orateurs, sponsors et bénévoles de notre conférence doivent accepter le code de conduite suivant.</p>
             <div role="alert" class="alert">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <span>Les organisateurs appliqueront ce code tout au long de l'événement. Nous attendons la coopération de tous les participants pour assurer un environnement sûr pour tous.</span>

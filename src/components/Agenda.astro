@@ -41,20 +41,20 @@ const displayAsHour = (hour: string) => {
             <div
               class={index % 2 === 0 ? "timeline-start mb-10 md:text-end" : "timeline-end md:mb-10"}}
             >
-              <time class="block text-sm text-gray-500">
+              <time class="block text-sm text-base-content/60">
               {displayAsHour(track.data.startDate)} - {displayAsHour(track.data.endDate)}
               </time>
               {track.slug ? (
                 <div class="flex gap-4">
                   
-                  <a href={getRelativeLocaleUrl(Astro.currentLocale!, '/track/' + track.slug)} class="font-bold text-primary">
+                  <a href={getRelativeLocaleUrl(Astro.currentLocale!, '/track/' + track.slug)} class="font-bold hover:text-primary transition-colors">
                   <span class="text-base uppercase">[{track.data.language}]</span>
                   <span class="text-2xl">{track.data.name}</span>
                   </a>
                 </div>
-                <p class="mt-2 text-gray-300">{track.data.description}</p>
+                <p class="mt-2 text-base-content/70">{track.data.description}</p>
               ) : (
-                <span class="text-2xl font-bold text-secondary">{track.data.name}</span>
+                <span class="text-2xl font-bold text-base-content/80">{track.data.name}</span>
               )}
             </div>
             <hr />

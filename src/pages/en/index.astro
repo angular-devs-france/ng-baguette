@@ -10,66 +10,95 @@ import {
   HELLOASSO_LINK,
   OPEN_BLIND_TICKET_SALE_DATE,
   OPEN_TICKET_SALE_DATE,
+  OPEN_WORKSHOP_TICKET_SALE_DATE,
   PARTENERS,
   SPONSORS,
   TICKET_PRICE,
   TICKET_SOLD_OUT,
+  WORKSHOP_TICKET_PRICE,
+  WORKSHOP_TICKET_SOLD_OUT,
 } from "../../consts";
 import { displayDate } from "../../utils";
 ---
 
 <Layout title={EVENT_DATE}>
   <main>
-    <div class="hero min-h-screen">
-      <div class="hero-content text-center">
-        <div class="max-w-ld flex gap-20 flex-col lg:flex-row">
-          <div class="flex flex-col flex-1 items-center">
-            <img
-              class="w-full md:px-20"
-              src="/ng-baguette-logo.svg"
-              alt="EventEdge"
-            />
-            <h2 class="text-2xl md:text-3xl text-primary font-bold mt-4">
-              French cooked Angular conference
-            </h2>
-            <p class="py-6 px-4 md:px-0">
-              Join us for a unique Angular conference experience in France!
-              Discover the latest in Angular development, network with experts
-              and fellow developers.
-            </p>
-
-            <p class="mt-4 text-2xl text-primary font-bold">
-              {displayDate(EVENT_DATE, "en-US")} - 9h30
-            </p>
-            <p class="mt-2 font-bold">
-              {ADDRESS.addressLocality}, {ADDRESS.addressCountry}
-            </p>
+    <!-- Hero Section with Conference Image -->
+    <div
+      class="hero min-h-[70vh] relative"
+      style="background-image: url(https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); background-size: cover; background-position: center;"
+    >
+      <div class="hero-overlay bg-opacity-75 bg-base-100"></div>
+      <div class="hero-content text-center text-base-content py-20 px-4 relative z-10">
+        <div class="max-w-4xl">
+          <img
+            class="w-full max-w-xs mx-auto mb-8"
+            src="/ng-baguette-logo.svg"
+            alt="NG Baguette Logo"
+          />
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 title-font">
+            French cooked Angular conference
+          </h1>
+          <p class="text-xl md:text-2xl text-base-content/90 mb-8 max-w-2xl mx-auto">
+            Join us for a unique Angular conference experience in France!
+            Discover the latest in Angular development, network with experts
+            and fellow developers.
+          </p>
+          <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-8">
+            <div class="text-center md:text-left">
+              <p class="text-2xl md:text-3xl font-bold">
+                {displayDate(EVENT_DATE, "en-US")}
+              </p>
+              <p class="text-lg text-base-content/80">9h30</p>
+            </div>
+            <div class="hidden md:block w-px h-12 bg-base-content/30"></div>
+            <div class="text-center md:text-left">
+              <p class="text-xl md:text-2xl font-semibold">
+                {ADDRESS.addressLocality}
+              </p>
+              <p class="text-base text-base-content/70">
+                {ADDRESS.addressCountry}
+              </p>
+            </div>
           </div>
-          <div class="flex-1 mt-8 mb-8 md:mb-0">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8">Tickets</h2>
-            <ul class="flex flex-col md:flex-row gap-4 items-stretch">
+          <a
+            href="#tickets"
+            class="btn btn-primary btn-lg mt-4"
+          >
+            Get Your Tickets
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="max-w-7xl mx-auto px-4 md:px-8 py-16">
+      <!-- Tickets Section -->
+      <div id="tickets" class="mb-16 scroll-mt-20">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Get Your Tickets</h2>
+        <ul class="flex flex-col md:flex-row gap-6 items-stretch max-w-5xl mx-auto">
               <li
-                class="flex-1 card bg-base-200 shadow-xl border-2 border-primary"
+                class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors"
               >
-                <div class="card-body flex flex-col items-center">
-                  <h3 class="card-title text-2xl text-center">Blind Ticket</h3>
-                  <p>Limited availability</p>
-                  <span class="text-3xl font-bold">€{BLIND_TICKET_PRICE}</span>
+                <div class="card-body flex flex-col items-center py-8">
+                  <h3 class="card-title text-xl text-center mb-1">Blind Ticket</h3>
+                  <p class="text-sm text-base-content/60 mb-4">Limited availability</p>
+                  <span class="text-4xl font-bold mb-6">€{BLIND_TICKET_PRICE}</span>
 
                   {
                     new Date() >= new Date(OPEN_BLIND_TICKET_SALE_DATE) ? (
                       BLIND_TICKET_SOLD_OUT ? (
-                        <p class="text-primary">Sold out</p>
+                        <p class="text-base-content/60 text-sm">Sold out</p>
                       ) : (
                         <button
-                          class="btn btn-primary"
+                          class="btn btn-primary w-full"
                           onclick="document.getElementById('ticket-modal').showModal()"
                         >
                           Get your ticket
                         </button>
                       )
                     ) : (
-                      <p class="text-primary">
+                      <p class="text-base-content/60 text-sm text-center">
                         Not yet on sale from
                         {displayDate(OPEN_BLIND_TICKET_SALE_DATE, "en-US")})
                       </p>
@@ -104,26 +133,26 @@ import { displayDate } from "../../utils";
                 </div>
               </li>
               <li
-                class="flex-1 card bg-base-200 shadow-xl border-2 border-primary"
+                class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors"
               >
-                <div class="card-body flex flex-col items-center">
-                  <h3 class="card-title text-xl text-center">Regular Ticket</h3>
-                  <p>Standard conference ticket</p>
-                  <span class="text-3xl font-bold">€{TICKET_PRICE}</span>
+                <div class="card-body flex flex-col items-center py-8">
+                  <h3 class="card-title text-xl text-center mb-1">Regular Ticket</h3>
+                  <p class="text-sm text-base-content/60 mb-4">Standard conference ticket</p>
+                  <span class="text-4xl font-bold mb-6">€{TICKET_PRICE}</span>
                   {
                     new Date() >= new Date(OPEN_TICKET_SALE_DATE) ? (
                       TICKET_SOLD_OUT ? (
-                        <p class="text-primary">Sold out</p>
+                        <p class="text-base-content/60 text-sm">Sold out</p>
                       ) : (
                         <button
-                          class="btn btn-primary"
+                          class="btn btn-primary w-full"
                           onclick="document.getElementById('ticket-modal').showModal()"
                         >
                           Get your ticket
                         </button>
                       )
                     ) : (
-                      <p class="text-primary">
+                      <p class="text-base-content/60 text-sm text-center">
                         Not yet on sale from
                         {displayDate(OPEN_TICKET_SALE_DATE, "en-US")})
                       </p>
@@ -131,47 +160,53 @@ import { displayDate } from "../../utils";
                   }
                 </div>
               </li>
-            </ul>
-
-            {SPONSORS.length > 0 && (
-              <>
-                <h2 class="text-2xl md:text-3xl font-bold my-8">Sponsors</h2>
-                <Sponsors />
-              </>
-            )}
-
-            {PARTENERS.length > 0 && (
-              <h2 class="text-2xl md:text-3xl font-bold my-8">Partners</h2>
-              <Partners />)
-            }
-            
-            <!-- <div role="alert" class="alert mt-8">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                class="stroke-primary h-6 w-6 shrink-0 hidden md:block"
+              <li
+                class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <span>Call for papers still open until March 14th</span>
-              <div>
-                <a
-                  class="btn btn-sm btn-primary"
-                  href="https://conference-hall.io/ng-baguette-conf-2025"
-                  target="_blank">Submit your talk proposals</a
-                >
-              </div>
-            </div> -->
-          </div>
-        </div>
+                <div class="card-body flex flex-col items-center py-8">
+                  <h3 class="card-title text-xl text-center mb-1">Workshop Ticket</h3>
+                  <p class="text-sm text-base-content/60 mb-4">Conference + Workshop</p>
+                  <span class="text-4xl font-bold mb-6">€{WORKSHOP_TICKET_PRICE}</span>
+                  {
+                    new Date() >= new Date(OPEN_WORKSHOP_TICKET_SALE_DATE) ? (
+                      WORKSHOP_TICKET_SOLD_OUT ? (
+                        <p class="text-base-content/60 text-sm">Sold out</p>
+                      ) : (
+                        <button
+                          class="btn btn-primary w-full"
+                          onclick="document.getElementById('ticket-modal').showModal()"
+                        >
+                          Get your ticket
+                        </button>
+                      )
+                    ) : (
+                      <p class="text-base-content/60 text-sm text-center">
+                        Not yet on sale from
+                        {displayDate(OPEN_WORKSHOP_TICKET_SALE_DATE, "en-US")})
+                      </p>
+                    )
+                  }
+                </div>
+              </li>
+            </ul>
       </div>
-    </div>
+
+      <!-- Sponsors Section -->
+      {SPONSORS.length > 0 && (
+        <div class="mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Our Sponsors</h2>
+          <Sponsors />
+        </div>
+      )}
+
+      <!-- Partners Section -->
+      {PARTENERS.length > 0 && (
+        <div class="mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Our Partners</h2>
+          <Partners />
+        </div>
+      )}
+    </section>
   </main>
 </Layout>
 

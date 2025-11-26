@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeaderHero from "../../components/HeaderHero.astro";
 import { Image } from "astro:assets";
 import {
   CFP_END_DATE,
@@ -48,20 +47,32 @@ const schema = {
 
 <Layout title="Appel à conférenciers" schema={schema}>
   <main>
-    <HeaderHero>
-      <span slot="title">Appel à conférenciers</span>
-      {
-        isAfterCFPOpenning() && !isAfterCFPClosing() && (
-          <span slot="actions">
-            <a href={CFP_LINK} target="_blank" class="btn">
-              Soumettez vos propositions
-            </a>
-          </span>
-        )
-      }
-    </HeaderHero>
+    <!-- Hero Section -->
+    <div
+      class="hero mb-12"
+      style="background-image: url(https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);"
+    >
+      <div class="hero-overlay bg-opacity-80 bg-base-100"></div>
+      <div class="hero-content text-center text-base-content py-20 px-4">
+        <div class="max-w-4xl">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 title-font">Appel à conférenciers</h1>
+          <p class="text-xl md:text-2xl text-base-content/90 mb-8 max-w-2xl mx-auto">
+            Partagez vos connaissances et votre passion pour Angular avec la communauté développeur française
+          </p>
+          {
+            isAfterCFPOpenning() && !isAfterCFPClosing() && (
+              <div>
+                <a href={CFP_LINK} target="_blank" class="btn btn-primary btn-lg">
+                  Soumettez vos propositions
+                </a>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </div>
 
-    <section class="max-w-screen-lg m-auto flex flex-col items-center px-8">
+    <section class="max-w-screen-lg m-auto flex flex-col items-center px-8 pb-12">
       <div
         class="stats shadow mt-8 mb-4 bg-base-200 grid-flow-row md:grid-flow-col"
       >
@@ -247,3 +258,9 @@ const schema = {
     </article>
   </main>
 </Layout>
+
+<style>
+  .title-font {
+    font-family: "Lilita", sans-serif;
+  }
+</style>

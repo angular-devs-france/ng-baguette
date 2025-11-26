@@ -1,7 +1,6 @@
 coc---
 import {SITE_DOMAIN, SITE_TITLE} from "../../consts";
 import Layout from "../../layouts/Layout.astro";
-import HeaderHero from '../../components/HeaderHero.astro';
 
 const schema = {
     "@context": "https://schema.org",
@@ -51,12 +50,9 @@ const schema = {
 
 <Layout title="Code of conduct" schema={schema}>
     <main>
-        <HeaderHero>
-            <span slot="title">Code of conduct</span>
-            <span slot="description">All attendees, speakers, sponsors and volunteers at our conference are required to agree with the following code of conduct.</span>
-        </HeaderHero>
-
-        <section class="max-w-screen-lg m-auto mt-12 px-8">
+        <section class="max-w-screen-lg m-auto px-8 py-12">
+            <h1 class="text-4xl font-bold mb-4">Code of conduct</h1>
+            <p class="text-lg text-base-content/80 mb-8">All attendees, speakers, sponsors and volunteers at our conference are required to agree with the following code of conduct.</p>
             <div role="alert" class="alert">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <span>Organizers will enforce this code throughout the event. We are expecting cooperation from
