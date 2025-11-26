@@ -1,11 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeaderHero from '../../components/HeaderHero.astro';
 import {type ISponsor} from "../../models/sponsor.model";
 import SponsorList from "../../components/Sponsors.astro";
 import Partners from "../../components/Partners.astro";
 import { isResearchingSponsors } from "../../utils";
-import { SPONSORSHIP_BROCHURE_URL } from "../../consts";
+import { SPONSORSHIP_BROCHURE_URL, SPONSORS, PARTENERS } from "../../consts";
 
 const sponsors: Array<ISponsor> = [];
 
@@ -32,21 +31,219 @@ const schema = {
 
 <Layout title="Sponsors" schema={schema}>
     <main>
-        <HeaderHero>
-            <span slot="title">Sponsors</span>
-        </HeaderHero>
+        <section class="max-w-screen-xl m-auto px-8 py-12">
+            {SPONSORS.length > 0 && (
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Our Sponsors</h2>
+                    <SponsorList />
+                </div>
+            )}
 
-        <section class="max-w-screen-lg m-auto px-8 my-12">
-            <SponsorList />
-            <Partners />
+            {PARTENERS.length > 0 && (
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Our Partners</h2>
+                    <Partners />
+                </div>
+            )}
+
             {
-                isResearchingSponsors() &&
-                <h2 class="text-4xl font-bold mb-6">Become a sponsor</h2>
-                <p class="mb-4">We are thrilled to present our sponsorship prospectus for NG Baguette. As a sponsor, you will have the unique opportunity to connect with the French Angular community and promote your brand to a passionate audience of web developers.</p>
-                <p class="mb-8">Our prospectus details the different partnership levels and associated benefits.</p>
-                <a href={SPONSORSHIP_BROCHURE_URL.en} class="btn btn-primary" download>
-                    Download the sponsorship prospectus
-                </a>
+                isResearchingSponsors() && (
+                    <div class="space-y-16">
+                        <!-- Hero CTA Section -->
+                        <div class="text-center space-y-6 py-12">
+                            <h2 class="text-4xl md:text-5xl font-bold">Join Us as a Sponsor</h2>
+                            <p class="text-xl text-base-content/80 max-w-3xl m-auto">
+                                Connect with the French Angular community and showcase your brand to passionate web developers
+                            </p>
+                            <div class="pt-4">
+                                <a href={SPONSORSHIP_BROCHURE_URL.en} class="btn btn-primary btn-lg" download>
+                                    Download Sponsorship Prospectus
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Previous Editions Gallery -->
+                        <div class="space-y-6">
+                            <h2 class="text-3xl md:text-4xl font-bold text-center">Previous Editions</h2>
+                            <p class="text-center text-base-content/70 max-w-2xl mx-auto">
+                                See the energy and engagement from our previous conferences
+                            </p>
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+                                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                        alt="Speaker presenting at conference"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                        alt="Attendees networking"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                        alt="Conference audience"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                        alt="Conference stage"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                        alt="Conference venue"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                        alt="People collaborating"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                        alt="Conference presentation"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                        alt="Networking session"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Benefits Grid -->
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="card bg-base-200 border border-base-300/50 p-6">
+                                <div class="card-body p-0">
+                                    <h3 class="text-xl font-bold mb-3">Targeted Audience</h3>
+                                    <p class="text-base-content/70">
+                                        Reach passionate Angular developers and decision-makers in the French tech community
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card bg-base-200 border border-base-300/50 p-6">
+                                <div class="card-body p-0">
+                                    <h3 class="text-xl font-bold mb-3">Brand Visibility</h3>
+                                    <p class="text-base-content/70">
+                                        Increase your brand awareness through multiple touchpoints before, during, and after the event
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card bg-base-200 border border-base-300/50 p-6">
+                                <div class="card-body p-0">
+                                    <h3 class="text-xl font-bold mb-3">Community Engagement</h3>
+                                    <p class="text-base-content/70">
+                                        Build meaningful relationships with developers, potential hires, and industry leaders
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card bg-base-200 border border-base-300/50 p-6">
+                                <div class="card-body p-0">
+                                    <h3 class="text-xl font-bold mb-3">Recruitment Opportunities</h3>
+                                    <p class="text-base-content/70">
+                                        Connect with top talent in the Angular ecosystem and showcase your company culture
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card bg-base-200 border border-base-300/50 p-6">
+                                <div class="card-body p-0">
+                                    <h3 class="text-xl font-bold mb-3">Thought Leadership</h3>
+                                    <p class="text-base-content/70">
+                                        Position your brand as a leader in the Angular and web development space
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card bg-base-200 border border-base-300/50 p-6">
+                                <div class="card-body p-0">
+                                    <h3 class="text-xl font-bold mb-3">ROI & Analytics</h3>
+                                    <p class="text-base-content/70">
+                                        Track your sponsorship impact with detailed analytics and engagement metrics
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Why Sponsor Section -->
+                        <div class="space-y-8">
+                            <h2 class="text-3xl md:text-4xl font-bold text-center">Why Sponsor NG Baguette?</h2>
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div class="space-y-4">
+                                    <h3 class="text-2xl font-bold">A Growing Community</h3>
+                                    <p class="text-base-content/80 text-lg">
+                                        NG Baguette brings together the French Angular community for a day of learning, networking, and innovation. 
+                                        As a sponsor, you'll be part of an event that celebrates the best of Angular development.
+                                    </p>
+                                    <h3 class="text-2xl font-bold mt-8">Multiple Sponsorship Levels</h3>
+                                    <p class="text-base-content/80 text-lg">
+                                        We offer flexible sponsorship packages designed to fit different budgets and marketing objectives. 
+                                        From visibility packages to premium partnerships, find the right fit for your brand.
+                                    </p>
+                                </div>
+                                <div class="bg-base-200 rounded-lg p-8 border border-base-300/50">
+                                    <h3 class="text-xl font-bold mb-6">What's Included</h3>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-primary mt-1">✓</span>
+                                            <span class="text-base-content/80">Logo placement on website and materials</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-primary mt-1">✓</span>
+                                            <span class="text-base-content/80">Social media mentions and promotion</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-primary mt-1">✓</span>
+                                            <span class="text-base-content/80">Booth space at the event</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-primary mt-1">✓</span>
+                                            <span class="text-base-content/80">Complimentary tickets for your team</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-primary mt-1">✓</span>
+                                            <span class="text-base-content/80">Networking opportunities with speakers and attendees</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-primary mt-1">✓</span>
+                                            <span class="text-base-content/80">Access to attendee list (with consent)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Final CTA -->
+                        <div class="bg-base-200 rounded-lg p-8 md:p-12 border border-base-300/50 text-center">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
+                            <p class="text-lg text-base-content/80 mb-8 max-w-2xl m-auto">
+                                Download our detailed sponsorship prospectus to learn more about available packages, 
+                                pricing, and how we can customize a sponsorship that works for your brand.
+                            </p>
+                            <a href={SPONSORSHIP_BROCHURE_URL.en} class="btn btn-primary btn-lg" download>
+                                Download Sponsorship Prospectus
+                            </a>
+                            <p class="text-sm text-base-content/60 mt-4">
+                                Questions? Contact us at <a href="mailto:contact@angulardevs.fr" class="link link-primary">contact@angulardevs.fr</a>
+                            </p>
+                        </div>
+                    </div>
+                )
             }
         </section>
     </main>

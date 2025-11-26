@@ -1,15 +1,19 @@
 <div
-  class="hero mb-8"
+  class="hero mb-12"
   style="background-image: url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg);"
 >
-  <div class="hero-overlay bg-opacity-60 bg-primary"></div>
-  <div class="hero-content text-center text-neutral-content pt-12 pb-6">
-    <div class="max-w-screen-lg">
-      <h1 class="text-5xl text-white uppercase font-bold mb-6 title-font">
+  <div class="hero-overlay bg-opacity-75 bg-base-100"></div>
+  <div class="hero-content text-center text-base-content py-16 px-4">
+    <div class="max-w-4xl">
+      <h1 class="text-4xl md:text-5xl text-base-content uppercase font-bold mb-6 title-font">
         <slot name="title" />
       </h1>
-      <slot name="actions" />
-      <slot name="description" />
+      <div class="mb-4">
+        <slot name="actions" />
+      </div>
+      <div class="text-base-content/80">
+        <slot name="description" />
+      </div>
     </div>
   </div>
 </div>

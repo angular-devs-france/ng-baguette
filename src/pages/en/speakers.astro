@@ -4,7 +4,6 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCollection } from "astro:content";
 import { SITE_DOMAIN } from "../../consts";
 import Layout from "../../layouts/Layout.astro";
-import HeaderHero from "../../components/HeaderHero.astro";
 
 const speakers = await getCollection("speaker");
 
@@ -35,10 +34,7 @@ const schema = {
 
 <Layout title="Speakers" schema={schema}>
   <main>
-    <HeaderHero>
-      <span slot="title">Speakers</span>
-    </HeaderHero>
-    <section class="max-w-screen-xl m-auto flex flex-col items-center px-8">
+    <section class="max-w-screen-xl m-auto flex flex-col items-center px-8 py-12">
       <!-- <section class="flex flex-col items-center gap-4">
         <p class="text-center text-2xl font-bold">
           Our call for speakers is open until March 14th
@@ -57,7 +53,7 @@ const schema = {
 
       -->
 
-      <ul class="flex flex-wrap justify-center mt-12 gap-x-32 gap-y-20 px-8">
+      <ul class="flex flex-wrap justify-center gap-x-16 gap-y-16 md:gap-x-24 md:gap-y-20">
         {
           speakers.map((speaker) => (
             <li>
@@ -66,6 +62,7 @@ const schema = {
                   Astro.currentLocale!,
                   "/speaker/" + speaker.slug
                 )}
+                class="hover:opacity-80 transition-opacity"
               >
                 <Speaker speaker={speaker.data} />
               </a>

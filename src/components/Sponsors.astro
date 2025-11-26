@@ -4,11 +4,11 @@ import { SPONSORS } from "../consts";
 
 {
   SPONSORS.length > 0 && (
-    <ul class="flex flex-col md:flex-row justify-evenly items-center gap-8 md:gap-4 bg-white rounded-lg p-8 my-8">
+    <ul class="flex flex-col md:flex-row justify-evenly items-center gap-8 md:gap-6 bg-base-200/50 rounded-lg p-8 border border-base-300/30">
       {SPONSORS.map((sponsor) => (
         <li>
-          <a href={sponsor.url} target="_blank">
-            <img src={sponsor.photos} alt={sponsor.name} class="w-24" />
+          <a href={sponsor.url} target="_blank" class="hover:opacity-70 transition-opacity">
+            <img src={sponsor.photos} alt={sponsor.name} class="w-24 h-auto" />
           </a>
         </li>
       ))}

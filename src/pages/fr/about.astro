@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeaderHero from '../../components/HeaderHero.astro';
 import Crew from '../../components/Crew.astro';
 import { ADDRESS, SITE_DOMAIN, SITE_TITLE, SOCIAL_LINKS } from "../../consts";
 
@@ -76,10 +75,7 @@ const schema = {
 
 <Layout title="À propos" schema={schema}>
     <main>
-        <HeaderHero>
-            <span slot="title">À propos</span>
-        </HeaderHero>
-        <section class="max-w-screen-lg m-auto px-8">
+        <section class="max-w-screen-lg m-auto px-8 py-12">
             <h2 class="text-4xl font-bold my-12">Le projet</h2>
             <p>La conférence NG Baguette est un événement communautaire centré sur Angular. Notre mission est de rassembler les développeurs pour partager des connaissances, réseauter et grandir ensemble. À travers des présentations engageantes et des opportunités de networking, nous visons à renforcer la communauté Angular en France et au-delà tout en célébrant notre passion commune pour le développement web.</p>
             <h2 class="text-4xl font-bold my-12">L'équipe</h2>

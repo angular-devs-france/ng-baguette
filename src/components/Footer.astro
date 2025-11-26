@@ -1,21 +1,62 @@
 ---
-import { SOCIAL_LINKS, NAVIGATION_LINKS, EVENT_YEAR, SITE_TITLE } from "../consts";
+import { SOCIAL_LINKS, NAVIGATION_LINKS, EVENT_YEAR, SITE_TITLE, EVENT_DATE, ADDRESS, SITE_DESCRIPTION } from "../consts";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { displayDate } from "../utils";
+
+const locale = Astro.currentLocale!;
+const description = locale === "fr" ? "La conférence Angular à la française" : SITE_DESCRIPTION;
 ---
-<footer class="footer p-10 bg-base-300 text-base-content mt-20">
-  <aside>
-    <img src="/ng-baguette-light-logo.svg" alt="NG Baguette Logo" class="h-16 w-auto">
-    <p>{SITE_TITLE}<br/>
+<footer class="footer p-8 md:p-12 bg-base-200 border-t border-base-300/30 text-base-content mt-20">
+  <aside class="space-y-4">
+    <img src="/ng-baguette-light-logo.svg" alt="NG Baguette Logo" class="h-12 w-auto">
+    <div>
+      <p class="font-semibold text-base-content mb-1">{SITE_TITLE}</p>
+      <p class="text-sm text-base-content/60">
+        {description}
+      </p>
+    </div>
+    <div class="flex gap-3 pt-2">
+      <a 
+        href={SOCIAL_LINKS.twitter} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn btn-ghost btn-sm btn-square hover:bg-base-300 transition-colors"
+        aria-label="Twitter"
+      >
+        <img src="/icons/twitter.svg" class="w-5 h-5" alt="Twitter">
+      </a>
+      <a 
+        href={SOCIAL_LINKS.bluesky} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn btn-ghost btn-sm btn-square hover:bg-base-300 transition-colors"
+        aria-label="Bluesky"
+      >
+        <img src="/icons/bluesky.svg" class="w-5 h-5" alt="Bluesky">
+      </a>
+      <a 
+        href={SOCIAL_LINKS.linkedin} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn btn-ghost btn-sm btn-square hover:bg-base-300 transition-colors"
+        aria-label="LinkedIn"
+      >
+        <img src="/icons/linkedin.svg" class="w-5 h-5" alt="LinkedIn">
+      </a>
+    </div>
   </aside> 
   <nav>
-    <h6 class="footer-title"></h6>
-    <ul class="flex flex-col gap-2">
+    <h6 class="footer-title text-base-content font-semibold mb-3">Navigation</h6>
+    <ul class="flex flex-col gap-2.5">
       {
         NAVIGATION_LINKS[Astro.currentLocale!]
           .filter(link => link.condition ? link.condition() : true)
           .map(link => (
             <li>
-              <a href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)} class="link link-hover">
+              <a 
+                href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)} 
+                class="text-sm text-base-content/70 hover:text-base-content transition-colors"
+              >
                 {link.title}
               </a>
             </li>
@@ -24,11 +65,17 @@ import { getRelativeLocaleUrl } from "astro:i18n";
     </ul>
   </nav> 
   <nav>
-    <h6 class="footer-title">Social</h6>
-    <div class="grid grid-flow-col gap-4">
-      <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer"><img src="/icons/twitter.svg" class="w-6 h-6"></a>
-      <a href={SOCIAL_LINKS.bluesky} target="_blank" rel="noopener noreferrer"><img src="/icons/bluesky.svg" class="w-6 h-6"></a>
-      <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer"><img src="/icons/linkedin.svg" class="w-6 h-6"></a>
-    </div>
+    <h6 class="footer-title text-base-content font-semibold mb-3">Event</h6>
+    <ul class="flex flex-col gap-2.5 text-sm text-base-content/70">
+      <li>
+        <span class="font-medium text-base-content">Date:</span> {displayDate(EVENT_DATE, Astro.currentLocale!)}
+      </li>
+      <li>
+        <span class="font-medium text-base-content">Location:</span> {ADDRESS.addressLocality}, {ADDRESS.addressCountry}
+      </li>
+      <li class="pt-2">
+        <span class="text-xs text-base-content/50">© {EVENT_YEAR} {SITE_TITLE}</span>
+      </li>
+    </ul>
   </nav>
 </footer>

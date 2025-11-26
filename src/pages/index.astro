@@ -15,14 +15,14 @@ import Partners from "../components/Partners.astro";
             src="/ng-baguette-logo.svg"
             alt="NG Baguette Logo"
           />
-          <h1 class="text-3xl md:text-4xl text-primary font-bold mt-6 title-font">
+          <h1 class="text-3xl md:text-4xl font-bold mt-6 title-font">
             {SITE_DESCRIPTION}
           </h1>
           <p class="py-6 text-lg">
             Join us for a unique Angular conference experience in France! Discover the latest in Angular development, network with experts and fellow developers.
           </p>
           <div class="text-2xl font-bold">
-            <span class="text-primary">{EVENT_DATE}</span> at <span class="text-primary">{EVENT_START_TIME}</span>
+            <span>{EVENT_DATE}</span> at <span>{EVENT_START_TIME}</span>
           </div>
           <div class="text-xl font-semibold mt-2">{ADDRESS.addressLocality}, {ADDRESS.addressCountry}</div>
         </div>
@@ -32,7 +32,7 @@ import Partners from "../components/Partners.astro";
     <section id="tickets" class="my-20">
       <h2 class="text-4xl font-bold text-center mb-12 title-font">Tickets</h2>
       <div class="flex flex-wrap justify-center gap-8">
-        <div class="card w-96 bg-base-200 shadow-xl border-2 border-primary transform hover:scale-105 transition-transform">
+        <div class="card w-96 bg-base-200 shadow-xl border border-base-300 transform hover:scale-105 transition-transform">
           <div class="card-body items-center text-center">
             <h3 class="card-title text-3xl">Blind Ticket</h3>
             <p>Limited availability</p>
