@@ -62,7 +62,7 @@ const schema = {
     <!-- Hero Section -->
     <div
       class="hero mb-12"
-      style="background-image: url(https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);"
+      style="background-image: url(/hero/hero-cfp.jpg); background-size: cover; background-position: 0% 30%;"
     >
       <div class="hero-overlay bg-opacity-80 bg-base-100"></div>
       <div class="hero-content text-center text-base-content py-20 px-4">
@@ -71,15 +71,11 @@ const schema = {
           <p class="text-xl md:text-2xl text-base-content/90 mb-8 max-w-2xl mx-auto">
             Share your knowledge and passion for Angular with the French developer community
           </p>
-          {
-            !isAfterCFPClosing() && isAfterCFPOpenning() && (
-              <div>
-                <a href={CFP_LINK} target="_blank" class="btn btn-primary btn-lg">
-                  Submit your talk proposals
-                </a>
-              </div>
-            )
-          }
+          <div>
+            <a href={CFP_LINK} target="_blank" class="btn btn-primary btn-lg">
+              Submit your talk proposals
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -276,6 +272,6 @@ const schema = {
 
 <style>
   .title-font {
-    font-family: "Lilita", sans-serif;
+    font-family: "Bangers", sans-serif;
   }
 </style>

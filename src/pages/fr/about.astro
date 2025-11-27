@@ -75,11 +75,32 @@ const schema = {
 
 <Layout title="À propos" schema={schema}>
     <main>
-        <section class="max-w-screen-lg m-auto px-8 py-12">
-            <h2 class="text-4xl font-bold my-12">Le projet</h2>
+        <!-- Hero Section -->
+        <div
+            class="hero h-64 md:h-80 mb-12"
+            style="background-image: url('/hero/hero-about.jpg'); background-size: cover; background-position: 0% 30%;"
+        >
+            <div class="hero-overlay bg-opacity-70 bg-base-100"></div>
+            <div class="hero-content text-center text-base-content py-12 px-4">
+                <div class="max-w-3xl">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4 title-font">À propos</h1>
+                    <p class="text-lg md:text-xl text-base-content/90">
+                        Rencontrez l'équipe derrière la conférence NG Baguette
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <section class="max-w-screen-lg m-auto px-8 pb-12">
             <p>La conférence NG Baguette est un événement communautaire centré sur Angular. Notre mission est de rassembler les développeurs pour partager des connaissances, réseauter et grandir ensemble. À travers des présentations engageantes et des opportunités de networking, nous visons à renforcer la communauté Angular en France et au-delà tout en célébrant notre passion commune pour le développement web.</p>
             <h2 class="text-4xl font-bold my-12">L'équipe</h2>
             {crew.map(crew => <Crew crew={crew} />)}
         </section>
     </main>
-</Layout
+</Layout>
+
+<style>
+  .title-font {
+    font-family: "Bangers", sans-serif;
+  }
+</style>

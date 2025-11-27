@@ -29,29 +29,61 @@ export const SPONSORSHIP_BROCHURE_URL = {
 
 export const ADDRESS = {
   streetAddress: "24 Rue Pasteur",
-  addressLocality: "Le Kremlin-Bicêtre",
+  addressLocality: "Paris",
   addressRegion: "Ile de France",
-  postalCode: "94270",
+  postalCode: "75017",
   addressCountry: "France",
 };
 
 export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
   en: [
-    { title: "Agenda", href: "/agenda", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
-    { title: "Program", href: "/program", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
-    { title: "Speakers", href: "/speakers", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
+    {
+      title: "Agenda",
+      href: "/agenda",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    {
+      title: "Program",
+      href: "/program",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    {
+      title: "Speakers",
+      href: "/speakers",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
     { title: "Sponsors", href: "/sponsors" },
-    { title: "CFP", href: "/cfp", condition: () => new Date() <= new Date(CFP_END_DATE) },
+    {
+      title: "CFP",
+      href: "/cfp",
+      condition: () => new Date() <= new Date(CFP_END_DATE),
+    },
     { title: "About", href: "/about" },
     { title: "CoC", href: "/coc" },
     { title: "Venue", href: "/venue" },
   ],
   fr: [
-    { title: "Agenda", href: "/agenda", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
-    { title: "Programme", href: "/program", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
-    { title: "Orateurs", href: "/speakers", condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE) },
+    {
+      title: "Agenda",
+      href: "/agenda",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    {
+      title: "Programme",
+      href: "/program",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    {
+      title: "Orateurs",
+      href: "/speakers",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
     { title: "Sponsors", href: "/sponsors" },
-    { title: "CFP", href: "/cfp", condition: () => new Date() <= new Date(CFP_END_DATE) },
+    {
+      title: "CFP",
+      href: "/cfp",
+      condition: () => new Date() <= new Date(CFP_END_DATE),
+    },
     { title: "A propos", href: "/about" },
     { title: "CoC", href: "/coc" },
     { title: "Lieu", href: "/venue" },
@@ -65,9 +97,10 @@ export const SOCIAL_LINKS = {
 };
 
 export const CFP_LINK = "https://conference-hall.io/ng-baguette-conf-2026";
-export const HELLOASSO_LINK = "https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2026";
+export const HELLOASSO_LINK =
+  "https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2026";
 
-export const SPONSORS: Array<{ name: string; photos: string; url: string; }> = [
+export const SPONSORS: Array<{ name: string; photos: string; url: string }> = [
   // {
   //   name: "eezyr",
   //   photos: "/sponsors/eezyR.png",
@@ -78,7 +111,7 @@ export const SPONSORS: Array<{ name: string; photos: string; url: string; }> = [
   //   photos: "/sponsors/house-of-angular.png",
   //   url: "https://houseofangular.io/"
   // },
-]
+];
 export const PARTENERS: Array<{ name: string; photos: string; url: string }> = [
   // {
   //   name: "NantesJS",
@@ -100,4 +133,4 @@ export const PARTENERS: Array<{ name: string; photos: string; url: string }> = [
   //   photos: "/sponsors/paris-angular.png",
   //   url: "https://www.meetup.com/paris-angular/"
   // }
-]
+];

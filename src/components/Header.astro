@@ -36,8 +36,7 @@ function isActiveLink(href: string): boolean {
         </svg>
       </label>
       <a href={getRelativeLocaleUrl(locale, "/")} class="flex items-center gap-3 hover:opacity-90 transition-opacity px-2">
-        <img src="/ng-baguette-light-logo.svg" alt="NG Baguette Logo" class="h-10 w-auto">
-        <span class="hidden sm:inline text-xl font-bold title-font">{SITE_ACRONYM}</span>
+        <span class="hidden sm:inline text-xl sm:text-2xl font-bold title-font tracking-wide">{SITE_ACRONYM}</span>
       </a>
     </div>
 
@@ -94,6 +93,6 @@ function isActiveLink(href: string): boolean {
 
 <style>
   .title-font {
-    font-family: "Lilita", sans-serif;
+    font-family: "Bangers", sans-serif;
   }
 </style>
