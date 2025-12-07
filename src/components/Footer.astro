@@ -1,12 +1,11 @@
 ---
-import { SOCIAL_LINKS, NAVIGATION_LINKS, EVENT_YEAR, SITE_TITLE, EVENT_DATE, ADDRESS, SITE_DESCRIPTION } from "../consts";
+import { SOCIAL_LINKS, NAVIGATION_LINKS, EVENT_YEAR, SITE_TITLE, ADDRESS, SITE_DESCRIPTION } from "../consts";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { displayDate } from "../utils";
 
 const locale = Astro.currentLocale!;
 const description = locale === "fr" ? "La conférence Angular à la française" : SITE_DESCRIPTION;
 ---
-<footer class="footer p-8 md:p-12 bg-base-200 border-t border-base-300/30 text-base-content mt-20">
+<footer class="footer p-8 md:p-12 bg-base-200 border-t border-base-300/30 text-base-content mt-0">
   <aside class="space-y-4">
     <div>
       <p class="font-semibold text-base-content mb-1">{SITE_TITLE}</p>
@@ -66,9 +65,6 @@ const description = locale === "fr" ? "La conférence Angular à la française" 
   <nav>
     <h6 class="footer-title text-base-content font-semibold mb-3">Event</h6>
     <ul class="flex flex-col gap-2.5 text-sm text-base-content/70">
-      <li>
-        <span class="font-medium text-base-content">Date:</span> {displayDate(EVENT_DATE, Astro.currentLocale!)}
-      </li>
       <li>
         <span class="font-medium text-base-content">Location:</span> {ADDRESS.addressLocality}, {ADDRESS.addressCountry}
       </li>

@@ -36,58 +36,8 @@ export const ADDRESS = {
 };
 
 export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
-  en: [
-    {
-      title: "Agenda",
-      href: "/agenda",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    {
-      title: "Program",
-      href: "/program",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    {
-      title: "Speakers",
-      href: "/speakers",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    { title: "Sponsors", href: "/sponsors" },
-    {
-      title: "CFP",
-      href: "/cfp",
-      condition: () => new Date() <= new Date(CFP_END_DATE),
-    },
-    { title: "About", href: "/about" },
-    { title: "CoC", href: "/coc" },
-    { title: "Venue", href: "/venue" },
-  ],
-  fr: [
-    {
-      title: "Agenda",
-      href: "/agenda",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    {
-      title: "Programme",
-      href: "/program",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    {
-      title: "Orateurs",
-      href: "/speakers",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    { title: "Sponsors", href: "/sponsors" },
-    {
-      title: "CFP",
-      href: "/cfp",
-      condition: () => new Date() <= new Date(CFP_END_DATE),
-    },
-    { title: "A propos", href: "/about" },
-    { title: "CoC", href: "/coc" },
-    { title: "Lieu", href: "/venue" },
-  ],
+  en: [],
+  fr: [],
 };
 
 export const SOCIAL_LINKS = {
