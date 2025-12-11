@@ -1,5 +1,5 @@
 ---
-import { ADDRESS, SITE_ACRONYM } from "../consts";
+import { SITE_ACRONYM } from "../consts";
 import { NAVIGATION_LINKS } from "../consts";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -61,9 +61,6 @@ function isActiveLink(href: string): boolean {
     </div>
 
     <div class="navbar-end">
-      <div class="hidden lg:flex items-end mr-6 text-right border-r border-base-300/50 pr-6">
-        <span class="text-xs text-base-content/60">{ADDRESS.addressLocality}</span>
-      </div>
       <div class="flex gap-1.5">
         <a 
           href="/en" 
