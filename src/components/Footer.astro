@@ -1,6 +1,5 @@
 ---
-import { SOCIAL_LINKS, NAVIGATION_LINKS, EVENT_YEAR, SITE_TITLE, ADDRESS, SITE_DESCRIPTION } from "../consts";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { SOCIAL_LINKS, EVENT_YEAR, SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 const locale = Astro.currentLocale!;
 const description = locale === "fr" ? "La conférence Angular à la française" : SITE_DESCRIPTION;
@@ -42,35 +41,8 @@ const description = locale === "fr" ? "La conférence Angular à la française" 
         <img src="/icons/linkedin.svg" class="w-5 h-5" alt="LinkedIn">
       </a>
     </div>
+    <div class="pt-2">
+      <span class="text-xs text-base-content/50">© {EVENT_YEAR} {SITE_TITLE}</span>
+    </div>
   </aside> 
-  <nav>
-    <h6 class="footer-title text-base-content font-semibold mb-3">Navigation</h6>
-    <ul class="flex flex-col gap-2.5">
-      {
-        NAVIGATION_LINKS[Astro.currentLocale!]
-          .filter(link => link.condition ? link.condition() : true)
-          .map(link => (
-            <li>
-              <a 
-                href={getRelativeLocaleUrl(Astro.currentLocale!, link.href)} 
-                class="text-sm text-base-content/70 hover:text-base-content transition-colors"
-              >
-                {link.title}
-              </a>
-            </li>
-          ))
-      }
-    </ul>
-  </nav> 
-  <nav>
-    <h6 class="footer-title text-base-content font-semibold mb-3">Event</h6>
-    <ul class="flex flex-col gap-2.5 text-sm text-base-content/70">
-      <li>
-        <span class="font-medium text-base-content">Location:</span> {ADDRESS.addressLocality}, {ADDRESS.addressCountry}
-      </li>
-      <li class="pt-2">
-        <span class="text-xs text-base-content/50">© {EVENT_YEAR} {SITE_TITLE}</span>
-      </li>
-    </ul>
-  </nav>
 </footer>
