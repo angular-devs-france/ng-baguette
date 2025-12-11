@@ -183,12 +183,18 @@ import {
   }
 </style>
 
-<script>
+<script is:inline>
+  // @ts-ignore
   window.REQUIRED_CODE_ERROR_MESSAGE = 'Veuillez choisir un code pays';
+  // @ts-ignore
   window.LOCALE = 'fr';
+  // @ts-ignore
   window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Les informations que vous avez fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+  // @ts-ignore
   window.REQUIRED_ERROR_MESSAGE = "Vous devez renseigner ce champ. ";
+  // @ts-ignore
   window.GENERIC_INVALID_MESSAGE = "Les informations que vous avez fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+  // @ts-ignore
   window.translation = {
     common: {
       selectedList: '{quantity} liste sélectionnée',
@@ -197,6 +203,7 @@ import {
       selectedOptions: '{quantity} sélectionnés',
     }
   };
-  var AUTOHIDE = Boolean(0);
+  // @ts-ignore
+  window.AUTOHIDE = Boolean(0);
 </script>
-<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<script is:inline defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
