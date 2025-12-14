@@ -5,10 +5,11 @@ export const SITE_DOMAIN = "https://ngbaguette.angulardevs.fr";
 export const SITE_TITLE = "NG BAGUETTE CONF 2026";
 export const SITE_ACRONYM = "NG Baguette Conf";
 export const SITE_DESCRIPTION = "French cooked Angular conference";
-export const EVENT_START_TIME = "9h30";
+export const EVENT_START_TIME = "9h00";
+export const EVENT_END_TIME = "18h00";
 export const EVENT_DATE = "2026-05-29";
-export const CFP_START_DATE = "2026-02-02";
-export const CFP_END_DATE = "2026-03-14";
+export const CFP_START_DATE = "2025-12-15";
+export const CFP_END_DATE = "2026-01-31";
 export const OPEN_PROGRAM_DATE = "2026-04-01"; // Date when the agenda will be made public
 export const SPONSOR_ENDING_RESEARCH_DATE = "2026-04-20";
 export const EVENT_YEAR = new Date(EVENT_DATE).getFullYear();
@@ -22,22 +23,81 @@ export const WORKSHOP_TICKET_PRICE = 99; // in euros
 export const OPEN_WORKSHOP_TICKET_SALE_DATE = "2026-04-01";
 export const WORKSHOP_TICKET_SOLD_OUT: boolean = false;
 
+// Trigger (awaiting, open, closed)
+
+export const TICKETING_TRIGGER_EVENT: "awaiting" | "open" | "closed" =
+  "awaiting";
+
 export const SPONSORSHIP_BROCHURE_URL = {
   en: "/pdf/sponsorship-prospectus-ngbaguette-2026.pdf",
   fr: "/pdf/dossier-sponsoring-ngbaguette-2026.pdf",
 };
 
 export const ADDRESS = {
-  streetAddress: "24 Rue Pasteur",
+  streetAddress: "4 plae Jussieu",
   addressLocality: "Paris",
   addressRegion: "Ile de France",
-  postalCode: "75017",
+  postalCode: "75005",
   addressCountry: "France",
 };
 
 export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
-  en: [],
-  fr: [],
+  en: [
+    {
+      title: "Agenda",
+      href: "/agenda",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    {
+      title: "Program",
+      href: "/program",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    {
+      title: "Speakers",
+      href: "/speakers",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    /*
+    { title: "Sponsors", href: "/sponsors" },
+    */
+    {
+      title: "CFP",
+      href: "/cfp",
+      condition: () => new Date() <= new Date(CFP_END_DATE),
+    },
+    { title: "About", href: "/about" },
+    { title: "CoC", href: "/coc" },
+    { title: "Venue", href: "/venue" },
+  ],
+  fr: [
+    {
+      title: "Agenda",
+      href: "/agenda",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    {
+      title: "Programme",
+      href: "/program",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    {
+      title: "Orateurs",
+      href: "/speakers",
+      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
+    },
+    /*
+    { title: "Sponsors", href: "/sponsors" },
+    */
+    {
+      title: "CFP",
+      href: "/cfp",
+      condition: () => new Date() <= new Date(CFP_END_DATE),
+    },
+    { title: "A propos", href: "/about" },
+    { title: "CoC", href: "/coc" },
+    { title: "Lieu", href: "/venue" },
+  ],
 };
 
 export const SOCIAL_LINKS = {
