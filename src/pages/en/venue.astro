@@ -1,0 +1,128 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { ADDRESS } from "../../consts";
+
+// https://www.google.com/maps/place/Onepoint+Nantes+-+Transformation+num%C3%A9rique/@47.209459,-1.5719052,645m/data=!3m2!1e3!4b1!4m6!3m5!1s0x4805ed4bdea2b649:0x19e19993a57b5a5d!8m2!3d47.209459!4d-1.5719052!16s%2Fg%2F11pds30hsh?entry=ttu&g_ep=EgoyMDI1MDMyNS4xIKXMDSoASAFQAw%3D%3D
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "EventVenue",
+  name: "Onepoint Nantes",
+  description:
+    "Join us at Epitech, a modern technology school in the heart of the Paris region.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: ADDRESS.streetAddress,
+    addressLocality: ADDRESS.addressLocality,
+    addressRegion: ADDRESS.addressRegion,
+    postalCode: ADDRESS.postalCode,
+    addressCountry: ADDRESS.addressCountry,
+  },
+  url: "https://www.epitech.eu/ecole-informatique-paris/",
+  telephone: "+33 XXX XXX XXX",
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "48.815304687085025",
+    longitude: "2.3630245124382077",
+  },
+};
+---
+
+<Layout title="Conference Venue - Onepoint Nantes" schema={schema}>
+  <main>
+    <!-- Hero Section -->
+    <div
+      class="hero h-64 md:h-80 mb-12"
+      style="background-image: url('/hero/venue-hero.jpg'); background-size: cover; background-position: center;"
+    >
+      <div class="hero-overlay bg-opacity-70 bg-base-100"></div>
+      <div class="hero-content text-center text-base-content py-12 px-4">
+        <div class="max-w-3xl">
+          <h1 class="text-3xl md:text-5xl font-bold mb-4 title-font">Conference Venue</h1>
+          <p class="text-lg md:text-xl text-base-content/90">
+            Join us at La Sorbonne University in Paris
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 pb-12">
+      <!-- About the Area - Full Width at Top -->
+      <div class="bg-base-200 p-8 rounded-lg shadow-md mb-12">
+        <h2 class="text-3xl font-bold mb-4">About the Area</h2>
+        <p class="text-lg text-base-content/80 max-w-4xl">
+          Located in the 13th arrondissement of Paris, La Sorbonne University Science & Engineering  is a dynamic academic hub at the heart of the capital. Set along the Seine, the campus benefits from a lively urban environment surrounded by cafés, restaurants, and green spaces. Easily accessible by metro and bus, it offers an ideal setting for learning, collaboration, and engaging with the scientific and cultural vitality of Paris.
+        </p>
+      </div>
+
+      <!-- Venue Details and Map Grid -->
+      <div class="grid md:grid-cols-2 gap-12">
+        <section class="space-y-6">
+          <div class="bg-base-200 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Venue Location</h2>
+            <div class="space-y-2 text-lg">
+              <p class="font-semibold">Epitech</p>
+              <p>{ADDRESS.streetAddress}</p>
+              <p>{ADDRESS.postalCode} {ADDRESS.addressRegion}</p>
+              <p>{ADDRESS.addressCountry}</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div id="map" class="w-full h-[400px] rounded-lg shadow-md z-0"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .title-font {
+    font-family: "Lilita", sans-serif;
+  }
+</style>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<script
+  is:inline
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
+<script>
+  import L from "leaflet";
+  import "leaflet/dist/leaflet.css";
+
+  // Fix for the missing marker icons in Leaflet when using bundlers
+  import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+  import markerIcon from "leaflet/dist/images/marker-icon.png";
+  import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+  // Fix Leaflet's icon paths
+  L.Icon.Default.mergeOptions({
+    iconUrl: markerIcon.src,
+    iconRetinaUrl: markerIcon2x.src,
+    shadowUrl: markerShadow.src,
+  });
+
+  // Initialize the map once the DOM is loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    // Create map instance
+    const map = L.map("map").setView([48.8472222, 2.3444444], 11);
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Add a marker
+    L.marker([48.8472222, 2.3444444]).addTo(map).bindPopup("La Sorbonne").openPopup();
+  });
+</script>

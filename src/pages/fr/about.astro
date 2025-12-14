@@ -1,0 +1,106 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Crew from '../../components/Crew.astro';
+import { ADDRESS, SITE_DOMAIN, SITE_TITLE, SOCIAL_LINKS } from "../../consts";
+
+const crew = [
+    {
+        name: 'Gerome Grignon',
+        title: 'Frontend Software Engineer at Lucca',
+        heroImage: '/crew/gerome-grignon.png',
+        linkedin: 'https://www.linkedin.com/in/gerome-grignon/',
+        twitter: 'https://x.com/GeromeDEV',
+        bluesky: 'https://bsky.app/profile/gerome.dev'
+    },
+    {
+        name: 'Anthony Pena',
+        title: 'Développeur Web / Staff Engineer at SFΞIR Nantes',
+        heroImage: '/crew/anthony-pena.webp',
+        linkedin: 'https://www.linkedin.com/in/penaanthony/',
+        twitter: 'https://x.com/_Anthony_Pena',
+        bluesky: 'https://bsky.app/profile/anthonypena.bsky.social'
+    },
+    {
+        name: 'Yann-Thomas Le Moigne',
+        title: 'Technical Lead at CGI',
+        heroImage: '/crew/yann-thomas-le-moigne.jpeg',
+        linkedin: 'https://www.linkedin.com/in/yatho/'
+    },
+    {
+        name: 'Camille Pillot',
+        title: 'Développeuse full-stack @Takima',
+        heroImage: '/crew/camille-pillot.jpg',
+        linkedin: 'https://www.linkedin.com/in/camille-pillot-455517177/',
+        twitter: 'https://x.com/CamiPillotDev'
+    }
+]
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About Us",
+    "description": "Information about the team and the web development conference.",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Angular Web Development Conference",
+        "description": "The premier event for web developers, bringing together industry experts...",
+    "url": `${SITE_DOMAIN}/about`,
+        "foundingDate": "2020-01-01",
+        "founders": 
+    crew.map(c => {
+        return {
+                "@type": "Person",
+          name: c.name,
+          jobTitle: c.title
+        }
+      })
+        ,
+        "location": {
+            "@type": "Place",
+      "name": SITE_TITLE,
+            "address": {
+        "@type": "PostalAddress",
+        ...ADDRESS
+            }
+        },
+    "sameAs": [
+      SOCIAL_LINKS.bluesky,
+      SOCIAL_LINKS.linkedin,
+      SOCIAL_LINKS.twitter
+        ]
+    }
+}
+
+---
+
+<Layout title="À propos" schema={schema}>
+    <main>
+        <!-- Hero Section -->
+        <div
+            class="hero h-64 md:h-80 mb-12"
+            style="background-image: url('/hero/hero-about.jpg'); background-size: cover; background-position: 0% 34%;"
+        >
+            <div class="hero-overlay bg-opacity-70 bg-base-100"></div>
+            <div class="hero-content text-center text-base-content py-12 px-4">
+                <div class="max-w-3xl">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4 title-font">À propos</h1>
+                    <p class="text-lg md:text-xl text-base-content/90">
+                        Rencontrez l'équipe derrière la conférence NG Baguette
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <section class="max-w-screen-lg m-auto px-8 pb-12">
+            <p>La conférence NG Baguette est un événement communautaire centré sur Angular. Notre mission est de rassembler les développeurs pour partager des connaissances, réseauter et grandir ensemble. À travers des présentations engageantes et des opportunités de networking, nous visons à renforcer la communauté Angular en France et au-delà tout en célébrant notre passion commune pour le développement web.</p>
+            <h2 class="text-4xl font-bold my-12">L'équipe</h2>
+            {crew.map(crew => <Crew crew={crew} />)}
+        </section>
+    </main>
+</Layout>
+
+<style>
+  .title-font {
+    font-family: "Bangers", sans-serif;
+  }
+</style>

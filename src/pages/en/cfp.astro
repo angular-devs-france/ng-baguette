@@ -1,0 +1,258 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import {
+  CFP_END_DATE,
+  CFP_LINK,
+  CFP_START_DATE,
+  EVENT_YEAR,
+} from "../../consts";
+import {
+  displayDate,
+  isAfterCFPClosing,
+  isAfterCFPOpenning,
+  isAfterOpenningProgram,
+} from "../../utils";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Call for Papers",
+  description:
+    "Information about the call for papers for the web development conference.",
+  mainEntity: {
+    "@type": "Event",
+    name: "Web Development Conference",
+    description:
+      "The premier event for web developers, bringing together industry experts...",
+    location: {
+      "@type": "Place",
+      name: "Cityville Conference Center",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "123 Conference Center Drive",
+        addressLocality: "Cityville",
+        addressRegion: "State",
+        postalCode: "12345",
+        addressCountry: "Country",
+      },
+    },
+    startDate: "2024-09-01",
+    endDate: "2024-09-30",
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/PreOrder",
+      url: "https://example.com/call-for-papers",
+      price: "0",
+    },
+    image: "https://example.com/conference-image.jpg",
+    performer: {
+      "@type": "Organization",
+      name: "Web Development Conference",
+      url: "https://example.com",
+    },
+  },
+};
+---
+
+<Layout title="Call For Papers" schema={schema}>
+  <main>
+    <!-- Hero Section -->
+    <div
+      class="hero mb-12"
+      style="background-image: url(/hero/hero-cfp.jpg); background-size: cover; background-position: 0% 30%;"
+    >
+      <div class="hero-overlay bg-opacity-80 bg-base-100"></div>
+      <div class="hero-content text-center text-base-content py-20 px-4">
+        <div class="max-w-4xl">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 title-font">Call For Papers</h1>
+          <p class="text-xl md:text-2xl text-base-content/90 mb-8 max-w-2xl mx-auto">
+            Share your knowledge and passion for Angular with the French developer community
+          </p>
+          <div>
+            <a href={CFP_LINK} target="_blank" class="btn btn-primary btn-lg">
+              Submit your talk proposals
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="max-w-screen-lg m-auto flex flex-col items-center px-8 pb-12">
+      <div
+        class="stats shadow mt-8 mb-4 bg-base-200 grid-flow-row md:grid-flow-col"
+      >
+        <div class="stat">
+          <div class="stat-title">Tracks</div>
+          <div class="stat-value">1</div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Talks</div>
+          <div class="stat-value">8</div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Talk duration</div>
+          <div class="stat-value">30 minutes</div>
+        </div>
+      </div>
+
+      <h2 class="text-4xl font-bold mt-20 mb-12">Submission timeline</h2>
+
+      <ul
+        class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
+      >
+        <li>
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill={!isAfterCFPOpenning() ? "currentColor" : "#646EE4"}
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-start md:text-end mb-10">
+            <time class="font-mono italic">
+              {displayDate(CFP_START_DATE, "en-US")}
+            </time>
+            <div class="text-lg font-black">CFP open</div>
+            <div>Submit your talks for the conference</div>
+            {
+              isAfterCFPOpenning() && !isAfterCFPClosing() && (
+                <a href={CFP_LINK} target="_blank" class="btn btn-primary my-4">
+                  Submit your talks
+                </a>
+              )
+            }
+          </div>
+          <hr />
+        </li>
+        <li>
+          <hr />
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill={!isAfterCFPClosing() ? "currentColor" : "#646EE4"}
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-end mb-10">
+            <time class="font-mono italic"
+              >{displayDate(CFP_END_DATE, "en-US")}</time
+            >
+            <div class="text-lg font-black">Submission Deadline</div>
+            Last day to submit your talks
+          </div>
+          <hr />
+        </li>
+        <li>
+          <hr />
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill={!isAfterCFPClosing() ? "currentColor" : "#646EE4"}
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-start md:text-end mb-10">
+            <time class="font-mono italic">February {EVENT_YEAR}</time>
+            <div class="text-lg font-black">Talks review</div>
+            Our team will review your talks
+          </div>
+          <hr />
+        </li>
+        <li>
+          <hr />
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill={isAfterOpenningProgram() ? "#646EE4" : "currentColor"}
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-end mb-10">
+            <time class="font-mono italic">Middle February {EVENT_YEAR}</time>
+            <div class="text-lg font-black">Review feedback</div>
+            <div>We'll send you feedback about your talks</div>
+          </div>
+          <hr />
+        </li>
+        <li>
+          <hr />
+          <div class="timeline-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill={isAfterOpenningProgram() ? "#646EE4" : "currentColor"}
+              class="h-5 w-5"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clip-rule="evenodd"></path></svg
+            >
+          </div>
+          <div class="timeline-start md:text-end mb-10">
+            <time class="font-mono italic">End of February {EVENT_YEAR}</time>
+            <div class="text-lg font-black">Final schedule</div>
+            <div>
+              Once we'll get validation from all accepted talks, we'll publish
+              the event agenda
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h2 class="text-4xl font-bold mt-8 mb-12">Format</h2>
+
+      <article class="flex flex-col md:flex-row gap-8">
+        <Image
+          class="rounded-xl"
+          height={200}
+          width={400}
+          format="webp"
+          src="/cfp-conference.jpg"
+          alt=""
+        />
+        <div>
+          <h3 class="text-3xl font-bold">Conference (8 slots)</h3>
+          <h4 class="text-xl italic">30 minutes</h4>
+          <p class="mt-4">
+            Conference talks are our main format, giving speakers 30 minutes to
+            dive deep into a technical topic. This is perfect for sharing
+            in-depth knowledge, demonstrating complex concepts, or walking
+            through real-world case studies. With 8 available slots, these talks
+            form the backbone of our technical program.
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .title-font {
+    font-family: "Bangers", sans-serif;
+  }
+</style>
