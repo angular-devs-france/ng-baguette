@@ -10,7 +10,7 @@ export const EVENT_END_TIME = "18h00";
 export const EVENT_DATE = "2026-05-29";
 export const CFP_START_DATE = "2025-12-15";
 export const CFP_END_DATE = "2026-01-31";
-export const OPEN_PROGRAM_DATE = "2026-04-01"; // Date when the agenda will be made public
+export const OPEN_PROGRAM_DATE = "2026-03-01"; // Date when the agenda will be made public
 export const SPONSOR_ENDING_RESEARCH_DATE = "2026-04-20";
 export const EVENT_YEAR = new Date(EVENT_DATE).getFullYear();
 export const BLIND_TICKET_PRICE = 69; // in euros
@@ -68,7 +68,9 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
     },
     { title: "About", href: "/about" },
     { title: "CoC", href: "/coc" },
+    /*
     { title: "Venue", href: "/venue" },
+    */
   ],
   fr: [
     {
@@ -96,7 +98,9 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
     },
     { title: "A propos", href: "/about" },
     { title: "CoC", href: "/coc" },
+    /*
     { title: "Lieu", href: "/venue" },
+    */
   ],
 };
 
