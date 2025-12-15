@@ -1,6 +1,6 @@
 ---
 import Header from "./Header.astro";
-import { NAVIGATION_LINKS, ADDRESS } from "../consts";
+import { NAVIGATION_LINKS, ADDRESS, SITE_ACRONYM } from "../consts";
 import Footer from "./Footer.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -36,11 +36,13 @@ function isActiveLink(href: string): boolean {
     </div>
     <Footer />
   </div>
-  <div class="drawer-side">
+  <div class="drawer-side z-50">
     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-    <div class="w-80 min-h-full bg-base-200 text-base-content">
+    <div class="w-80 min-h-full bg-base-200 text-base-content relative">
       <div class="p-6 border-b border-base-300/50">
-        <img src="/ng-baguette-light-logo.svg" alt="NG Baguette Logo" class="h-10 w-auto mb-4">
+        <a href={getRelativeLocaleUrl(locale, "/")} class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+        <span class="text-xl sm:text-2xl font-bold title-font tracking-wide">{SITE_ACRONYM}</span>
+      </a>
         <div class="text-sm text-base-content/70">
           <p>{ADDRESS.addressLocality}, {ADDRESS.addressCountry}</p>
         </div>
@@ -81,3 +83,9 @@ function isActiveLink(href: string): boolean {
     </div>
   </div>
 </div>
+
+<style>
+  .title-font {
+    font-family: "Bangers", sans-serif;
+  }
+</style>
