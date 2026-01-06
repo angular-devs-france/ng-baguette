@@ -166,8 +166,8 @@ import { displayDate } from "../../utils";
                   class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors"
                 >
                   <div class="card-body flex flex-col items-center py-8">
-                    <h3 class="card-title text-xl text-center mb-1">Blind Ticket</h3>
-                    <p class="text-sm text-base-content/60 mb-4">Limited availability</p>
+                    <h3 class="card-title text-xl text-center mb-1">Conference Early Ticket</h3>
+                    <p class="text-sm text-base-content/60 mb-4">Friday, May 29</p>
                     <span class="text-4xl font-bold mb-6">€{BLIND_TICKET_PRICE}</span>
 
                     {
@@ -221,8 +221,8 @@ import { displayDate } from "../../utils";
                   class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors"
                 >
                   <div class="card-body flex flex-col items-center py-8">
-                    <h3 class="card-title text-xl text-center mb-1">Regular Ticket</h3>
-                    <p class="text-sm text-base-content/60 mb-4">Standard conference ticket</p>
+                    <h3 class="card-title text-xl text-center mb-1">Conference Ticket</h3>
+                    <p class="text-sm text-base-content/60 mb-4">Friday, May 29</p>
                     <span class="text-4xl font-bold mb-6">€{TICKET_PRICE}</span>
                     {
                       new Date() >= new Date(OPEN_TICKET_SALE_DATE) ? (
@@ -238,8 +238,8 @@ import { displayDate } from "../../utils";
                         )
                       ) : (
                         <p class="text-base-content/60 text-sm text-center">
-                          Not yet on sale from
-                          {displayDate(OPEN_TICKET_SALE_DATE, "en-US")})
+                          On sale from
+                          {displayDate(OPEN_TICKET_SALE_DATE, "en-US")}
                         </p>
                       )
                     }
@@ -250,7 +250,7 @@ import { displayDate } from "../../utils";
                 >
                   <div class="card-body flex flex-col items-center py-8">
                     <h3 class="card-title text-xl text-center mb-1">Workshop Ticket</h3>
-                    <p class="text-sm text-base-content/60 mb-4">Conference + Workshop</p>
+                    <p class="text-sm text-base-content/60 mb-4">Thursday, May 28</p>
                     <span class="text-4xl font-bold mb-6">€{WORKSHOP_TICKET_PRICE}</span>
                     {
                       new Date() >= new Date(OPEN_WORKSHOP_TICKET_SALE_DATE) ? (
@@ -266,8 +266,8 @@ import { displayDate } from "../../utils";
                         )
                       ) : (
                         <p class="text-base-content/60 text-sm text-center">
-                          Not yet on sale from
-                          {displayDate(OPEN_WORKSHOP_TICKET_SALE_DATE, "en-US")})
+                          On sale from
+                          {displayDate(OPEN_WORKSHOP_TICKET_SALE_DATE, "en-US")}
                         </p>
                       )
                     }

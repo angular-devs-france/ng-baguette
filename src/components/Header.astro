@@ -1,6 +1,6 @@
 ---
 import { SITE_ACRONYM } from "../consts";
-import { NAVIGATION_LINKS } from "../consts";
+import { NAVIGATION_LINKS, HELLOASSO_LINK } from "../consts";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 const locale = Astro.currentLocale!;
@@ -65,7 +65,11 @@ function isActiveLink(href: string): boolean {
       </ul>
     </div>
 
-    <div class="navbar-end">
+    <div class="navbar-end flex md:gap-20 gap-4">
+      <a href={HELLOASSO_LINK} target="_blank" class="btn btn-sm btn-primary">
+        <img src="/icons/ticket.png" class="w-5 h-5" alt="">
+        {locale === "en" ? "Tickets" : "Billeterie"}
+      </a>
       <div class="flex gap-1.5">
         <a 
           href="/en" 
