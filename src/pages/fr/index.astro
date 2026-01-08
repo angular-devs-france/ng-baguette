@@ -159,7 +159,7 @@ import { displayDate } from "../../utils";
     <section class="max-w-7xl mx-auto px-4 md:px-8 py-16">
       <!-- Tickets Section -->
       <div id="tickets" class="mb-16 scroll-mt-20">
-        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Obtenez vos billets</h2>
+        <h2 #tickets class="text-3xl md:text-4xl font-bold mb-8 text-center">Obtenez vos billets</h2>
         
         {TICKETING_TRIGGER_EVENT === 'open' && (
           <ul class="flex flex-col md:flex-row gap-6 items-stretch max-w-5xl mx-auto">
@@ -204,7 +204,7 @@ import { displayDate } from "../../utils";
                     <p class="text-sm text-base-content/60 mb-4">vendredi 29 mai</p>
                     <span class="text-4xl font-bold mb-6">€{TICKET_PRICE}</span>
                     {
-                      new Date() >= new Date(OPEN_TICKET_SALE_DATE) ? (
+                      OPEN_TICKET_SALE_DATE ? new Date() >= new Date(OPEN_TICKET_SALE_DATE) : false ? (
                         TICKET_SOLD_OUT ? (
                           <p class="text-base-content/60 text-sm">Complet</p>
                         ) : (
@@ -217,8 +217,7 @@ import { displayDate } from "../../utils";
                         )
                       ) : (
                         <p class="text-base-content/60 text-sm text-center">
-                          En vente à partir du
-                          {displayDate(OPEN_TICKET_SALE_DATE)}
+                          {OPEN_TICKET_SALE_DATE ? "En vente à partir du " + displayDate(OPEN_TICKET_SALE_DATE) : "Bientôt en vente"}
                         </p>
                       )
                     }

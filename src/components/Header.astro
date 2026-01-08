@@ -66,7 +66,7 @@ function isActiveLink(href: string): boolean {
     </div>
 
     <div class="navbar-end flex md:gap-20 gap-4">
-      <a href={HELLOASSO_LINK} target="_blank" class="btn btn-sm btn-primary">
+      <a href={getRelativeLocaleUrl(locale) + '#tickets'} class="btn btn-sm btn-primary">
         <img src="/icons/ticket.png" class="w-5 h-5" alt="">
         {locale === "en" ? "Tickets" : "Billeterie"}
       </a>
