@@ -1,6 +1,6 @@
 ---
 import { SITE_ACRONYM } from "../consts";
-import { NAVIGATION_LINKS, HELLOASSO_LINK } from "../consts";
+import { NAVIGATION_LINKS } from "../consts";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 const locale = Astro.currentLocale!;
@@ -12,30 +12,56 @@ function isActiveLink(href: string): boolean {
   // Normalize paths (remove trailing slashes for comparison)
   const normalizedCurrentPath = currentPath.replace(/\/$/, "") || "/";
   const normalizedLinkPath = linkPath.replace(/\/$/, "") || "/";
-  
+
   // Handle home page - check if we're on root or locale root
   if (href === "/") {
-    return normalizedCurrentPath === "/" || 
-           normalizedCurrentPath === `/${locale}` ||
-           normalizedCurrentPath === normalizedLinkPath;
+    return (
+      normalizedCurrentPath === "/" ||
+      normalizedCurrentPath === `/${locale}` ||
+      normalizedCurrentPath === normalizedLinkPath
+    );
   }
-  
+
   // For other pages, check exact match or if current path starts with link path
-  return normalizedCurrentPath === normalizedLinkPath || 
-         normalizedCurrentPath.startsWith(normalizedLinkPath + "/");
+  return (
+    normalizedCurrentPath === normalizedLinkPath ||
+    normalizedCurrentPath.startsWith(normalizedLinkPath + "/")
+  );
 }
 ---
 
-<header class="sticky top-0 z-50 backdrop-blur-lg bg-base-100/90 border-b border-base-300/30 shadow-sm">
+<header
+  class="sticky top-0 z-50 backdrop-blur-lg bg-base-100/90 border-b border-base-300/30 shadow-sm"
+>
   <div class="navbar px-4 sm:px-6 lg:px-8 py-2">
     <div class="navbar-start">
-      <label for="my-drawer" class="btn btn-ghost btn-square lg:hidden" aria-label="open sidebar">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      <label
+        for="my-drawer"
+        class="btn btn-ghost btn-square lg:hidden"
+        aria-label="open sidebar"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </label>
-      <a href={getRelativeLocaleUrl(locale, "/")} class="flex items-center gap-3 hover:opacity-90 transition-opacity px-2">
-        <span class="hidden sm:inline text-xl sm:text-2xl font-bold title-font tracking-wide">{SITE_ACRONYM}</span>
+      <a
+        href={getRelativeLocaleUrl(locale, "/")}
+        class="flex items-center gap-3 hover:opacity-90 transition-opacity px-2"
+      >
+        <span
+          class="hidden sm:inline text-xl sm:text-2xl font-bold title-font tracking-wide"
+          >{SITE_ACRONYM}</span
+        >
       </a>
     </div>
 
@@ -43,16 +69,16 @@ function isActiveLink(href: string): boolean {
       <ul class="menu menu-horizontal px-2 gap-2">
         {
           NAVIGATION_LINKS[locale]
-            .filter(link => link.condition ? link.condition() : true)
-            .map(link => {
+            .filter((link) => (link.condition ? link.condition() : true))
+            .map((link) => {
               const isActive = isActiveLink(link.href);
               return (
                 <li>
-                  <a 
-                    href={getRelativeLocaleUrl(locale, link.href)} 
+                  <a
+                    href={getRelativeLocaleUrl(locale, link.href)}
                     class={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                      isActive 
-                        ? "text-primary bg-primary/10 font-semibold" 
+                      isActive
+                        ? "text-primary bg-primary/10 font-semibold"
                         : "text-base-content/70 hover:text-base-content hover:bg-base-200"
                     }`}
                   >
@@ -66,20 +92,23 @@ function isActiveLink(href: string): boolean {
     </div>
 
     <div class="navbar-end flex md:gap-20 gap-4">
-      <a href={getRelativeLocaleUrl(locale) + '#tickets'} class="btn btn-sm btn-primary">
-        <img src="/icons/ticket.png" class="w-5 h-5" alt="">
+      <a
+        href={getRelativeLocaleUrl(locale) + "#tickets"}
+        class="btn btn-sm btn-primary"
+      >
+        <img src="/icons/ticket.png" class="w-5 h-5" alt="" />
         {locale === "en" ? "Tickets" : "Billeterie"}
       </a>
       <div class="flex gap-1.5">
-        <a 
-          href="/en" 
+        <a
+          href="/en"
           class={`btn btn-sm btn-square ${locale === "en" ? "btn-primary" : "btn-ghost"}`}
           aria-label="Switch to English"
         >
           EN
         </a>
-        <a 
-          href="/fr" 
+        <a
+          href="/fr"
           class={`btn btn-sm btn-square ${locale === "fr" ? "btn-primary" : "btn-ghost"}`}
           aria-label="Switch to French"
         >

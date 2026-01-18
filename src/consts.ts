@@ -28,7 +28,7 @@ export const WORKSHOP_TICKET_SOLD_OUT: boolean = false;
 export const TICKETING_TRIGGER_EVENT: "awaiting" | "open" | "closed" = "open";
 
 export const SPONSORSHIP_BROCHURE_URL = {
-  en: "/pdf/sponsorship-prospectus-ngbaguette-2026.pdf",
+  en: "/pdf/dossier-sponsoring-ngbaguette-2026.pdf",
   fr: "/pdf/dossier-sponsoring-ngbaguette-2026.pdf",
 };
 
@@ -57,9 +57,7 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
       href: "/speakers",
       condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
     },
-    /*
     { title: "Sponsors", href: "/sponsors" },
-    */
     {
       title: "CFP",
       href: "/cfp",
@@ -87,9 +85,7 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
       href: "/speakers",
       condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
     },
-    /*
     { title: "Sponsors", href: "/sponsors" },
-    */
     {
       title: "CFP",
       href: "/cfp",
