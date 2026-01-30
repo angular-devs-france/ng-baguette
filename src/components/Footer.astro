@@ -1,48 +1,69 @@
 ---
-import { SOCIAL_LINKS, EVENT_YEAR, SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { SOCIAL_LINKS, EVENT_YEAR, SITE_TITLE, SITE_DESCRIPTION, PAST_EDITIONS } from "../consts";
 
 const locale = Astro.currentLocale!;
 const description = locale === "fr" ? "La conférence Angular à la française" : SITE_DESCRIPTION;
+const pastEditionsLabel = locale === "fr" ? "Éditions passées" : "Past editions";
 ---
-<footer class="footer p-8 md:p-12 bg-base-200 border-t border-base-300/30 text-base-content mt-0">
-  <aside class="space-y-4">
-    <div>
-      <p class="font-semibold text-base-content mb-1">{SITE_TITLE}</p>
-      <p class="text-sm text-base-content/60">
-        {description}
-      </p>
-    </div>
-    <div class="flex gap-3 pt-2">
-      <a 
-        href={SOCIAL_LINKS.twitter} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="btn btn-ghost btn-sm btn-square hover:bg-base-300 transition-colors"
-        aria-label="Twitter"
-      >
-        <img src="/icons/twitter.svg" class="w-5 h-5" alt="Twitter">
-      </a>
-      <a 
-        href={SOCIAL_LINKS.bluesky} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="btn btn-ghost btn-sm btn-square hover:bg-base-300 transition-colors"
-        aria-label="Bluesky"
-      >
-        <img src="/icons/bluesky.svg" class="w-5 h-5" alt="Bluesky">
-      </a>
-      <a 
-        href={SOCIAL_LINKS.linkedin} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="btn btn-ghost btn-sm btn-square hover:bg-base-300 transition-colors"
-        aria-label="LinkedIn"
-      >
-        <img src="/icons/linkedin.svg" class="w-5 h-5" alt="LinkedIn">
-      </a>
-    </div>
-    <div class="pt-2">
-      <span class="text-xs text-base-content/50">© {EVENT_YEAR} {SITE_TITLE}</span>
-    </div>
-  </aside> 
+<footer class="footer px-6 py-4 md:px-8 md:py-5 bg-base-200 border-t border-base-300/30 text-base-content mt-0 flex flex-col md:flex-row md:flex-nowrap md:items-center md:justify-between gap-4">
+  <div class="flex flex-wrap items-center gap-x-2 gap-y-1 sm:gap-x-3">
+      <span class="font-semibold text-base-content">{SITE_TITLE}</span>
+      <span class="text-base-content/40 hidden sm:inline" aria-hidden="true">·</span>
+      <span class="text-sm text-base-content/60">{description}</span>
+      {PAST_EDITIONS.length > 0 && (
+        <>
+          <span class="text-base-content/40 hidden sm:inline" aria-hidden="true">·</span>
+          <nav class="flex items-center gap-2" aria-label={pastEditionsLabel}>
+            <span class="text-xs font-medium text-base-content/60 uppercase tracking-wide">{pastEditionsLabel}</span>
+            <ul class="flex items-center gap-2 text-sm">
+              {PAST_EDITIONS.map(({ year, url }) => (
+                <li>
+                  <a
+                    href={url[locale] ?? url.en}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link link-hover text-base-content/80 hover:text-base-content"
+                  >
+                    {year}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
+      )}
+  </div>
+  <div class="flex items-center gap-3 md:gap-4 md:pl-4">
+      <div class="flex items-center gap-1">
+        <a 
+          href={SOCIAL_LINKS.twitter} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-ghost btn-sm btn-square hover:bg-base-300 transition-colors"
+          aria-label="Twitter"
+        >
+          <img src="/icons/twitter.svg" class="w-4 h-4" alt="">
+        </a>
+        <a 
+          href={SOCIAL_LINKS.bluesky} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-ghost btn-sm btn-square hover:bg-base-300 transition-colors"
+          aria-label="Bluesky"
+        >
+          <img src="/icons/bluesky.svg" class="w-4 h-4" alt="">
+        </a>
+        <a 
+          href={SOCIAL_LINKS.linkedin} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-ghost btn-sm btn-square hover:bg-base-300 transition-colors"
+          aria-label="LinkedIn"
+        >
+          <img src="/icons/linkedin.svg" class="w-4 h-4" alt="">
+        </a>
+      </div>
+      <span class="text-base-content/40 md:inline hidden" aria-hidden="true">·</span>
+      <span class="text-xs text-base-content/50 whitespace-nowrap">© {EVENT_YEAR} {SITE_TITLE}</span>
+  </div>
 </footer>

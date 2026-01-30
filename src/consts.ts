@@ -105,6 +105,17 @@ export const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/company/angular-devs-france",
 };
 
+/** Past editions – add a new entry each year with the archive URL(s) per locale */
+export const PAST_EDITIONS: Array<{ year: number; url: Record<string, string> }> = [
+  {
+    year: 2025,
+    url: {
+      en: "https://2025-ngbaguette.angulardevs.fr/en/",
+      fr: "https://2025-ngbaguette.angulardevs.fr/fr/",
+    },
+  },
+];
+
 export const CFP_LINK = "https://conference-hall.io/ng-baguette-conf-2026";
 export const HELLOASSO_LINK =
   "https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2026";
