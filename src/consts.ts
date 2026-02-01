@@ -43,18 +43,8 @@ export const ADDRESS = {
 export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
   en: [
     {
-      title: "Agenda",
-      href: "/agenda",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    {
-      title: "Program",
-      href: "/program",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    {
-      title: "Speakers",
-      href: "/speakers",
+      title: "Schedule",
+      href: "/schedule",
       condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
     },
     { title: "Sponsors", href: "/sponsors" },
@@ -72,17 +62,7 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
   fr: [
     {
       title: "Agenda",
-      href: "/agenda",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    {
-      title: "Programme",
-      href: "/program",
-      condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
-    },
-    {
-      title: "Orateurs",
-      href: "/speakers",
+      href: "/schedule",
       condition: () => new Date() >= new Date(OPEN_PROGRAM_DATE),
     },
     { title: "Sponsors", href: "/sponsors" },
@@ -106,7 +86,10 @@ export const SOCIAL_LINKS = {
 };
 
 /** Past editions – add a new entry each year with the archive URL(s) per locale */
-export const PAST_EDITIONS: Array<{ year: number; url: Record<string, string> }> = [
+export const PAST_EDITIONS: Array<{
+  year: number;
+  url: Record<string, string>;
+}> = [
   {
     year: 2025,
     url: {
