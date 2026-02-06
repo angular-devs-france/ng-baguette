@@ -1,0 +1,256 @@
+{
+  "name": "NG Baguette Conf 2026 schedule",
+  "days": ["2026-05-29T00:00:00.000Z"],
+  "timeZone": "Europe/Paris",
+  "sessions": [
+    {
+      "id": "cml3u4o5p01c101k2g0bs2smi",
+      "start": "2026-05-29T15:45:00.000Z",
+      "end": "2026-05-29T16:15:00.000Z",
+      "track": "Main stage",
+      "title": "Implémenter un Design System maison au-dessus d’Angular Material",
+      "language": "fr",
+      "proposal": {
+        "id": "cmkmu824t00ej01s4o472vlex",
+        "proposalNumber": 27,
+        "abstract": "Un Design System est un ensemble de composants UI, de règles et de conventions visant à garantir la cohérence visuelle et l’expérience utilisateur à travers différentes applications.\n\nIl existe de nombreux Design Systems prêts à l’emploi, tels que [Material Design](https://m3.material.io/)\n (Google), Human Interface Guidelines — aussi appelées Cupertino (Apple), ou encore [Fluent](https://fluent2.microsoft.design/)\n (Microsoft). Mais jusqu’où sont-ils réellement adaptables ?\nEt si l’on souhaite créer son propre Design System, par où commencer ?\n\nChez Criteo, le CDS (Criteo Design System) permet aux différentes équipes d’intégrer leurs micro-frontends au sein d’une même plateforme, de manière totalement transparente pour l’utilisateur final. Bien qu’il s’agisse d’un Design System « maison », le CDS repose sur une surcouche d’Angular Material.\n\nÀ travers ce talk, je vous propose un retour d’expérience critique sur le développement et la maintenance d’un Design System interne, ainsi que des conseils concrets applicables aussi bien à votre propre Design System qu’à toute application qui en dépend, avec un focus particulier sur l’optimisation des performances.",
+        "level": "BEGINNER",
+        "formats": ["Conference"],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmklcbh3b007m01s42zhvfn72",
+            "name": "Dedieu Sylvain",
+            "bio": "Hello 👋😊\n\nPassionné de développement et technologies front-end/mobile, je me suis spécialisé dans ce domaine.\n\nAu sein de l'équipe ui-foundation chez  [Criteo](https://www.criteo.com/fr/), j'ai la chance de pouvoir approfondir chaque jour un peu plus cette expertise.\n\nFormateur et conférencier, j'interviens à l'Université [UGA (Grenoble 1)](https://www.univ-grenoble-alpes.fr/)  pour dispenser des cours de développement Web & mobile cross-plateform. J'ai par ailleurs eu la chance de présenter des sujets lors de plusieurs grands événements Français et Européens.\n\nLa veille technique et les projets personnels occupent également une grande partie de mon temps.\n\nLe reste est principalement dédié au sport 🚴 et à la nourriture 🍷 😁.",
+            "company": "Criteo",
+            "picture": "/speakers-2026/sylvain.jpg",
+            "socialLinks": [
+              "https://github.com/sdedieu",
+              "https://x.com/DedieuS"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cml3u5v0i01c401k2j0d7o58x",
+      "start": "2026-05-29T11:45:00.000Z",
+      "end": "2026-05-29T12:15:00.000Z",
+      "track": "Main stage",
+      "title": "A la découverte du Harness Testing en Angular",
+      "language": "fr",
+      "proposal": {
+        "id": "cmkb0r0pl006y01qq3xc7n78t",
+        "proposalNumber": 19,
+        "abstract": "À la découverte du Harness Testing en Angular\n\nMarre de vos tests unitaires Angular qui cassent au moindre changement de style ou de structure HTML ? L'écriture de tests d'intégration robustes peut être un véritable cauchemar... jusqu'à ce que vous découvriez les Component Test Harnesses.\n\nDans ce talk, nous allons plonger au cœur des Harnesses officiels d'Angular pour le Material Design et, plus important encore, apprendre à créer nos propres Harnesses personnalisés pour nos composants réutilisables. Vous découvrirez comment cette approche permet de séparer clairement la logique de test de l'implémentation DOM de vos composants. Nous verrons comment interagir avec des éléments complexes (comme des tableaux, des formulaires ou des modales) d'une manière simple, stable et maintenable, grâce à une API de test agnostique du DOM.\n\nRejoignez-moi pour découvrir comment rendre votre suite de tests plus fiable, lisible et résiliente face aux refactorisations, et mettez fin aux tests fragiles pour de bon !",
+        "level": "INTERMEDIATE",
+        "formats": ["Conference"],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmkb0r0pc006x01qqywxagt4w",
+            "name": "Ezéchiel Amen AGBLA",
+            "bio": "Je m'appelle Ezéchiel Amen AGBLA, je suis Google Developer Expert Angular & Ionic Developer Expert, passionné par le développement web et mobile.\n\nJe consacre mon temps libre à la vulgarisation des connaissances en rédigeant des articles et à l'accompagnement des débutants dans leur carrière, soit à titre personnel, soit via Openclassrooms, la référence dans le monde francophone. J'aide également mes collègues développeurs à temps partiel en participant à des revues de code, en les conseillant dans leurs choix techniques et en corrigeant des bugs.\n\nJ'ai écrit un livre intitulé « Mastering Angular Test-Driven Development » pour la maison d'édition Packt, qui a été publié en octobre 2024.",
+            "company": "ADSERVIO",
+            "picture": "/speakers-2026/EZECHIEL_AMEN_AGBLA_PIC.png",
+            "socialLinks": [
+              "https://www.linkedin.com/in/e-amen-agbla/",
+              "https://x.com/ezchilamen"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cml3u2sdw01bz01k23yc00z16",
+      "start": "2026-05-29T14:45:00.000Z",
+      "end": "2026-05-29T15:15:00.000Z",
+      "track": "Main stage",
+      "title": "Modernizing Angular Architectural Patterns",
+      "language": "en",
+      "proposal": {
+        "id": "cmjsjv7h4001p01l4pxw1odx5",
+        "proposalNumber": 7,
+        "abstract": "When I started using Angular in 2018, most architectural \"rules\" were already set in stone: Smart vs. Dumb components, isolated domains, and shared modules.\n\nFor years, these patterns have stood the test of time. But do they fit the simplicity of Modern Angular?\n\nIn this talk, we will put these patterns on trial. We will analyze where the classic approaches hold us back and where they still add value.\n\nThen, we will look forward. We will discuss how Modern Angular enables new, simplified patterns, draw comparisons with how other frameworks handle state and composition, and review the tools that support this shift. Join me for a refreshing take on how to structure your next application.",
+        "level": "ADVANCED",
+        "formats": ["Conference"],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmjsjf33q001e01l43o019f4m",
+            "name": "Rainer Hahnekamp",
+            "bio": "Rainer Hahnekamp is a Google Developer Expert (GDE) and a core team member of NgRx. He is a trainer and consultant in the Angular Architects expert network and runs ng-news, a weekly Angular newsletter. Beyond NgRx, he is deeply involved in open source, working on projects like Testronaut and Sheriff.",
+            "company": null,
+            "picture": "/speakers-2026/rainer.jpg",
+            "socialLinks": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "cml3u41lm01c001k2nz702s69",
+      "start": "2026-05-29T16:15:00.000Z",
+      "end": "2026-05-29T16:45:00.000Z",
+      "track": "Main stage",
+      "title": "L'Art d'un Code Type-Safe : Apprendre à Dériver ses Types (TypeScript)",
+      "language": "fr",
+      "proposal": {
+        "id": "cmkviwvqu006201k26t9h9rpn",
+        "proposalNumber": 31,
+        "abstract": "Objectif:\nApprendre à dériver des types à partir d'autres types pour créer des APIs impossibles à mal utiliser (type-safe), où TypeScript guide le développeur et détecte les erreurs à la compilation plutôt qu'au runtime.\n\n\nExemple final:\nPartage des différentes technique et astuces à connaître pour apprendre à dériver les types avec des cas pour illustrer.\nExemple finale pour écrire la signature (pas l'implémentation) soit lié au signalForm ou créer un utilitaire mutation (basé sur RxJs), qui combine plusieurs de ces techniques.",
+        "level": "ADVANCED",
+        "formats": ["Conference"],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmkl9r734006r01s4srb1i7ej",
+            "name": "Romain Geffrault",
+            "bio": "Romain Geffrault\nDéveloppeur Angular depuis environ 8 ans.\n\nJ'ai souvent été le référent Angular, bien que j'ai surtout appris en autodidacte.\n\nJ'ai essayé de mettre à mon service mes compétences en dev.\nTout en apprenant Angular, j'ai créé mon [blog sur le sommeil](https://sommeilprofond.fr/).\n\n> PS: j'ai encore des cicatrices sur la mise en prod de l'app en SSR avec Angular universal.\n\nJ'ai remarqué que des solutions de server state management comme TanStackQuery n'étaient pas très répandues dans la communauté Angular, et qu'on voyait trop souvent de lib de client state management s'en occuper avec beaucoup de boilerplate.\nAvec l'arrivée des resources, je me suis mis à chercher des moyens simples sans utilisations de lib externe pour obtenir les mêmes comportement (optimistic update, fallback reload...).\nTout cela je le partage dans mon [blog dédié à Angular](https://dev.to/romain_geffrault_10d88369) (ainsi que d'autres découvertes).\n\nCe qui m'a finalement conduit à créer une première lib ng-query basée sur le signalStore, pour faire du server state management.\nMais, ma philosophie de state management étant trop éloignée, j'ai décidé de créer ma propre librairie de state management.\n[ng-craft](https://ng-angular-stack.github.io/craft/)\n\nJe partage aussi régulièrement sur Linkedin: [Romain Geffrault](https://www.linkedin.com/in/romain-geffrault/)\n\nJe suis aussi investi dans l'association de ma femme qui a ouvert un centre de soin pour la faune sauvage, et aide à gérer le pôle animaux domestiques.\nJe suis très régulièrement famille d'accueil pour les chats, chiens et parfois poules.",
+            "company": null,
+            "picture": "/speakers-2026/romain.jpeg",
+            "socialLinks": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "cml3u54k101c201k2cqlig258",
+      "start": "2026-05-29T14:15:00.000Z",
+      "end": "2026-05-29T14:45:00.000Z",
+      "track": "Main stage",
+      "title": "NgRx SignalStore: the ultimate tool for modern state management",
+      "language": "en",
+      "proposal": {
+        "id": "cmkcph2tt00jl01qqic1r7elv",
+        "proposalNumber": 20,
+        "abstract": "Angular Signals have revolutionized local state, but how do you scale that reactivity across your entire application? This session demystifies NgRx SignalStore, the lightweight yet powerful toolkit that serves as the natural extension to Angular's reactive primitives.\n\nWe'll explore how SignalStore eliminates boilerplate and scales from a simple service with signals to a full-fledged, enterprise-grade solution. You'll discover the latest enhancements, including powerful entity management, advanced composition with withFeature, and how the optional Events plugin brings a decoupled, Flux-inspired architecture to your fingertips.\n\nLeave this session ready to build cleaner, more performant, and scalable Angular applications with the ultimate tool for modern, signal-based state management.",
+        "level": "INTERMEDIATE",
+        "formats": ["Conference"],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmkcph2tk00jk01qqvej5rnfp",
+            "name": "Alex Okrushko",
+            "bio": "Alex Okrushko is a lead Frontend Engineer, a core member of the NgRx team, a Google Developer Expert in Angular and an AngularToronto organizer.\n\nOver the last 17 years Alex worked at companies such as Google, Cisco and Snowflake where he built modern web apps, processes and teams.\n\nIn his free time, he likes to play soccer and basketball, travel, and spend time with his kids",
+            "company": null,
+            "picture": "/speakers-2026/alex.jpg",
+            "socialLinks": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "cml3u5ek201c301k2kvwtzvlr",
+      "start": "2026-05-29T10:45:00.000Z",
+      "end": "2026-05-29T11:15:00.000Z",
+      "track": "Main stage",
+      "title": "No Zone, No Problem - Building Angular Apps without Zone.js",
+      "language": "en",
+      "proposal": {
+        "id": "cmjygregi001t01mpswvqtmu6",
+        "proposalNumber": 10,
+        "abstract": "Angular no longer requires Zone.js, but dropping it isn’t just a switch-it’s a mindset shift. This session covers what really happens when you remove Zone.js, how change detection transforms, and how to handle reactivity using Signals and manual strategies. We’ll explore the architectural shift and, most importantly, provide a practical roadmap on how to prepare your code for a zoneless future.",
+        "level": "INTERMEDIATE",
+        "formats": ["Conference"],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmjygregb001s01mpdhx3pf9l",
+            "name": "Brygida Fiejdasz",
+            "bio": "I'm a full-stack developer who turned into Angular maniac.\nFrontend competency center leader and a manager who still loves to code.\nNow focused on sharing knowledge with others at conferences, meetups, and on my YouTube channel - Speed Date With Angular.\nIn my free time, I'm an explorer and cat mom.",
+            "company": null,
+            "picture": "/speakers-2026/brygida.png",
+            "socialLinks": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "cml3u68iq01c501k2fs10l4i9",
+      "start": "2026-05-29T12:15:00.000Z",
+      "end": "2026-05-29T12:45:00.000Z",
+      "track": "Main stage",
+      "title": "Angular Resources: Everything you need to know",
+      "language": "fr",
+      "proposal": {
+        "id": "cmk59arjb003901rsf1bvrywh",
+        "proposalNumber": 17,
+        "abstract": "Discover how game-changing Angular Resources will be for your Angular applications. We'll dive into what Angular Resources are, why they matter, and how they can replace most RxJs code in your Angular applications.\nWe’ll see how to use resources for cleaner, more concise code. A perfect talk for those looking to level up their Angular skills and stay ahead with the latest features.",
+        "level": "INTERMEDIATE",
+        "formats": ["Conference"],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmk5977m0003301rsldtmduhk",
+            "name": "Alain Chautard",
+            "bio": "Alain is a Google Developer Expert in Angular and Microsoft MVP in Web Technologies. His daily mission is to help development teams adopt Angular and build at scale with the framework. He has taught Angular to thousands of developers on all six continents!\n\nA world traveler and photographer, Alain is also an international conference speaker and a published author of several video courses with LinkedIn Learning.",
+            "company": null,
+            "picture": "/speakers-2026/alain.png",
+            "socialLinks": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "cml3tv84l01bv01k2jqq9exq7",
+      "start": "2026-05-29T09:45:00.000Z",
+      "end": "2026-05-29T10:15:00.000Z",
+      "track": "Main stage",
+      "title": "AI-Assisted TDD in Angular: From Chaos to Confidence",
+      "language": "en",
+      "proposal": {
+        "id": "cml266hus016b01k2ltbhxr6r",
+        "proposalNumber": 33,
+        "abstract": "AI coding agents promise speed, but too often they lead to code-and-fix loops, review fatigue, and high maintenance costs. In this talk, I'll introduce Charted Coding — a structured recipe for AI-assisted Angular development: start with a lightweight design doc (the menu), scaffold work-in-progress code and failing tests (mise en place), then let tests guide the AI step by step. I'll also compare this approach to alternatives like Spec Kit, so you can pick what fits your workflow. You’ll see how to keep AI from vibe-coding your Angular apps into chaos, while leveraging MCP servers and tools like WallabyJS to smooth the workflow. The result: maintainable, predictable code your whole team can trust.",
+        "level": "INTERMEDIATE",
+        "formats": ["Conference"],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cml23x566015z01k2u14sfqmp",
+            "name": "Younes Jaaidi",
+            "bio": "Younes Jaaidi is a Software Cook who enjoys whipping code until tests pass.\n\nBorn in the kitchen of eXtreme Programming some 20 years ago, he now teaches and coaches teams — like yours — to cook better software using ingredients such as Test-Driven Development, Charted Coding, and Collective Ownership.\n\nHe’s also an Angular Google Developer Expert, an NX Champion, and a mediocre sailor.\n\nHis favorite spice: `sleep 300 && git reset --hard`",
+            "company": null,
+            "picture": "/speakers-2026/younes.jpg",
+            "socialLinks": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "cml3u6zhz01c601k2bwo2isja",
+      "start": "2026-05-29T16:45:00.000Z",
+      "end": "2026-05-29T17:15:00.000Z",
+      "track": "Main stage",
+      "title": "Q&A",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "cml3tx6a401bw01k2z3pe90j2",
+      "start": "2026-05-29T10:15:00.000Z",
+      "end": "2026-05-29T10:45:00.000Z",
+      "track": "Main stage",
+      "title": "Signal Forms - Beyond the Basics",
+      "language": "en",
+      "proposal": {
+        "id": "cmk1a92ei004f01p27p0t9b0s",
+        "proposalNumber": 11,
+        "abstract": "Signal Forms are the next missing link Angular adds to its signals story.\n\nThe basics are easy to grasp, but the new forms API has much more to offer. In this session, we discuss advanced features such as large forms that are split into sub-forms, working with arrays, using metadata, conditional validations, dealing with null values and form models, and building custom controls. We also explore how Signal Forms can work together with Reactive Forms to support a step-by-step migration.\n\nBy the end, you will have a clear overview of the advanced capabilities of Signal Forms and know how to apply them effectively in your projects.",
+        "level": "ADVANCED",
+        "formats": ["Conference"],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmk1a92ea004e01p2lv16inm2",
+            "name": "Manfred Steyer",
+            "bio": "Trainer, consultant, and programming architect with a focus on Angular, Google Developer Expert (GDE) who writes for O'Reilly, the German Java Magazine, and windows.developer. Regularly speaks at conferences.",
+            "company": null,
+            "picture": "/speakers-2026/manfred.webp",
+            "socialLinks": []
+          }
+        ]
+      }
+    }
+  ]
+}
