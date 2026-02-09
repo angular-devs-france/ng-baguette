@@ -9,6 +9,7 @@ import {
   getSpeakerSlug,
   markdownToHtml,
   i18n,
+  type Session,
 } from "../../utils/schedule";
 
 const locale = "fr";
@@ -33,6 +34,10 @@ const schema = {
   },
   url: `${SITE_DOMAIN}/fr/schedule`,
   description: "Programme de la conférence NG Baguette 2026",
+};
+
+const isKeynote = (session: Session) => {
+  return session.id === 'cml3tv84l01bv01k2jqq9exq7';
 };
 ---
 
@@ -122,6 +127,26 @@ const schema = {
                     {formatTime(session.end, locale)}
                   </span>
                 </div>
+                {isKeynote(session) && (
+                  <span class="badge badge-lg bg-base-100 text-primary gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                      <path d="M2 17l10 5 10-5" />
+                      <path d="M2 12l10 5 10-5" />
+                    </svg>
+                    Keynote
+                  </span>
+                )}
               </div>
 
               <div class="card-body">
