@@ -295,9 +295,8 @@ import { displayDate } from "../../utils";
                     Friday, May 29
                   </p>
                   <span class="text-4xl font-bold mb-6">€{TICKET_PRICE}</span>
-                  {OPEN_TICKET_SALE_DATE ? (
-                    new Date() >= new Date(OPEN_TICKET_SALE_DATE)
-                  ) : false ? (
+                  {OPEN_TICKET_SALE_DATE &&
+                  new Date() >= new Date(OPEN_TICKET_SALE_DATE) ? (
                     TICKET_SOLD_OUT ? (
                       <p class="text-base-content/60 text-sm">Sold out</p>
                     ) : (
