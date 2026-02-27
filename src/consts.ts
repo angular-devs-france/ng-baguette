@@ -33,9 +33,9 @@ export const SPONSORSHIP_BROCHURE_URL = {
 };
 
 export const ADDRESS = {
-  streetAddress: "4 plae Jussieu",
+  streetAddress: "4, place Jussieu",
   addressLocality: "Paris",
-  addressRegion: "Ile de France",
+  addressRegion: "Paris",
   postalCode: "75005",
   addressCountry: "France",
 };
@@ -55,9 +55,8 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
     },
     { title: "About", href: "/about" },
     { title: "CoC", href: "/coc" },
-    /*
+
     { title: "Venue", href: "/venue" },
-    */
   ],
   fr: [
     {
@@ -73,9 +72,8 @@ export const NAVIGATION_LINKS: Record<string, INavigationLink[]> = {
     },
     { title: "A propos", href: "/about" },
     { title: "CoC", href: "/coc" },
-    /*
+
     { title: "Lieu", href: "/venue" },
-    */
   ],
 };
 

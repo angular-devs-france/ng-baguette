@@ -7,9 +7,9 @@ import { ADDRESS } from "../../consts";
 const schema = {
   "@context": "https://schema.org",
   "@type": "EventVenue",
-  name: "Onepoint Nantes",
+  name: "La Sorbonne, Faculté des Sciences et Ingénierie",
   description:
-    "Join us at Epitech, a modern technology school in the heart of the Paris region.",
+    "Join us at La Sorbonne, Faculté des Sciences et Ingénierie, 4 place Jussieu, 75005 Paris.",
   address: {
     "@type": "PostalAddress",
     streetAddress: ADDRESS.streetAddress,
@@ -22,13 +22,13 @@ const schema = {
   telephone: "+33 XXX XXX XXX",
   geo: {
     "@type": "GeoCoordinates",
-    latitude: "48.815304687085025",
-    longitude: "2.3630245124382077",
+    latitude: "48.847",
+    longitude: "2.355",
   },
 };
 ---
 
-<Layout title="Conference Venue - Onepoint Nantes" schema={schema}>
+<Layout title="Conference Venue - La Sorbonne" schema={schema}>
   <main>
     <!-- Hero Section -->
     <div
@@ -40,7 +40,7 @@ const schema = {
         <div class="max-w-3xl">
           <h1 class="text-3xl md:text-5xl font-bold mb-4 title-font">Conference Venue</h1>
           <p class="text-lg md:text-xl text-base-content/90">
-            Join us at La Sorbonne University in Paris
+            La Sorbonne, Faculté des Sciences et Ingénierie — 4, place Jussieu. 75005 Paris
           </p>
         </div>
       </div>
@@ -51,7 +51,7 @@ const schema = {
       <div class="bg-base-200 p-8 rounded-lg shadow-md mb-12">
         <h2 class="text-3xl font-bold mb-4">About the Area</h2>
         <p class="text-lg text-base-content/80 max-w-4xl">
-          Located in the 13th arrondissement of Paris, La Sorbonne University Science & Engineering  is a dynamic academic hub at the heart of the capital. Set along the Seine, the campus benefits from a lively urban environment surrounded by cafés, restaurants, and green spaces. Easily accessible by metro and bus, it offers an ideal setting for learning, collaboration, and engaging with the scientific and cultural vitality of Paris.
+          Located in the 5th arrondissement of Paris (4, place Jussieu), La Sorbonne Faculté des Sciences et Ingénierie is a dynamic academic hub at the heart of the capital. Set along the Seine, the campus benefits from a lively urban environment surrounded by cafés, restaurants, and green spaces. Easily accessible by metro and bus, it offers an ideal setting for learning, collaboration, and engaging with the scientific and cultural vitality of Paris.
         </p>
       </div>
 
@@ -61,7 +61,7 @@ const schema = {
           <div class="bg-base-200 p-6 rounded-lg shadow-md">
             <h2 class="text-2xl font-bold mb-4">Venue Location</h2>
             <div class="space-y-2 text-lg">
-              <p class="font-semibold">Epitech</p>
+              <p class="font-semibold">La Sorbonne, Faculté des Sciences et Ingénierie</p>
               <p>{ADDRESS.streetAddress}</p>
               <p>{ADDRESS.postalCode} {ADDRESS.addressRegion}</p>
               <p>{ADDRESS.addressCountry}</p>
@@ -114,7 +114,7 @@ const schema = {
   // Initialize the map once the DOM is loaded
   document.addEventListener("DOMContentLoaded", () => {
     // Create map instance
-    const map = L.map("map").setView([48.8472222, 2.3444444], 11);
+    const map = L.map("map").setView([48.847, 2.355], 11);
 
     // Add OpenStreetMap tile layer
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -123,6 +123,6 @@ const schema = {
     }).addTo(map);
 
     // Add a marker
-    L.marker([48.8472222, 2.3444444]).addTo(map).bindPopup("La Sorbonne").openPopup();
+    L.marker([48.847, 2.355]).addTo(map).bindPopup("La Sorbonne, Faculté des Sciences et Ingénierie").openPopup();
   });
 </script>
