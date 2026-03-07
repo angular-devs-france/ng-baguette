@@ -107,11 +107,11 @@ export const SPONSORS: Array<{ name: string; photos: string; url: string }> = [
   //   photos: "/sponsors/eezyR.png",
   //   url: "https://eezyr.com/"
   // },
-  // {
-  //   name: "/sponsors/house-of-angular.png",
-  //   photos: "/sponsors/house-of-angular.png",
-  //   url: "https://houseofangular.io/"
-  // },
+  {
+    name: "House of Angular",
+    photos: "/sponsors/house-of-angular.png",
+    url: "https://houseofangular.io/",
+  },
 ];
 export const PARTENERS: Array<{ name: string; photos: string; url: string }> = [
   // {
@@ -124,14 +124,14 @@ export const PARTENERS: Array<{ name: string; photos: string; url: string }> = [
   //   photos: "/sponsors/stickergreen.png",
   //   url: "https://stickergreen.com/"
   // },
-  // {
-  //   name: "Angular Love",
-  //   photos: "/sponsors/angular-love.svg",
-  //   url: "https://angular.love/"
-  // },
-  // {
-  //   name: "Paris Angular",
-  //   photos: "/sponsors/paris-angular.png",
-  //   url: "https://www.meetup.com/paris-angular/"
-  // }
+  {
+    name: "Angular Love",
+    photos: "/sponsors/angular-love.svg",
+    url: "https://angular.love/",
+  },
+  {
+    name: "Paris Angular",
+    photos: "/sponsors/paris-angular.png",
+    url: "https://www.meetup.com/paris-angular/",
+  },
 ];
