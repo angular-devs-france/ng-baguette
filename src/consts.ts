@@ -112,6 +112,11 @@ export const SPONSORS: Array<{ name: string; photos: string; url: string }> = [
     photos: "/sponsors/house-of-angular.png",
     url: "https://houseofangular.io/",
   },
+  {
+    name: "Takima",
+    photos: "/sponsors/takima.png",
+    url: "https://www.takima.fr/",
+  },
 ];
 export const PARTENERS: Array<{ name: string; photos: string; url: string }> = [
   // {
