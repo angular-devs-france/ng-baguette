@@ -273,11 +273,20 @@
             }
         },
         {
+            "id": "cmocn1slw00sj01mk7j7c1t95",
+            "start": "2026-05-29T12:45:00.000Z",
+            "end": "2026-05-29T14:15:00.000Z",
+            "track": "break",
+            "title": "Lunch break",
+            "language": null,
+            "proposal": null
+        },
+        {
             "id": "cmoclakd000s301mkbh0jpzsp",
             "start": "2026-05-29T11:15:00.000Z",
             "end": "2026-05-29T11:45:00.000Z",
             "track": "break",
-            "title": "break",
+            "title": "Break",
             "language": null,
             "proposal": null
         },
@@ -286,16 +295,7 @@
             "start": "2026-05-29T15:15:00.000Z",
             "end": "2026-05-29T15:45:00.000Z",
             "track": "break",
-            "title": "break",
-            "language": null,
-            "proposal": null
-        },
-        {
-            "id": "cmoclb82o00s501mk3ged968p",
-            "start": "2026-05-29T12:45:00.000Z",
-            "end": "2026-05-29T14:15:00.000Z",
-            "track": "break",
-            "title": "lunch break",
+            "title": "Break",
             "language": null,
             "proposal": null
         }
