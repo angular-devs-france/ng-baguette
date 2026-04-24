@@ -69,7 +69,7 @@ export function getSpeakerBySlug(
 
 export function getSortedSessions(): Session[] {
   const sessions: Session[] = scheduleData.sessions;
-  return [...sessions].sort(
+  return [...sessions].filter(s => s.track !== 'break').toSorted(
     (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime(),
   );
 }
