@@ -122,11 +122,11 @@ export const SPONSORS: Array<{ name: string; photos: string; url: string }> = [
     photos: "/sponsors/sekoia-dark.svg",
     url: "https://sekoia.io/",
   },
-  // {
-  //   name: "Criteo",
-  //   photos: "/sponsors/Criteo-Logo-1C-Black.svg",
-  //   url: "https://www.criteo.com/",
-  // },
+  {
+    name: "Criteo",
+    photos: "/sponsors/Criteo-Logo-1C-Black.svg",
+    url: "https://www.criteo.com/",
+  },
 ];
 export const PARTENERS: Array<{ name: string; photos: string; url: string }> = [
   // {
