@@ -11,7 +11,10 @@ import {
   EVENT_END_TIME,
   EVENT_START_TIME,
   HELLOASSO_LINK,
+  LATE_TICKET_PRICE,
+  LATE_TICKET_SOLD_OUT,
   OPEN_BLIND_TICKET_SALE_DATE,
+  OPEN_LATE_TICKET_SALE_DATE,
   OPEN_TICKET_SALE_DATE,
   // OPEN_WORKSHOP_TICKET_SALE_DATE,
   PARTENERS,
@@ -290,6 +293,38 @@ import { displayDate } from "../../utils";
                       {OPEN_TICKET_SALE_DATE
                         ? "En vente à partir du " +
                           displayDate(OPEN_TICKET_SALE_DATE)
+                        : "Bientôt en vente"}
+                    </p>
+                  )}
+                </div>
+              </li>
+              <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
+                <div class="card-body flex flex-col items-center py-8">
+                  <h3 class="card-title text-xl text-center mb-1">
+                    Ticket Conférence Late
+                  </h3>
+                  <p class="text-sm text-base-content/60 mb-4">
+                    vendredi 29 mai
+                  </p>
+                  <span class="text-4xl font-bold mb-6">€{LATE_TICKET_PRICE}</span>
+                  {OPEN_LATE_TICKET_SALE_DATE &&
+                  new Date() >= new Date(OPEN_LATE_TICKET_SALE_DATE) ? (
+                    LATE_TICKET_SOLD_OUT ? (
+                      <p class="text-base-content/60 text-sm">Complet</p>
+                    ) : (
+                      <a
+                        class="btn btn-primary w-full"
+                        href={HELLOASSO_LINK}
+                        target="_blank"
+                      >
+                        Obtenir votre billet
+                      </a>
+                    )
+                  ) : (
+                    <p class="text-base-content/60 text-sm text-center">
+                      {OPEN_LATE_TICKET_SALE_DATE
+                        ? "En vente à partir du " +
+                          displayDate(OPEN_LATE_TICKET_SALE_DATE)
                         : "Bientôt en vente"}
                     </p>
                   )}
