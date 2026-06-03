@@ -21,15 +21,14 @@ export const OPEN_TICKET_SALE_DATE = "2026-02-09";
 export const TICKET_SOLD_OUT: boolean = true;
 export const LATE_TICKET_PRICE = 119; // in euros
 export const OPEN_LATE_TICKET_SALE_DATE = "2026-05-01";
-export const LATE_TICKET_SOLD_OUT: boolean = false;
+export const LATE_TICKET_SOLD_OUT: boolean = true;
 // export const WORKSHOP_TICKET_PRICE = 500; // in euros
 // export const OPEN_WORKSHOP_TICKET_SALE_DATE = "2026-02-01";
 // export const WORKSHOP_TICKET_SOLD_OUT: boolean = false;
 
 // Trigger (awaiting, open, closed)
 
-export const TICKETING_TRIGGER_EVENT: "awaiting" | "open" | "closed" = "open";
-
+export const TICKETING_TRIGGER_EVENT: "awaiting" | "open" | "closed" = "closed";
 export const SPONSORSHIP_BROCHURE_URL = {
   en: "/pdf/sponsorship-prospectus-ngbaguette-2026.pdf",
   fr: "/pdf/dossier-sponsoring-ngbaguette-2026.pdf",

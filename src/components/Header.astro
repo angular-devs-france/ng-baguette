@@ -1,5 +1,5 @@
 ---
-import { SITE_ACRONYM } from "../consts";
+import { SITE_ACRONYM, TICKETING_TRIGGER_EVENT } from "../consts";
 import { NAVIGATION_LINKS } from "../consts";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -93,14 +93,18 @@ function isActiveLink(href: string): boolean {
 
     <div class="navbar-end flex md:gap-20 gap-4">
       <!-- lien direct car 1 seul pricing disponible -->
-      <a
-        href="https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2026"
-        target="_blank"
-        class="btn btn-sm btn-primary"
-      >
-        <img src="/icons/ticket.png" class="w-5 h-5" alt="" />
-        {locale === "en" ? "Tickets" : "Billeterie"}
-      </a>
+      {
+        TICKETING_TRIGGER_EVENT === "open" && (
+          <a
+            href="https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2026"
+            target="_blank"
+            class="btn btn-sm btn-primary"
+          >
+            <img src="/icons/ticket.png" class="w-5 h-5" alt="" />
+            {locale === "en" ? "Tickets" : "Billeterie"}
+          </a>
+        )
+      }
       <div class="flex gap-1.5">
         <a
           href="/en"
