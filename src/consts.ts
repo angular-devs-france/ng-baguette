@@ -2,36 +2,38 @@ import type { INavigationLink } from "./models/navigation-link.model.ts";
 
 export const SITE_DOMAIN = "https://ngbaguette.angulardevs.fr";
 
-export const SITE_TITLE = "NG BAGUETTE CONF 2026";
+export const SITE_TITLE = "NG BAGUETTE CONF 2027";
 export const SITE_ACRONYM = "NG Baguette Conf";
 export const SITE_DESCRIPTION = "French cooked Angular conference";
 export const EVENT_START_TIME = "9h00";
 export const EVENT_END_TIME = "18h00";
-export const EVENT_DATE = "2026-05-29";
-export const CFP_START_DATE = "2025-12-15";
-export const CFP_END_DATE = "2026-01-31";
-export const OPEN_PROGRAM_DATE = "2026-02-09"; // Date when the agenda will be made public
-export const SPONSOR_ENDING_RESEARCH_DATE = "2026-04-20";
+export const EVENT_DATE = "2027-05-29";
+export const CFP_START_DATE = "2026-11-02";
+export const CFP_END_DATE = "2027-01-30";
+export const OPEN_PROGRAM_DATE = "2027-02-15"; // Date when the agenda will be made public
+export const SPONSOR_ENDING_RESEARCH_DATE = "2027-04-20";
 export const EVENT_YEAR = new Date(EVENT_DATE).getFullYear();
-export const BLIND_TICKET_PRICE = 69; // in euros
-export const OPEN_BLIND_TICKET_SALE_DATE = "2026-01-05";
-export const BLIND_TICKET_SOLD_OUT: boolean = true;
+export const BLIND_TICKET_PRICE = 79; // in euros
+export const OPEN_BLIND_TICKET_SALE_DATE = "2027-10-05";
+export const BLIND_TICKET_SOLD_OUT: boolean = false;
 export const TICKET_PRICE = 99; // in euros
-export const OPEN_TICKET_SALE_DATE = "2026-02-09";
-export const TICKET_SOLD_OUT: boolean = true;
+export const OPEN_TICKET_SALE_DATE = OPEN_BLIND_TICKET_SALE_DATE;
+export const TICKET_SOLD_OUT: boolean = false;
 export const LATE_TICKET_PRICE = 119; // in euros
-export const OPEN_LATE_TICKET_SALE_DATE = "2026-05-01";
-export const LATE_TICKET_SOLD_OUT: boolean = true;
+export const OPEN_LATE_TICKET_SALE_DATE = "2027-04-12";
+export const CLOSE_TICKET_SALE_DATE = "2027-05-14";
+export const LATE_TICKET_SOLD_OUT: boolean = false;
 // export const WORKSHOP_TICKET_PRICE = 500; // in euros
-// export const OPEN_WORKSHOP_TICKET_SALE_DATE = "2026-02-01";
+// export const OPEN_WORKSHOP_TICKET_SALE_DATE = "2027-02-01";
 // export const WORKSHOP_TICKET_SOLD_OUT: boolean = false;
 
 // Trigger (awaiting, open, closed)
 
-export const TICKETING_TRIGGER_EVENT: "awaiting" | "open" | "closed" = "closed";
+export const TICKETING_TRIGGER_EVENT: "awaiting" | "open" | "closed" =
+  "awaiting";
 export const SPONSORSHIP_BROCHURE_URL = {
-  en: "/pdf/sponsorship-prospectus-ngbaguette-2026.pdf",
-  fr: "/pdf/dossier-sponsoring-ngbaguette-2026.pdf",
+  en: "/pdf/sponsorship-prospectus-ngbaguette-2027.pdf",
+  fr: "/pdf/dossier-sponsoring-ngbaguette-2027.pdf",
 };
 
 export const ADDRESS = {
@@ -97,58 +99,50 @@ export const PAST_EDITIONS: Array<{
       fr: "https://2025-ngbaguette.angulardevs.fr/fr/",
     },
   },
+  {
+    year: 2026,
+    url: {
+      en: "https://2026-ngbaguette.angulardevs.fr/en/",
+      fr: "https://2026-ngbaguette.angulardevs.fr/fr/",
+    },
+  },
 ];
 
-export const CFP_LINK = "https://conference-hall.io/ng-baguette-conf-2026";
+export const CFP_LINK = "https://conference-hall.io/ng-baguette-conf-2027";
 export const HELLOASSO_LINK =
-  "https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2026";
+  "https://www.helloasso.com/associations/angular-nexus/evenements/ng-baguette-conf-2027";
 
 export const SPONSORS: Array<{ name: string; photos: string; url: string }> = [
   // {
-  //   name: "eezyr",
-  //   photos: "/sponsors/eezyR.png",
-  //   url: "https://eezyr.com/"
+  //   name: "House of Angular",
+  //   photos: "/sponsors/house-of-angular.png",
+  //   url: "https://houseofangular.io/",
   // },
-  {
-    name: "House of Angular",
-    photos: "/sponsors/house-of-angular.png",
-    url: "https://houseofangular.io/",
-  },
-  {
-    name: "Takima",
-    photos: "/sponsors/takima.png",
-    url: "https://www.takima.fr/",
-  },
-  {
-    name: "Sekoia",
-    photos: "/sponsors/sekoia-dark.svg",
-    url: "https://sekoia.io/",
-  },
-  {
-    name: "Criteo",
-    photos: "/sponsors/Criteo-Logo-1C-Black.svg",
-    url: "https://www.criteo.com/",
-  },
+  // {
+  //   name: "Takima",
+  //   photos: "/sponsors/takima.png",
+  //   url: "https://www.takima.fr/",
+  // },
+  // {
+  //   name: "Sekoia",
+  //   photos: "/sponsors/sekoia-dark.svg",
+  //   url: "https://sekoia.io/",
+  // },
+  // {
+  //   name: "Criteo",
+  //   photos: "/sponsors/Criteo-Logo-1C-Black.svg",
+  //   url: "https://www.criteo.com/",
+  // },
 ];
 export const PARTENERS: Array<{ name: string; photos: string; url: string }> = [
   // {
-  //   name: "NantesJS",
-  //   photos: "/sponsors/nantesjs.svg",
-  //   url: "https://nantesjs.org/"
+  //   name: "Angular Love",
+  //   photos: "/sponsors/angular-love.svg",
+  //   url: "https://angular.love/",
   // },
   // {
-  //   name: 'Stickergreen',
-  //   photos: "/sponsors/stickergreen.png",
-  //   url: "https://stickergreen.com/"
+  //   name: "Paris Angular",
+  //   photos: "/sponsors/paris-angular.png",
+  //   url: "https://www.meetup.com/paris-angular/",
   // },
-  {
-    name: "Angular Love",
-    photos: "/sponsors/angular-love.svg",
-    url: "https://angular.love/",
-  },
-  {
-    name: "Paris Angular",
-    photos: "/sponsors/paris-angular.png",
-    url: "https://www.meetup.com/paris-angular/",
-  },
 ];

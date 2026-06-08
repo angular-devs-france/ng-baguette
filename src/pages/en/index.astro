@@ -6,6 +6,7 @@ import {
   ADDRESS,
   BLIND_TICKET_PRICE,
   BLIND_TICKET_SOLD_OUT,
+  CLOSE_TICKET_SALE_DATE,
   EVENT_DATE,
   EVENT_END_TIME,
   EVENT_START_TIME,
@@ -228,130 +229,133 @@ import { displayDate } from "../../utils";
         </h2>
 
         {
-          TICKETING_TRIGGER_EVENT === "open" && (
-            <ul class="flex flex-col md:flex-row gap-6 items-stretch max-w-5xl mx-auto">
-              <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
-                <div class="card-body flex flex-col items-center py-8">
-                  <h3 class="card-title text-xl text-center mb-1">
-                    Conference Early Ticket
-                  </h3>
-                  <p class="text-sm text-base-content/60 mb-4">
-                    Friday, May 29
-                  </p>
-                  <span class="text-4xl font-bold mb-6">
-                    €{BLIND_TICKET_PRICE}
-                  </span>
+          TICKETING_TRIGGER_EVENT === "open" &&
+            new Date() < new Date(CLOSE_TICKET_SALE_DATE) && (
+              <ul class="flex flex-col md:flex-row gap-6 items-stretch max-w-5xl mx-auto">
+                <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
+                  <div class="card-body flex flex-col items-center py-8">
+                    <h3 class="card-title text-xl text-center mb-1">
+                      Conference Early Ticket
+                    </h3>
+                    <p class="text-sm text-base-content/60 mb-4">
+                      Friday, May 29
+                    </p>
+                    <span class="text-4xl font-bold mb-6">
+                      €{BLIND_TICKET_PRICE}
+                    </span>
 
-                  {new Date() >= new Date(OPEN_BLIND_TICKET_SALE_DATE) ? (
-                    BLIND_TICKET_SOLD_OUT ? (
-                      <p class="text-base-content/60 text-sm">Sold out</p>
+                    {new Date() >= new Date(OPEN_BLIND_TICKET_SALE_DATE) ? (
+                      BLIND_TICKET_SOLD_OUT ? (
+                        <p class="text-base-content/60 text-sm">Sold out</p>
+                      ) : (
+                        <button
+                          class="btn btn-primary w-full"
+                          onclick="document.getElementById('ticket-modal').showModal()"
+                        >
+                          Get your ticket
+                        </button>
+                      )
                     ) : (
-                      <button
-                        class="btn btn-primary w-full"
-                        onclick="document.getElementById('ticket-modal').showModal()"
-                      >
-                        Get your ticket
-                      </button>
-                    )
-                  ) : (
-                    <p class="text-base-content/60 text-sm text-center">
-                      Not yet on sale from
-                      {displayDate(OPEN_BLIND_TICKET_SALE_DATE, "en-US")})
-                    </p>
-                  )}
-                  <dialog id="ticket-modal" class="modal">
-                    <div class="modal-box">
-                      <h3 class="font-bold text-lg">Important Note</h3>
-                      <p class="py-4">
-                        To reduce costs and simplify the first edition, we are
-                        using a free French platform dedicated to non profit
-                        events.
+                      <p class="text-base-content/60 text-sm text-center">
+                        Not yet on sale from
+                        {displayDate(OPEN_BLIND_TICKET_SALE_DATE, "en-US")}
                       </p>
-                      <p>The ticket registration page is in French.</p>
-                      <p>
-                        If your French vocabulary is limited to "Oui Oui
-                        Baguette", you may want to use Google Translate there to
-                        complete your purchase!
-                      </p>
-                      <div class="modal-action">
-                        <form class="flex gap-4" method="dialog">
-                          <a
-                            href={HELLOASSO_LINK}
-                            target="_blank"
-                            class="btn btn-primary"
-                          >
-                            Get your ticket
-                          </a>
-                          <button class="btn">Close</button>
-                        </form>
+                    )}
+                    <dialog id="ticket-modal" class="modal">
+                      <div class="modal-box">
+                        <h3 class="font-bold text-lg">Important Note</h3>
+                        <p class="py-4">
+                          To reduce costs and simplify the first edition, we are
+                          using a free French platform dedicated to non profit
+                          events.
+                        </p>
+                        <p>The ticket registration page is in French.</p>
+                        <p>
+                          If your French vocabulary is limited to "Oui Oui
+                          Baguette", you may want to use Google Translate there
+                          to complete your purchase!
+                        </p>
+                        <div class="modal-action">
+                          <form class="flex gap-4" method="dialog">
+                            <a
+                              href={HELLOASSO_LINK}
+                              target="_blank"
+                              class="btn btn-primary"
+                            >
+                              Get your ticket
+                            </a>
+                            <button class="btn">Close</button>
+                          </form>
+                        </div>
                       </div>
-                    </div>
-                  </dialog>
-                </div>
-              </li>
-              <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
-                <div class="card-body flex flex-col items-center py-8">
-                  <h3 class="card-title text-xl text-center mb-1">
-                    Conference Ticket
-                  </h3>
-                  <p class="text-sm text-base-content/60 mb-4">
-                    Friday, May 29
-                  </p>
-                  <span class="text-4xl font-bold mb-6">€{TICKET_PRICE}</span>
-                  {OPEN_TICKET_SALE_DATE &&
-                  new Date() >= new Date(OPEN_TICKET_SALE_DATE) ? (
-                    TICKET_SOLD_OUT ? (
-                      <p class="text-base-content/60 text-sm">Sold out</p>
-                    ) : (
-                      <button
-                        class="btn btn-primary w-full"
-                        onclick="document.getElementById('ticket-modal').showModal()"
-                      >
-                        Get your ticket
-                      </button>
-                    )
-                  ) : (
-                    <p class="text-base-content/60 text-sm text-center">
-                      {OPEN_TICKET_SALE_DATE
-                        ? "On sale from " +
-                          displayDate(OPEN_TICKET_SALE_DATE, "en-US")
-                        : "Soon on sale"}
+                    </dialog>
+                  </div>
+                </li>
+                <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
+                  <div class="card-body flex flex-col items-center py-8">
+                    <h3 class="card-title text-xl text-center mb-1">
+                      Conference Ticket
+                    </h3>
+                    <p class="text-sm text-base-content/60 mb-4">
+                      Friday, May 29
                     </p>
-                  )}
-                </div>
-              </li>
-              <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
-                <div class="card-body flex flex-col items-center py-8">
-                  <h3 class="card-title text-xl text-center mb-1">
-                    Late Conference Ticket
-                  </h3>
-                  <p class="text-sm text-base-content/60 mb-4">
-                    Friday, May 29
-                  </p>
-                  <span class="text-4xl font-bold mb-6">€{LATE_TICKET_PRICE}</span>
-                  {OPEN_LATE_TICKET_SALE_DATE &&
-                  new Date() >= new Date(OPEN_LATE_TICKET_SALE_DATE) ? (
-                    LATE_TICKET_SOLD_OUT ? (
-                      <p class="text-base-content/60 text-sm">Sold out</p>
+                    <span class="text-4xl font-bold mb-6">€{TICKET_PRICE}</span>
+                    {OPEN_TICKET_SALE_DATE &&
+                    new Date() >= new Date(OPEN_TICKET_SALE_DATE) ? (
+                      TICKET_SOLD_OUT ? (
+                        <p class="text-base-content/60 text-sm">Sold out</p>
+                      ) : (
+                        <button
+                          class="btn btn-primary w-full"
+                          onclick="document.getElementById('ticket-modal').showModal()"
+                        >
+                          Get your ticket
+                        </button>
+                      )
                     ) : (
-                      <button
-                        class="btn btn-primary w-full"
-                        onclick="document.getElementById('ticket-modal').showModal()"
-                      >
-                        Get your ticket
-                      </button>
-                    )
-                  ) : (
-                    <p class="text-base-content/60 text-sm text-center">
-                      {OPEN_LATE_TICKET_SALE_DATE
-                        ? "On sale from " +
-                          displayDate(OPEN_LATE_TICKET_SALE_DATE, "en-US")
-                        : "Soon on sale"}
+                      <p class="text-base-content/60 text-sm text-center">
+                        {OPEN_TICKET_SALE_DATE
+                          ? "On sale from " +
+                            displayDate(OPEN_TICKET_SALE_DATE, "en-US")
+                          : "Soon on sale"}
+                      </p>
+                    )}
+                  </div>
+                </li>
+                <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
+                  <div class="card-body flex flex-col items-center py-8">
+                    <h3 class="card-title text-xl text-center mb-1">
+                      Late Conference Ticket
+                    </h3>
+                    <p class="text-sm text-base-content/60 mb-4">
+                      Friday, May 29
                     </p>
-                  )}
-                </div>
-              </li>
-              {/* <li
+                    <span class="text-4xl font-bold mb-6">
+                      €{LATE_TICKET_PRICE}
+                    </span>
+                    {OPEN_LATE_TICKET_SALE_DATE &&
+                    new Date() >= new Date(OPEN_LATE_TICKET_SALE_DATE) ? (
+                      LATE_TICKET_SOLD_OUT ? (
+                        <p class="text-base-content/60 text-sm">Sold out</p>
+                      ) : (
+                        <button
+                          class="btn btn-primary w-full"
+                          onclick="document.getElementById('ticket-modal').showModal()"
+                        >
+                          Get your ticket
+                        </button>
+                      )
+                    ) : (
+                      <p class="text-base-content/60 text-sm text-center">
+                        {OPEN_LATE_TICKET_SALE_DATE
+                          ? "On sale from " +
+                            displayDate(OPEN_LATE_TICKET_SALE_DATE, "en-US")
+                          : "Soon on sale"}
+                      </p>
+                    )}
+                  </div>
+                </li>
+                {/* <li
                   class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors"
                 >
                   <div class="card-body flex flex-col items-center py-8">
@@ -379,8 +383,8 @@ import { displayDate } from "../../utils";
                     }
                   </div>
                 </li> */}
-            </ul>
-          )
+              </ul>
+            )
         }
 
         {
@@ -394,7 +398,8 @@ import { displayDate } from "../../utils";
         }
 
         {
-          TICKETING_TRIGGER_EVENT === "closed" && (
+          (TICKETING_TRIGGER_EVENT === "closed" ||
+            new Date() >= new Date(CLOSE_TICKET_SALE_DATE)) && (
             <div class="max-w-2xl mx-auto text-center">
               <p class="text-xl text-base-content/80 mb-4">
                 Ticket sales are now closed.
