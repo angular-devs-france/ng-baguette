@@ -17,6 +17,7 @@ const t = i18n[locale];
 
 export function getStaticPaths() {
   const speakers = getAllSpeakers();
+
   return speakers.map((speaker) => ({
     params: { slug: getSpeakerSlug(speaker) },
     props: { speaker },

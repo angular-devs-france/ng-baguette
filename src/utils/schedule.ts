@@ -1,4 +1,4 @@
-import scheduleData from "../content/ng-baguette-conf-2026-schedule.json";
+import scheduleData from "../content/ng-baguette-conf-2027-schedule.json";
 import { Marked, type Tokens } from "marked";
 
 export type Speaker = {
@@ -34,8 +34,9 @@ export type SpeakerWithSessions = Speaker & {
 
 export type Locale = "fr" | "en";
 
-export function getAllSpeakers(): SpeakerWithSessions[] {
-  const sessions: Session[] = scheduleData.sessions;
+export function getAllSpeakers(
+  sessions: Session[] = scheduleData.sessions,
+): SpeakerWithSessions[] {
   const speakerMap = new Map<string, SpeakerWithSessions>();
 
   for (const session of sessions) {

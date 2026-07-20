@@ -1,0 +1,144 @@
+{
+  "name": "NG Baguette Conf 2027 schedule",
+  "days": [
+    "2027-05-29T00:00:00.000Z"
+  ],
+  "timeZone": "Europe/Paris",
+  "sessions": [
+    {
+      "id": "welcome",
+      "start": "2027-05-29T09:00:00.000Z",
+      "end": "2027-05-29T09:30:00.000Z",
+      "track": "main",
+      "title": "Accueil",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "intro-keynote",
+      "start": "2027-05-29T09:30:00.000Z",
+      "end": "2027-05-29T10:15:00.000Z",
+      "track": "main",
+      "title": "Introduction + keynote",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "main-1",
+      "start": "2027-05-29T10:15:00.000Z",
+      "end": "2027-05-29T10:45:00.000Z",
+      "track": "main",
+      "title": "Talk 1",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "workshop-1",
+      "start": "2027-05-29T10:15:00.000Z",
+      "end": "2027-05-29T12:15:00.000Z",
+      "track": "workshop",
+      "title": "Workshop 1",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "morning-break",
+      "start": "2027-05-29T10:45:00.000Z",
+      "end": "2027-05-29T11:15:00.000Z",
+      "track": "main",
+      "title": "Pause",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "main-2",
+      "start": "2027-05-29T11:15:00.000Z",
+      "end": "2027-05-29T11:45:00.000Z",
+      "track": "main",
+      "title": "Talk 2",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "main-3",
+      "start": "2027-05-29T11:50:00.000Z",
+      "end": "2027-05-29T12:20:00.000Z",
+      "track": "main",
+      "title": "Talk 3",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "lunch",
+      "start": "2027-05-29T12:30:00.000Z",
+      "end": "2027-05-29T14:00:00.000Z",
+      "track": "main",
+      "title": "Pause déjeuner",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "main-4",
+      "start": "2027-05-29T14:00:00.000Z",
+      "end": "2027-05-29T14:30:00.000Z",
+      "track": "main",
+      "title": "Talk 4",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "workshop-2",
+      "start": "2027-05-29T14:00:00.000Z",
+      "end": "2027-05-29T16:00:00.000Z",
+      "track": "workshop",
+      "title": "Workshop 2",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "main-5",
+      "start": "2027-05-29T14:35:00.000Z",
+      "end": "2027-05-29T15:05:00.000Z",
+      "track": "main",
+      "title": "Talk 5",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "main-6",
+      "start": "2027-05-29T15:10:00.000Z",
+      "end": "2027-05-29T15:40:00.000Z",
+      "track": "main",
+      "title": "Talk 6",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "afternoon-break",
+      "start": "2027-05-29T15:40:00.000Z",
+      "end": "2027-05-29T16:10:00.000Z",
+      "track": "main",
+      "title": "Pause",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "main-7",
+      "start": "2027-05-29T16:10:00.000Z",
+      "end": "2027-05-29T16:40:00.000Z",
+      "track": "main",
+      "title": "Talk 7",
+      "language": null,
+      "proposal": null
+    },
+    {
+      "id": "questions-answers",
+      "start": "2027-05-29T16:45:00.000Z",
+      "end": "2027-05-29T17:30:00.000Z",
+      "track": "main",
+      "title": "Questions / réponses",
+      "language": null,
+      "proposal": null
+    }
+  ]
+}
