@@ -4,16 +4,20 @@ import {
   getLanguageLabel,
   getLevelLabel,
   getSpeakerSlug,
+  i18n,
   markdownToHtml,
+  type Locale,
   type Session,
 } from "../utils/schedule";
 
 interface Props {
   session: Session;
+  locale?: Locale;
   class?: string;
 }
 
-const { session, class: className } = Astro.props;
+const { session, locale = "fr", class: className } = Astro.props;
+const t = i18n[locale];
 
 const isKeynote =
   session.id === "intro-keynote" ||
@@ -43,7 +47,7 @@ const isKeynote =
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       <span class="font-mono font-bold text-lg">
-        {formatTime(session.start, "fr")} - {formatTime(session.end, "fr")}
+        {formatTime(session.start, locale)} - {formatTime(session.end, locale)}
       </span>
     </div>
     {
@@ -79,7 +83,7 @@ const isKeynote =
           {session.language && (
             <span class="badge badge-lg gap-2">
               {session.language === "fr" ? "🇫🇷" : "🇬🇧"}
-              {getLanguageLabel(session.language, "fr").split(" ")[1]}
+              {getLanguageLabel(session.language, locale).split(" ")[1]}
             </span>
           )}
           <span class="badge badge-lg badge-secondary badge-outline gap-2">
@@ -97,7 +101,7 @@ const isKeynote =
             >
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
-            {getLevelLabel(session.proposal.level, "fr")}
+            {getLevelLabel(session.proposal.level, locale)}
           </span>
         </div>
       )
@@ -108,7 +112,7 @@ const isKeynote =
         <div class="flex flex-wrap gap-4 my-4">
           {session.proposal.speakers.map((speaker) => (
             <a
-              href={`/fr/speaker/${getSpeakerSlug(speaker)}`}
+              href={`/${locale}/speaker/${getSpeakerSlug(speaker)}`}
               class="flex items-center gap-4 bg-base-100 hover:bg-base-300 rounded-xl p-3 transition-all hover:scale-[1.02] hover:shadow-md"
             >
               <div class="avatar">
@@ -183,7 +187,7 @@ const isKeynote =
               <line x1="16" y1="13" x2="8" y2="13" />
               <line x1="16" y1="17" x2="8" y2="17" />
             </svg>
-            Voir le résumé
+            {t.viewAbstract}
           </h3>
           <div
             class="text-base-content/80 leading-relaxed prose prose-sm max-w-none"
