@@ -1,0 +1,196 @@
+---
+import {
+  formatTime,
+  getLanguageLabel,
+  getLevelLabel,
+  getSpeakerSlug,
+  markdownToHtml,
+  type Session,
+} from "../utils/schedule";
+
+interface Props {
+  session: Session;
+  class?: string;
+}
+
+const { session, class: className } = Astro.props;
+
+const isKeynote =
+  session.id === "intro-keynote" ||
+  session.proposal?.formats.some((format) => format.toLowerCase() === "keynote");
+---
+
+<article
+  class:list={["card bg-base-200 shadow-xl overflow-hidden", className]}
+>
+  <div
+    class="bg-primary text-primary-content px-6 py-3 flex items-center justify-between flex-wrap gap-2"
+  >
+    <div class="flex items-center gap-3">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <span class="font-mono font-bold text-lg">
+        {formatTime(session.start, "fr")} - {formatTime(session.end, "fr")}
+      </span>
+    </div>
+    {
+      isKeynote && (
+        <span class="badge badge-lg bg-base-100 text-primary gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+            <path d="M2 17l10 5 10-5" />
+            <path d="M2 12l10 5 10-5" />
+          </svg>
+          Keynote
+        </span>
+      )
+    }
+  </div>
+  <div class="card-body">
+    <h2 class="card-title text-xl md:text-2xl mb-3">{session.title}</h2>
+
+    {
+      session.proposal && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          {session.language && (
+            <span class="badge badge-lg gap-2">
+              {session.language === "fr" ? "🇫🇷" : "🇬🇧"}
+              {getLanguageLabel(session.language, "fr").split(" ")[1]}
+            </span>
+          )}
+          <span class="badge badge-lg badge-secondary badge-outline gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+            {getLevelLabel(session.proposal.level, "fr")}
+          </span>
+        </div>
+      )
+    }
+
+    {
+      session.proposal?.speakers && session.proposal.speakers.length > 0 && (
+        <div class="flex flex-wrap gap-4 my-4">
+          {session.proposal.speakers.map((speaker) => (
+            <a
+              href={`/fr/speaker/${getSpeakerSlug(speaker)}`}
+              class="flex items-center gap-4 bg-base-100 hover:bg-base-300 rounded-xl p-3 transition-all hover:scale-[1.02] hover:shadow-md"
+            >
+              <div class="avatar">
+                <div class="w-14 h-14 rounded-xl ring-2 ring-primary/30">
+                  <img src={speaker.picture} alt={speaker.name} loading="lazy" />
+                </div>
+              </div>
+              <div>
+                <p class="font-semibold text-lg">{speaker.name}</p>
+                {speaker.company && (
+                  <p class="text-sm text-base-content/60 flex items-center gap-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                      <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+                      <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+                    </svg>
+                    {speaker.company}
+                  </p>
+                )}
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary ml-auto"
+                aria-hidden="true"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      session.proposal && (
+        <div class="bg-base-100 rounded-xl p-5 mt-2">
+          <h3 class="font-semibold mb-3 text-base-content/70 uppercase text-sm tracking-wide flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary"
+              aria-hidden="true"
+            >
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+            Voir le résumé
+          </h3>
+          <div
+            class="text-base-content/80 leading-relaxed prose prose-sm max-w-none"
+            set:html={markdownToHtml(session.proposal.abstract)}
+          />
+        </div>
+      )
+    }
+  </div>
+</article>

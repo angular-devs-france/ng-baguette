@@ -1,15 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import SessionCard from "../../components/SessionCard.astro";
 import { EVENT_DATE, SITE_DOMAIN, SITE_TITLE } from "../../consts";
 import scheduleData from "../../content/ng-baguette-conf-2027-schedule.json";
-import {
-  formatTime,
-  getLanguageLabel,
-  getLevelLabel,
-  getSpeakerSlug,
-  markdownToHtml,
-  type Session,
-} from "../../utils/schedule";
+import { formatTime, type Session } from "../../utils/schedule";
 
 type Track = "main" | "workshop";
 
@@ -24,35 +18,69 @@ const sessions = (scheduleData.sessions as ScheduleSession[]).toSorted(
   (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime(),
 );
 
-const mainSessions = sessions.filter((session) => session.track === "main");
 const workshopSessions = sessions.filter(
   (session) => session.track === "workshop",
 );
-const overlapsWorkshop = (session: ScheduleSession) =>
-  workshopSessions.some(
+
+/**
+ * A session belongs to the shared timeline when it runs on the main track
+ * without any workshop happening at the same time: everyone attends it.
+ * Everything else sits in a parallel block, one column per track.
+ */
+const isCommon = (session: ScheduleSession) =>
+  session.track === "main" &&
+  !workshopSessions.some(
     (workshop) => session.start < workshop.end && session.end > workshop.start,
   );
-const commonSessionIds = new Set(
-  mainSessions
-    .filter((session) => !overlapsWorkshop(session))
-    .map((session) => session.id),
+
+type Segment =
+  | { kind: "common"; sessions: ScheduleSession[] }
+  | {
+      kind: "parallel";
+      start: string;
+      end: string;
+      columns: Record<Track, ScheduleSession[]>;
+    };
+
+/**
+ * Walk the day chronologically and group consecutive sessions into alternating
+ * common / parallel segments.
+ */
+const segments = sessions.reduce<Segment[]>((acc, session) => {
+  const current = acc.at(-1);
+
+  if (isCommon(session)) {
+    if (current?.kind === "common") {
+      current.sessions.push(session);
+    } else {
+      acc.push({ kind: "common", sessions: [session] });
+    }
+    return acc;
+  }
+
+  if (current?.kind === "parallel") {
+    current.columns[session.track].push(session);
+    current.start =
+      session.start < current.start ? session.start : current.start;
+    current.end = session.end > current.end ? session.end : current.end;
+    return acc;
+  }
+
+  const columns: Record<Track, ScheduleSession[]> = { main: [], workshop: [] };
+  columns[session.track].push(session);
+  acc.push({
+    kind: "parallel",
+    start: session.start,
+    end: session.end,
+    columns,
+  });
+  return acc;
+}, []);
+
+/** Indices of the parallel segments, used to wire the single tab bar to every column it controls. */
+const parallelIndices = segments.flatMap((segment, index) =>
+  segment.kind === "parallel" ? [index] : [],
 );
-
-const sessionsByTrack: Record<Track, ScheduleSession[]> = {
-  main: mainSessions,
-  workshop: [
-    ...workshopSessions,
-    ...mainSessions.filter((session) => commonSessionIds.has(session.id)),
-  ].toSorted(
-    (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime(),
-  ),
-};
-
-const isKeynote = (session: ScheduleSession) =>
-  session.id === "intro-keynote" ||
-  session.proposal?.formats.some(
-    (format) => format.toLowerCase() === "keynote",
-  );
 
 const schema = {
   "@context": "https://schema.org",
@@ -70,7 +98,7 @@ const schema = {
       addressCountry: "FR",
     },
   },
-  url: `${SITE_DOMAIN}/fr/schedule`,
+  url: `${SITE_DOMAIN}/schedule`,
   description: "Programme de la conférence NG Baguette 2027",
 };
 ---
@@ -112,11 +140,15 @@ const schema = {
           Découvrez le programme complet de la conférence NG Baguette 2027
         </p>
         <div class="flex justify-center gap-4 mt-8">
-          <div class="stat bg-base-100/50 backdrop-blur rounded-xl px-4 md:px-6 py-4">
+          <div
+            class="stat bg-base-100/50 backdrop-blur rounded-xl px-4 md:px-6 py-4"
+          >
             <div class="stat-value text-primary text-3xl">7</div>
             <div class="stat-desc">Conférences</div>
           </div>
-          <div class="stat bg-base-100/50 backdrop-blur rounded-xl px-4 md:px-6 py-4">
+          <div
+            class="stat bg-base-100/50 backdrop-blur rounded-xl px-4 md:px-6 py-4"
+          >
             <div class="stat-value text-secondary text-3xl">2</div>
             <div class="stat-desc">Ateliers</div>
           </div>
@@ -124,218 +156,96 @@ const schema = {
       </div>
     </div>
 
-    <section class="max-w-screen-lg mx-auto px-4 md:px-8 py-12">
+    <section class="max-w-screen-lg lg:max-w-screen-xl mx-auto px-4 md:px-8 py-12 space-y-6">
       <div
-        class="tabs tabs-boxed grid grid-cols-2 max-w-xl mx-auto mb-8"
-        role="tablist"
-        aria-label="Pistes de l’agenda"
+        class="sticky z-40 lg:hidden -mx-4 md:-mx-8 px-4 md:px-8 py-3 bg-base-100/95 backdrop-blur border-b border-base-300/30"
+        data-track-tabbar
       >
-        {
-          tracks.map((track, index) => (
-            <button
-              id={`tab-${track.id}`}
-              class:list={["tab tab-lg font-semibold", { "tab-active": index === 0 }]}
-              type="button"
-              role="tab"
-              aria-selected={index === 0 ? "true" : "false"}
-              aria-controls={`panel-${track.id}`}
-              tabindex={index === 0 ? 0 : -1}
-              data-track-tab={track.id}
-            >
-              {track.label}
-            </button>
-          ))
-        }
+        <div
+          class="tabs tabs-boxed grid grid-cols-2"
+          role="tablist"
+          aria-label="Pistes de l’agenda"
+        >
+          {
+            tracks.map((track, index) => (
+              <button
+                id={`tab-${track.id}`}
+                class:list={[
+                  "tab tab-lg font-semibold",
+                  { "tab-active": index === 0 },
+                ]}
+                type="button"
+                role="tab"
+                aria-selected={index === 0 ? "true" : "false"}
+                aria-controls={parallelIndices
+                  .map((segmentIndex) => `panel-${segmentIndex}-${track.id}`)
+                  .join(" ")}
+                tabindex={index === 0 ? 0 : -1}
+                data-track-tab={track.id}
+              >
+                {track.label}
+              </button>
+            ))
+          }
+        </div>
       </div>
 
       {
-        tracks.map((track, index) => (
-          <div
-            id={`panel-${track.id}`}
-            class="space-y-6"
-            role="tabpanel"
-            aria-labelledby={`tab-${track.id}`}
-            hidden={index !== 0}
-            data-track-panel={track.id}
-          >
-            {sessionsByTrack[track.id].map((session) => (
-              <article class="card bg-base-200 shadow-xl overflow-hidden">
-                <div class="bg-primary text-primary-content px-6 py-3 flex items-center justify-between flex-wrap gap-2">
-                  <div class="flex items-center gap-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+        segments.map((segment, segmentIndex) =>
+          segment.kind === "common" ? (
+            <div class="space-y-6">
+              {segment.sessions.map((session) => (
+                <SessionCard session={session} />
+              ))}
+            </div>
+          ) : (
+            <div class="space-y-4">
+              <div
+                class="flex items-center gap-3 text-base-content/60"
+                aria-hidden="true"
+              >
+                <span class="font-mono font-semibold">
+                  {formatTime(segment.start, "fr")} –{" "}
+                  {formatTime(segment.end, "fr")}
+                </span>
+                <span class="h-px flex-1 bg-base-content/15" />
+                <span class="hidden sm:inline text-sm uppercase tracking-wide whitespace-nowrap">
+                  Sessions en parallèle
+                </span>
+              </div>
+
+              <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:items-stretch">
+                {tracks.map((track, index) => (
+                  <div
+                    id={`panel-${segmentIndex}-${track.id}`}
+                    class="lg:flex lg:flex-col"
+                    role="tabpanel"
+                    aria-labelledby={`tab-${track.id}`}
+                    hidden={index !== 0}
+                    data-track-panel={track.id}
+                  >
+                    <p
+                      class="hidden lg:block font-semibold text-lg mb-4"
                       aria-hidden="true"
                     >
-                      <circle cx="12" cy="12" r="10" />
-                      <polyline points="12 6 12 12 16 14" />
-                    </svg>
-                    <span class="font-mono font-bold text-lg">
-                      {formatTime(session.start, "fr")} - {formatTime(session.end, "fr")}
-                    </span>
-                  </div>
-                  <div class="flex flex-wrap gap-2">
-                    {commonSessionIds.has(session.id) && (
-                      <span class="badge badge-lg bg-base-100 text-primary">
-                        Temps commun
-                      </span>
-                    )}
-                    {isKeynote(session) && (
-                      <span class="badge badge-lg bg-base-100 text-primary gap-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          aria-hidden="true"
-                        >
-                          <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                          <path d="M2 17l10 5 10-5" />
-                          <path d="M2 12l10 5 10-5" />
-                        </svg>
-                        Keynote
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <div class="card-body">
-                  <h2 class="card-title text-xl md:text-2xl mb-3">{session.title}</h2>
-
-                  {session.proposal && (
-                    <div class="flex flex-wrap gap-2 mb-4">
-                      {session.language && (
-                        <span class="badge badge-lg gap-2">
-                          {session.language === "fr" ? "🇫🇷" : "🇬🇧"}
-                          {getLanguageLabel(session.language, "fr").split(" ")[1]}
-                        </span>
-                      )}
-                      <span class="badge badge-lg badge-secondary badge-outline gap-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          aria-hidden="true"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                        </svg>
-                        {getLevelLabel(session.proposal.level, "fr")}
-                      </span>
+                      {track.label}
+                    </p>
+                    <div class="space-y-6 lg:flex-1 lg:flex lg:flex-col lg:gap-6 lg:space-y-0">
+                      {segment.columns[track.id].map((session) => (
+                        <SessionCard
+                          session={session}
+                          class={
+                            track.id === "workshop" ? "lg:flex-1" : undefined
+                          }
+                        />
+                      ))}
                     </div>
-                  )}
-
-                  {session.proposal?.speakers &&
-                    session.proposal.speakers.length > 0 && (
-                      <div class="flex flex-wrap gap-4 my-4">
-                        {session.proposal.speakers.map((speaker) => (
-                          <a
-                            href={`/fr/speaker/${getSpeakerSlug(speaker)}`}
-                            class="flex items-center gap-4 bg-base-100 hover:bg-base-300 rounded-xl p-3 transition-all hover:scale-[1.02] hover:shadow-md"
-                          >
-                            <div class="avatar">
-                              <div class="w-14 h-14 rounded-xl ring-2 ring-primary/30">
-                                <img
-                                  src={speaker.picture}
-                                  alt={speaker.name}
-                                  loading="lazy"
-                                />
-                              </div>
-                            </div>
-                            <div>
-                              <p class="font-semibold text-lg">{speaker.name}</p>
-                              {speaker.company && (
-                                <p class="text-sm text-base-content/60 flex items-center gap-1">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="12"
-                                    height="12"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
-                                  >
-                                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-                                    <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-                                  </svg>
-                                  {speaker.company}
-                                </p>
-                              )}
-                            </div>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="text-primary ml-auto"
-                              aria-hidden="true"
-                            >
-                              <path d="m9 18 6-6-6-6" />
-                            </svg>
-                          </a>
-                        ))}
-                      </div>
-                    )}
-
-                  {session.proposal && (
-                    <div class="bg-base-100 rounded-xl p-5 mt-2">
-                      <h3 class="font-semibold mb-3 text-base-content/70 uppercase text-sm tracking-wide flex items-center gap-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="text-primary"
-                          aria-hidden="true"
-                        >
-                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                          <polyline points="14 2 14 8 20 8" />
-                          <line x1="16" y1="13" x2="8" y2="13" />
-                          <line x1="16" y1="17" x2="8" y2="17" />
-                        </svg>
-                        Voir le résumé
-                      </h3>
-                      <div
-                        class="text-base-content/80 leading-relaxed prose prose-sm max-w-none"
-                        set:html={markdownToHtml(session.proposal.abstract)}
-                      />
-                    </div>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-        ))
+                  </div>
+                ))}
+              </div>
+            </div>
+          ),
+        )
       }
     </section>
   </main>
@@ -349,14 +259,31 @@ const schema = {
     document.querySelectorAll<HTMLElement>("[data-track-panel]"),
   );
 
-  function activateTab(tab: HTMLButtonElement) {
-    const track = tab.dataset.trackTab;
+  /**
+   * The tab bar sticks below the site header, whose height depends on its
+   * content, so measure it rather than hard-coding an offset.
+   */
+  const header = document.querySelector("header");
+  const tabBar = document.querySelector<HTMLElement>("[data-track-tabbar]");
 
-    for (const candidate of tabs) {
-      const isActive = candidate === tab;
-      candidate.classList.toggle("tab-active", isActive);
-      candidate.setAttribute("aria-selected", String(isActive));
-      candidate.tabIndex = isActive ? 0 : -1;
+  if (header && tabBar) {
+    const syncStickyOffset = () =>
+      tabBar.style.setProperty(
+        "top",
+        `${header.getBoundingClientRect().height}px`,
+      );
+
+    syncStickyOffset();
+    new ResizeObserver(syncStickyOffset).observe(header);
+  }
+
+  /** A single tab bar drives the columns of every parallel block at once. */
+  function activateTrack(track: string) {
+    for (const tab of tabs) {
+      const isActive = tab.dataset.trackTab === track;
+      tab.classList.toggle("tab-active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
     }
 
     for (const panel of panels) {
@@ -364,23 +291,32 @@ const schema = {
     }
   }
 
-  tabs.forEach((tab, index) => {
-    tab.addEventListener("click", () => activateTab(tab));
+  for (const tab of tabs) {
+    tab.addEventListener("click", () => activateTrack(tab.dataset.trackTab!));
     tab.addEventListener("keydown", (event) => {
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
 
       event.preventDefault();
       const direction = event.key === "ArrowRight" ? 1 : -1;
+      const index = tabs.indexOf(tab);
       const nextTab = tabs[(index + direction + tabs.length) % tabs.length];
-      activateTab(nextTab);
+      activateTrack(nextTab.dataset.trackTab!);
       nextTab.focus();
     });
-  });
+  }
 </script>
 
 <style>
   .title-font {
     font-family: "Bangers", sans-serif;
+  }
+
+  /* On desktop both tracks are shown side by side, so the tab selection
+     (which sets the `hidden` attribute) must not hide a column. */
+  @media (min-width: 1024px) {
+    [data-track-panel][hidden] {
+      display: flex;
+    }
   }
 </style>
 <style is:global>
