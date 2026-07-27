@@ -31,14 +31,17 @@ const schema = {
     <!-- Hero Section -->
     <div
       class="hero h-64 md:h-80 mb-12"
-      style="background-image: url('/hero/venue-hero.jpg'); background-size: cover; background-position: center;"
+      style="background-image: url('/old-editions/IMG_4579.jpg'); background-size: cover; background-position: center;"
     >
       <div class="hero-overlay bg-opacity-70 bg-base-100"></div>
       <div class="hero-content text-center text-base-content py-12 px-4">
         <div class="max-w-3xl">
-          <h1 class="text-3xl md:text-5xl font-bold mb-4 title-font">Lieu de la conférence</h1>
+          <h1 class="text-3xl md:text-5xl font-bold mb-4 title-font">
+            Lieu de la conférence
+          </h1>
           <p class="text-lg md:text-xl text-base-content/90">
-            La Sorbonne, Faculté des Sciences et Ingénierie — 4, place Jussieu. 75005 Paris
+            La Sorbonne, Faculté des Sciences et Ingénierie — 4, place Jussieu.
+            75005 Paris
           </p>
         </div>
       </div>
@@ -49,7 +52,13 @@ const schema = {
       <div class="bg-base-200 p-8 rounded-lg shadow-md mb-12">
         <h2 class="text-3xl font-bold mb-4">À propos du quartier</h2>
         <p class="text-lg text-base-content/80 max-w-4xl">
-          Situé dans le 5ᵉ arrondissement de Paris, le campus Sciences et Ingénierie de La Sorbonne (4, place Jussieu) est un pôle académique dynamique au cœur de la capitale. Installé le long de la Seine, le campus bénéficie d’un environnement urbain animé, entouré de cafés, de restaurants et d’espaces verts. Facilement accessible en métro et en bus, il offre un cadre idéal pour l’apprentissage, la collaboration et l’immersion dans la vitalité scientifique et culturelle de Paris.
+          Situé dans le 5ᵉ arrondissement de Paris, le campus Sciences et
+          Ingénierie de La Sorbonne (4, place Jussieu) est un pôle académique
+          dynamique au cœur de la capitale. Installé le long de la Seine, le
+          campus bénéficie d’un environnement urbain animé, entouré de cafés, de
+          restaurants et d’espaces verts. Facilement accessible en métro et en
+          bus, il offre un cadre idéal pour l’apprentissage, la collaboration et
+          l’immersion dans la vitalité scientifique et culturelle de Paris.
         </p>
       </div>
 
@@ -59,7 +68,9 @@ const schema = {
           <div class="bg-base-200 p-6 rounded-lg shadow-md">
             <h2 class="text-2xl font-bold mb-4">Adresse</h2>
             <div class="space-y-2 text-lg">
-              <p class="font-semibold">La Sorbonne, Faculté des Sciences et Ingénierie</p>
+              <p class="font-semibold">
+                La Sorbonne, Faculté des Sciences et Ingénierie
+              </p>
               <p>{ADDRESS.streetAddress}</p>
               <p>{ADDRESS.postalCode} {ADDRESS.addressRegion}</p>
               <p>{ADDRESS.addressCountry}</p>
@@ -121,6 +132,9 @@ const schema = {
     }).addTo(map);
 
     // Add a marker
-    L.marker([48.847, 2.355]).addTo(map).bindPopup("La Sorbonne, Faculté des Sciences et Ingénierie").openPopup();
+    L.marker([48.847, 2.355])
+      .addTo(map)
+      .bindPopup("La Sorbonne, Faculté des Sciences et Ingénierie")
+      .openPopup();
   });
 </script>
