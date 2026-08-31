@@ -1,17 +1,17 @@
 ---
-import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import {
-  CFP_END_DATE,
-  CFP_LINK,
-  CFP_START_DATE,
-  EVENT_YEAR,
+CFP_END_DATE,
+CFP_LINK,
+CFP_START_DATE,
+EVENT_YEAR,
 } from "../../consts";
+import Layout from "../../layouts/Layout.astro";
 import {
-  displayDate,
-  isAfterCFPClosing,
-  isAfterCFPOpenning,
-  isAfterOpenningProgram,
+displayDate,
+isAfterCFPClosing,
+isAfterCFPOpenning,
+isAfterOpenningProgram,
 } from "../../utils";
 
 const schema = {
@@ -108,7 +108,7 @@ const schema = {
       </div>
       <div class="stat">
         <div class="stat-title">Workshops</div>
-        <div class="stat-value">2 <span class="text-xl">120min</span></div>
+        <div class="stat-value">2 <span class="text-xl">2h</span></div>
       </div>
     </div>
 
