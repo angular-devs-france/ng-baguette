@@ -9,12 +9,12 @@ export const EVENT_START_TIME = "9h00";
 export const EVENT_END_TIME = "18h00";
 export const EVENT_DATE = "2027-05-29";
 export const CFP_START_DATE = "2026-11-02";
-export const CFP_END_DATE = "2027-01-30";
+export const CFP_END_DATE = "2027-01-29";
 export const OPEN_PROGRAM_DATE = "2027-02-15"; // Date when the agenda will be made public
 export const SPONSOR_ENDING_RESEARCH_DATE = "2027-04-20";
 export const EVENT_YEAR = new Date(EVENT_DATE).getFullYear();
 export const BLIND_TICKET_PRICE = 79; // in euros
-export const OPEN_BLIND_TICKET_SALE_DATE = "2027-10-05";
+export const OPEN_BLIND_TICKET_SALE_DATE = "2026-10-05";
 export const BLIND_TICKET_SOLD_OUT: boolean = false;
 export const TICKET_PRICE = 99; // in euros
 export const OPEN_TICKET_SALE_DATE = OPEN_BLIND_TICKET_SALE_DATE;
@@ -29,8 +29,7 @@ export const LATE_TICKET_SOLD_OUT: boolean = false;
 
 // Trigger (awaiting, open, closed)
 
-export const TICKETING_TRIGGER_EVENT: "awaiting" | "open" | "closed" =
-  "awaiting";
+export const TICKETING_TRIGGER_EVENT: "awaiting" | "open" | "closed" = "open";
 export const SPONSORSHIP_BROCHURE_URL = {
   en: "/pdf/sponsorship-prospectus-ngbaguette-2027.pdf",
   fr: "/pdf/dossier-sponsoring-ngbaguette-2027.pdf",
