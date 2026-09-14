@@ -23,3 +23,10 @@ export const displayDate = (date: string, local: string = 'fr-FR') => {
     day: "numeric",
   });
 }
+export const displayWeekdayAndDay = (date: string, local: string = 'fr-FR') => {
+  return new Date(date).toLocaleDateString(local, {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  });
+}

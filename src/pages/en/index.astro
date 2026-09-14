@@ -11,6 +11,7 @@ import {
   EVENT_END_TIME,
   EVENT_START_TIME,
   HELLOASSO_LINK,
+  ENABLE_LATE_TICKET,
   LATE_TICKET_PRICE,
   LATE_TICKET_SOLD_OUT,
   OPEN_BLIND_TICKET_SALE_DATE,
@@ -25,7 +26,7 @@ import {
   // WORKSHOP_TICKET_PRICE,
   // WORKSHOP_TICKET_SOLD_OUT,
 } from "../../consts";
-import { displayDate } from "../../utils";
+import { displayDate, displayWeekdayAndDay } from "../../utils";
 ---
 
 <Layout title={EVENT_DATE}>
@@ -238,7 +239,7 @@ import { displayDate } from "../../utils";
                       Conference Early Ticket
                     </h3>
                     <p class="text-sm text-base-content/60 mb-4">
-                      Friday, May 29
+                      {displayWeekdayAndDay(EVENT_DATE, "en-US")}
                     </p>
                     <span class="text-4xl font-bold mb-6">
                       €{BLIND_TICKET_PRICE}
@@ -296,7 +297,7 @@ import { displayDate } from "../../utils";
                       Conference Ticket
                     </h3>
                     <p class="text-sm text-base-content/60 mb-4">
-                      Friday, May 29
+                      {displayWeekdayAndDay(EVENT_DATE, "en-US")}
                     </p>
                     <span class="text-4xl font-bold mb-6">€{TICKET_PRICE}</span>
                     {OPEN_TICKET_SALE_DATE &&
@@ -321,45 +322,47 @@ import { displayDate } from "../../utils";
                     )}
                   </div>
                 </li>
-                <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
-                  <div class="card-body flex flex-col items-center py-8">
-                    <h3 class="card-title text-xl text-center mb-1">
-                      Late Conference Ticket
-                    </h3>
-                    <p class="text-sm text-base-content/60 mb-4">
-                      Friday, May 29
-                    </p>
-                    <span class="text-4xl font-bold mb-6">
-                      €{LATE_TICKET_PRICE}
-                    </span>
-                    {OPEN_LATE_TICKET_SALE_DATE &&
-                    new Date() >= new Date(OPEN_LATE_TICKET_SALE_DATE) ? (
-                      LATE_TICKET_SOLD_OUT ? (
-                        <p class="text-base-content/60 text-sm">Sold out</p>
-                      ) : (
-                        <button
-                          class="btn btn-primary w-full"
-                          onclick="document.getElementById('ticket-modal').showModal()"
-                        >
-                          Get your ticket
-                        </button>
-                      )
-                    ) : (
-                      <p class="text-base-content/60 text-sm text-center">
-                        {OPEN_LATE_TICKET_SALE_DATE
-                          ? "On sale from " +
-                            displayDate(OPEN_LATE_TICKET_SALE_DATE, "en-US")
-                          : "Soon on sale"}
+                {ENABLE_LATE_TICKET && (
+                  <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
+                    <div class="card-body flex flex-col items-center py-8">
+                      <h3 class="card-title text-xl text-center mb-1">
+                        Late Conference Ticket
+                      </h3>
+                      <p class="text-sm text-base-content/60 mb-4">
+                        {displayWeekdayAndDay(EVENT_DATE, "en-US")}
                       </p>
-                    )}
-                  </div>
-                </li>
+                      <span class="text-4xl font-bold mb-6">
+                        €{LATE_TICKET_PRICE}
+                      </span>
+                      {OPEN_LATE_TICKET_SALE_DATE &&
+                      new Date() >= new Date(OPEN_LATE_TICKET_SALE_DATE) ? (
+                        LATE_TICKET_SOLD_OUT ? (
+                          <p class="text-base-content/60 text-sm">Sold out</p>
+                        ) : (
+                          <button
+                            class="btn btn-primary w-full"
+                            onclick="document.getElementById('ticket-modal').showModal()"
+                          >
+                            Get your ticket
+                          </button>
+                        )
+                      ) : (
+                        <p class="text-base-content/60 text-sm text-center">
+                          {OPEN_LATE_TICKET_SALE_DATE
+                            ? "On sale from " +
+                              displayDate(OPEN_LATE_TICKET_SALE_DATE, "en-US")
+                            : "Soon on sale"}
+                        </p>
+                      )}
+                    </div>
+                  </li>
+                )}
                 {/* <li
                   class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors"
                 >
                   <div class="card-body flex flex-col items-center py-8">
                     <h3 class="card-title text-xl text-center mb-1">Workshop Ticket</h3>
-                    <p class="text-sm text-base-content/60 mb-4">Thursday, May 28</p>
+                    <p class="text-sm text-base-content/60 mb-4">{displayWeekdayAndDay(EVENT_DATE, "en-US")}</p>
                     <span class="text-4xl font-bold mb-6">€{WORKSHOP_TICKET_PRICE}</span>
                     {
                       new Date() >= new Date(OPEN_WORKSHOP_TICKET_SALE_DATE) ? (

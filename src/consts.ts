@@ -23,6 +23,7 @@ export const LATE_TICKET_PRICE = 119; // in euros
 export const OPEN_LATE_TICKET_SALE_DATE = "2027-04-12";
 export const CLOSE_TICKET_SALE_DATE = "2027-05-14";
 export const LATE_TICKET_SOLD_OUT: boolean = false;
+export const ENABLE_LATE_TICKET: boolean = false;
 // export const WORKSHOP_TICKET_PRICE = 500; // in euros
 // export const OPEN_WORKSHOP_TICKET_SALE_DATE = "2027-02-01";
 // export const WORKSHOP_TICKET_SOLD_OUT: boolean = false;
