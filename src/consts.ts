@@ -31,7 +31,7 @@ export const LATE_TICKET_SOLD_OUT: boolean = false;
 
 export const TICKETING_TRIGGER_EVENT: "awaiting" | "open" | "closed" = "open";
 export const SPONSORSHIP_BROCHURE_URL = {
-  en: "/pdf/sponsorship-prospectus-ngbaguette-2027.pdf",
+  en: "/pdf/dossier-sponsoring-ngbaguette-2027.pdf",
   fr: "/pdf/dossier-sponsoring-ngbaguette-2027.pdf",
 };
 
