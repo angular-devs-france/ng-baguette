@@ -6,6 +6,7 @@ import Layout from "../../layouts/Layout.astro";
 import {
   ADDRESS,
   BLIND_TICKET_PRICE,
+  BLIND_TICKET_QUANTITY,
   BLIND_TICKET_SOLD_OUT,
   EVENT_DATE,
   EVENT_END_TIME,
@@ -234,7 +235,13 @@ import { displayDate, displayPrice, displayWeekdayAndDay } from "../../utils";
         {
           TICKETING_TRIGGER_EVENT === "open" && (
             <ul class="flex flex-col md:flex-row gap-6 items-stretch max-w-5xl mx-auto">
-              <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
+              <li class="relative flex-1 card overflow-hidden bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
+                {new Date() >= new Date(OPEN_BLIND_TICKET_SALE_DATE) &&
+                  !BLIND_TICKET_SOLD_OUT && (
+                    <p class="absolute inset-x-0 top-0 bg-primary text-primary-content text-center text-sm font-bold py-1">
+                      {BLIND_TICKET_QUANTITY} places seulement
+                    </p>
+                  )}
                 <div class="card-body flex flex-col items-center py-8">
                   <h3 class="card-title text-xl text-center mb-1">
                     Ticket Conférence Early
