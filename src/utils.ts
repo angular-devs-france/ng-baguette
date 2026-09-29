@@ -30,3 +30,10 @@ export const displayWeekdayAndDay = (date: string, local: string = 'fr-FR') => {
     day: "numeric",
   });
 }
+export const displayPrice = (price: number, local: string = 'fr-FR') => {
+  return new Intl.NumberFormat(local, {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(price);
+}

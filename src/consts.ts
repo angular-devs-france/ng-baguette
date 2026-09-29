@@ -14,6 +14,7 @@ export const OPEN_PROGRAM_DATE = "2027-02-15"; // Date when the agenda will be m
 export const SPONSOR_ENDING_RESEARCH_DATE = "2027-04-20";
 export const EVENT_YEAR = new Date(EVENT_DATE).getFullYear();
 export const BLIND_TICKET_PRICE = 79; // in euros
+export const BLIND_TICKET_QUANTITY = 30;
 export const OPEN_BLIND_TICKET_SALE_DATE = "2026-10-05";
 export const BLIND_TICKET_SOLD_OUT: boolean = false;
 export const TICKET_PRICE = 99; // in euros

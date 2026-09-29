@@ -5,6 +5,7 @@ import Layout from "../../layouts/Layout.astro";
 import {
   ADDRESS,
   BLIND_TICKET_PRICE,
+  BLIND_TICKET_QUANTITY,
   BLIND_TICKET_SOLD_OUT,
   CLOSE_TICKET_SALE_DATE,
   EVENT_DATE,
@@ -26,7 +27,7 @@ import {
   // WORKSHOP_TICKET_PRICE,
   // WORKSHOP_TICKET_SOLD_OUT,
 } from "../../consts";
-import { displayDate, displayWeekdayAndDay } from "../../utils";
+import { displayDate, displayPrice, displayWeekdayAndDay } from "../../utils";
 ---
 
 <Layout title={EVENT_DATE}>
@@ -233,7 +234,13 @@ import { displayDate, displayWeekdayAndDay } from "../../utils";
           TICKETING_TRIGGER_EVENT === "open" &&
             new Date() < new Date(CLOSE_TICKET_SALE_DATE) && (
               <ul class="flex flex-col md:flex-row gap-6 items-stretch max-w-5xl mx-auto">
-                <li class="flex-1 card bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
+                <li class="relative flex-1 card overflow-hidden bg-base-200 shadow-lg border border-base-300/50 hover:border-base-300 transition-colors">
+                  {new Date() >= new Date(OPEN_BLIND_TICKET_SALE_DATE) &&
+                    !BLIND_TICKET_SOLD_OUT && (
+                      <p class="absolute inset-x-0 top-0 bg-primary text-primary-content text-center text-sm font-bold py-1">
+                        Only {BLIND_TICKET_QUANTITY} seats
+                      </p>
+                    )}
                   <div class="card-body flex flex-col items-center py-8">
                     <h3 class="card-title text-xl text-center mb-1">
                       Conference Early Ticket
@@ -242,7 +249,7 @@ import { displayDate, displayWeekdayAndDay } from "../../utils";
                       {displayWeekdayAndDay(EVENT_DATE, "en-US")}
                     </p>
                     <span class="text-4xl font-bold mb-6">
-                      €{BLIND_TICKET_PRICE}
+                      {displayPrice(BLIND_TICKET_PRICE, "en-US")}
                     </span>
 
                     {new Date() >= new Date(OPEN_BLIND_TICKET_SALE_DATE) ? (
@@ -299,7 +306,7 @@ import { displayDate, displayWeekdayAndDay } from "../../utils";
                     <p class="text-sm text-base-content/60 mb-4">
                       {displayWeekdayAndDay(EVENT_DATE, "en-US")}
                     </p>
-                    <span class="text-4xl font-bold mb-6">€{TICKET_PRICE}</span>
+                    <span class="text-4xl font-bold mb-6">{displayPrice(TICKET_PRICE, "en-US")}</span>
                     {OPEN_TICKET_SALE_DATE &&
                     new Date() >= new Date(OPEN_TICKET_SALE_DATE) ? (
                       TICKET_SOLD_OUT ? (
@@ -332,7 +339,7 @@ import { displayDate, displayWeekdayAndDay } from "../../utils";
                         {displayWeekdayAndDay(EVENT_DATE, "en-US")}
                       </p>
                       <span class="text-4xl font-bold mb-6">
-                        €{LATE_TICKET_PRICE}
+                        {displayPrice(LATE_TICKET_PRICE, "en-US")}
                       </span>
                       {OPEN_LATE_TICKET_SALE_DATE &&
                       new Date() >= new Date(OPEN_LATE_TICKET_SALE_DATE) ? (
@@ -363,7 +370,7 @@ import { displayDate, displayWeekdayAndDay } from "../../utils";
                   <div class="card-body flex flex-col items-center py-8">
                     <h3 class="card-title text-xl text-center mb-1">Workshop Ticket</h3>
                     <p class="text-sm text-base-content/60 mb-4">{displayWeekdayAndDay(EVENT_DATE, "en-US")}</p>
-                    <span class="text-4xl font-bold mb-6">€{WORKSHOP_TICKET_PRICE}</span>
+                    <span class="text-4xl font-bold mb-6">{displayPrice(WORKSHOP_TICKET_PRICE, "en-US")}</span>
                     {
                       new Date() >= new Date(OPEN_WORKSHOP_TICKET_SALE_DATE) ? (
                         WORKSHOP_TICKET_SOLD_OUT ? (
