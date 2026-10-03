@@ -2,32 +2,22 @@
 import Layout from "../../../layouts/Layout.astro";
 import { SITE_DOMAIN, SITE_TITLE } from "../../../consts";
 import {
-  getAllSpeakers,
+  getSpeakerBySlug,
   getSpeakerSlug,
   formatTime,
   getLanguageLabel,
   getLevelLabel,
   markdownToHtml,
   i18n,
-  type SpeakerWithSessions,
 } from "../../../utils/schedule";
 
 const locale = "en";
 const t = i18n[locale];
 
-export function getStaticPaths() {
-  const speakers = getAllSpeakers();
-  return speakers.map((speaker) => ({
-    params: { slug: getSpeakerSlug(speaker) },
-    props: { speaker },
-  }));
+const speaker = getSpeakerBySlug(Astro.params.slug!);
+if (!speaker) {
+  return new Response(null, { status: 404 });
 }
-
-type Props = {
-  speaker: SpeakerWithSessions;
-};
-
-const { speaker } = Astro.props;
 
 function getSocialIcon(link: string): { name: string; icon: string } {
   if (link.includes("github")) {

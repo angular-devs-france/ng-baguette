@@ -23,3 +23,6 @@ pnpm-debug.log*
 # IDEs
 
 .idea
+
+# netlify adapter output
+.netlify/
